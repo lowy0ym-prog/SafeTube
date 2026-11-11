@@ -35,6 +35,7 @@ import free.rm.skytube.app.SkyTubeApp;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubeChannel;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubePlaylist;
 import free.rm.skytube.businessobjects.YouTube.YouTubeTasks;
+import free.rm.skytube.businessobjects.whitelist.Whitelists;
 
 public class GetPlaylistsForChannel implements YouTubeTasks.ChannelPlaylistFetcher {
     static class Paging {
@@ -72,7 +73,9 @@ public class GetPlaylistsForChannel implements YouTubeTasks.ChannelPlaylistFetch
             List<InfoItem> infoItems = getNextPage();
             return infoItems.stream()
                     .filter(PlaylistInfoItem.class::isInstance)
-                    .map(PlaylistInfoItem.class::cast).map(item ->
+                    .map(PlaylistInfoItem.class::cast)
+                    .filter(item -> Whitelists.playlistAllowed(channel.getChannelId().getRawId(), item.getUrl()))
+                    .map(item ->
                     new YouTubePlaylist(item.getUrl(), item.getName(), "", null, item.getStreamCount(), NewPipeUtils.getThumbnailUrl(item),
                             channel)
             ).collect(Collectors.toList());
@@ -103,6 +106,9 @@ public class GetPlaylistsForChannel implements YouTubeTasks.ChannelPlaylistFetch
 
     private synchronized Paging getPaging() throws NewPipeException, ParsingException {
         SkyTubeApp.nonUiThread();
+        if (!Whitelists.channelApproved(channel.getChannelId().getRawId())) {
+            throw new NewPipeException("Channel is not whitelisted");
+        }
         if (paging == null) {
             NewPipeService.ChannelWithExtractor cwe = NewPipeService.get().getChannelWithExtractor(channel.getChannelId());
             paging = new Paging(cwe.channel, cwe.findPlaylistTab());

@@ -46,6 +46,18 @@ public class PlaylistsGridAdapter extends RecyclerViewAdapterEx<YouTubePlaylist,
 	private static final String TAG = PlaylistsGridAdapter.class.getSimpleName();
 
 	private YouTubeTasks.ChannelPlaylistFetcher getChannelPlaylists;
+
+	// SafeTube: only whitelisted, non-blocked playlists may enter the grid.
+	@Override
+	public void appendList(java.util.List<YouTubePlaylist> l) {
+		java.util.List<YouTubePlaylist> ok = new java.util.ArrayList<>();
+		if (l != null) {
+			for (YouTubePlaylist p : l) {
+				if (p != null && free.rm.skytube.businessobjects.whitelist.CardGate.isVisible(p)) ok.add(p);
+			}
+		}
+		super.appendList(ok);
+	}
 	private final PlaylistClickListener playlistClickListener;
 	private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 

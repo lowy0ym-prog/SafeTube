@@ -44,6 +44,18 @@ public class VideoPagerWithChannel extends VideoPager {
     }
 
     @Override
+    protected String resolveUploader(StreamInfoItem item) {
+        // Channel tabs / feeds often omit the uploader. The pager is only ever created for a channel
+        // that was verified as approved, so such items are attributed to it. If the item DOES name an
+        // uploader it must match that channel, otherwise it is not trusted.
+        String uploader = item.getUploaderUrl();
+        if (uploader != null && !uploader.isEmpty()) {
+            return uploader;
+        }
+        return channel != null && channel.getChannelId() != null ? channel.getChannelId().getRawId() : null;
+    }
+
+    @Override
     protected YouTubeVideo convert(StreamInfoItem item, String id) {
         NewPipeService.DateInfo date = new NewPipeService.DateInfo(item.getUploadDate());
         if (NewPipeService.DEBUG_LOG) {

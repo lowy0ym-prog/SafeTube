@@ -668,6 +668,10 @@ public class SubscriptionsDb extends SQLiteOpenHelperEx {
 
                 do {
                     final String id = cursor.getString(idIdx);
+                    // WHITELIST (fail closed): never materialise cached rows of unapproved channels / blocked videos
+                    if (fullColumnList && !free.rm.skytube.businessobjects.whitelist.Whitelists.videoAllowed(cursor.getString(channelIdColumn), id)) {
+                        continue;
+                    }
 
                     // String id, String title, String description, long durationInSeconds,
                     //                            YouTubeChannel channel, long viewCount, Instant publishDate,
@@ -831,6 +835,9 @@ public class SubscriptionsDb extends SQLiteOpenHelperEx {
 				Long latestVideoTs = cursor.getLong(colLatestVideoTs);
 				boolean hasNew = (latestVideoTs != null && (lastVisit == null || latestVideoTs > lastVisit));
                 Status status = Status.lookup(cursor.getInt(colStatus));
+                if (!free.rm.skytube.businessobjects.whitelist.Whitelists.channelApproved(cursor.getString(channelId))) {
+                    continue;
+                }
 				result.add(new ChannelView(new ChannelId(cursor.getString(channelId)), cursor.getString(title), cursor.getString(thumbnail), hasNew, status));
 			}
 			return result;

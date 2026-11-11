@@ -102,6 +102,7 @@ public class SkyTubeApp extends MultiDexApplication {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		free.rm.skytube.businessobjects.whitelist.Whitelists.init(this);
 		this.settings = new Settings(this);
 		this.settings.migrate();
 		this.names = new FragmentNames(this);

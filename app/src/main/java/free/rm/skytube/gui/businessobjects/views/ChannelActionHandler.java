@@ -43,13 +43,9 @@ public class ChannelActionHandler {
     public boolean handleChannelActions(Context context, YouTubeChannel channel, int itemId) {
         switch (itemId) {
             case R.id.subscribe_channel:
-                compositeDisposable.add(DatabaseTasks.subscribeToChannel(true, null, context, channel.getChannelId(), true)
-                    .subscribe(result -> {}, error -> Logger.e(this, error, "Error subscribing to channel %s", channel.getChannelId())));
+                // SafeTube: subscriptions are managed only by the administrator whitelist.
                 return true;
             case R.id.unsubscribe_channel:
-                compositeDisposable.add(DatabaseTasks.subscribeToChannel(false,
-                        null, context, channel.getChannelId(), true)
-                    .subscribe(result -> {}, error -> Logger.e(this, error, "Error unsubscribing from channel %s", channel.getChannelId())));
                 return true;
             case R.id.open_channel:
                 SkyTubeApp.launchChannel(channel.getChannelId(), context);
@@ -80,8 +76,8 @@ public class ChannelActionHandler {
             compositeDisposable.add(SubscriptionsDb.getSubscriptionsDb().getUserSubscribedToChannel(channelId)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(subscribed -> {
-                        setVisible(menu, R.id.subscribe_channel, !subscribed);
-                        setVisible(menu, R.id.unsubscribe_channel, subscribed);
+                        setVisible(menu, R.id.subscribe_channel, false);
+                        setVisible(menu, R.id.unsubscribe_channel, false);
                     }, error -> Logger.e(this, error, "Error getting subscription status for %s", channelId)));
         }
     }

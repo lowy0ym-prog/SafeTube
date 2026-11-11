@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 import free.rm.skytube.R;
@@ -177,6 +178,31 @@ public class VideoGridAdapter extends RecyclerViewAdapterEx<CardData, GridViewHo
 		}
 	}
 
+
+	// SafeTube: every path that adds cards to the grid goes through the whitelist gate.
+	@Override
+	public void setList(List<CardData> l) {
+		super.setList(free.rm.skytube.businessobjects.whitelist.CardGate.filter(l));
+	}
+
+	@Override
+	public void appendList(List<CardData> l) {
+		super.appendList(free.rm.skytube.businessobjects.whitelist.CardGate.filter(l));
+	}
+
+	@Override
+	public void prepend(CardData item) {
+		if (item != null && free.rm.skytube.businessobjects.whitelist.CardGate.isVisible(item)) {
+			super.prepend(item);
+		}
+	}
+
+	@Override
+	protected void append(CardData item) {
+		if (item != null && free.rm.skytube.businessobjects.whitelist.CardGate.isVisible(item)) {
+			super.append(item);
+		}
+	}
 
 	@Override
 	public GridViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

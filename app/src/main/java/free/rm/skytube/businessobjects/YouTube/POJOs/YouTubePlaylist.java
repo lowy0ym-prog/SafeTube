@@ -73,6 +73,15 @@ public class YouTubePlaylist extends CardData implements Serializable {
 		return channel != null ? channel.getBannerUrl() : null;
 	}
 
+	/** Channel id (or URL) of the channel owning this playlist, or null if unknown. */
+	public String getOwnerChannelRef() {
+		try {
+			return channel != null && channel.getChannelId() != null ? channel.getChannelId().getRawId() : null;
+		} catch (RuntimeException e) {
+			return null;
+		}
+	}
+
 	public String getChannelTitle() {
 		return channel != null ? channel.getTitle() : null;
 	}

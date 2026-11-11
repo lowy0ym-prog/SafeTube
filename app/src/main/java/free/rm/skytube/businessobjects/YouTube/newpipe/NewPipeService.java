@@ -64,6 +64,7 @@ import java.util.Objects;
 import free.rm.skytube.BuildConfig;
 import free.rm.skytube.app.Settings;
 import free.rm.skytube.app.SkyTubeApp;
+import free.rm.skytube.businessobjects.whitelist.Whitelists;
 import free.rm.skytube.businessobjects.Logger;
 import free.rm.skytube.businessobjects.YouTube.POJOs.PersistentChannel;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubeChannel;
@@ -204,6 +205,10 @@ public class NewPipeService {
         SkyTubeApp.nonUiThread();
         LinkHandler linkHandler = streamingService.getStreamLHFactory().fromId(videoId);
         StreamExtractor streamExtractor = streamingService.getStreamExtractor(linkHandler);
+        streamExtractor.fetchPage();
+        if (!Whitelists.videoAllowed(streamExtractor.getUploaderUrl(), videoId)) {
+            throw new ExtractionException("Video is not whitelisted");
+        }
         return StreamInfo.getInfo(streamExtractor);
     }
 
@@ -250,6 +255,7 @@ public class NewPipeService {
      * @throws IOException
      */
     public List<YouTubeVideo> getVideosFromFeedOrFromChannel(ChannelId channelId) throws NewPipeException {
+        requireApproved(channelId);
         try {
             SkyTubeApp.nonUiThread();
 
@@ -263,7 +269,34 @@ public class NewPipeService {
         return getChannelVideos(channelId);
     }
 
+    private static void requireApproved(ChannelId channelId) throws NewPipeException {
+        if (channelId == null || !Whitelists.channelApproved(channelId.getRawId())) {
+            throw new NewPipeException("Channel is not whitelisted: " + channelId);
+        }
+    }
+
+    /**
+     * Administrator-only lookup of a channel that is NOT yet whitelisted (used to add it). The result
+     * must never be displayed; only its verified id and name are used.
+     */
+    public YouTubeChannel lookupChannelForAdmin(String urlOrId) throws NewPipeException {
+        SkyTubeApp.nonUiThread();
+        try {
+            String id = urlOrId == null ? null : urlOrId.trim();
+            ChannelExtractor ex = streamingService.getChannelExtractor(
+                    id != null && id.contains("/") ? streamingService.getChannelLHFactory().fromUrl(id) : getListLinkHandler(id));
+            ex.fetchPage();
+            return createInternalChannel(ex);
+        } catch (ExtractionException | IOException | RuntimeException e) {
+            throw new NewPipeException("Unable to look up channel: " + e.getMessage(), e);
+        }
+    }
+
+    /** Disabled: trending/featured content is not whitelisted content. */
     public VideoPager getTrending() throws NewPipeException {
+        if (true) {
+            throw new NewPipeException("Trending is disabled");
+        }
         try {
             KioskList kiosks = streamingService.getKioskList();
             KioskExtractor kex = kiosks.getDefaultKioskExtractor();
@@ -275,6 +308,7 @@ public class NewPipeService {
     }
 
     public VideoPagerWithChannel getChannelPager(ChannelId channelId) throws NewPipeException {
+        requireApproved(channelId);
         try {
             Logger.e(this, "fetching channel info: "+ channelId);
             ChannelWithExtractor channelExtractor = getChannelWithExtractor(channelId);
@@ -289,6 +323,7 @@ public class NewPipeService {
     }
 
     public ChannelWithExtractor getChannelWithExtractor(ChannelId channelId) throws NewPipeException {
+        requireApproved(channelId);
         try {
             ChannelExtractor channelExtractor = getChannelExtractor(channelId);
 
@@ -311,6 +346,9 @@ public class NewPipeService {
     }
 
     public CommentPager getCommentPager(String videoId) throws NewPipeException {
+        if (true) {
+            throw new NewPipeException("Comments are disabled");
+        }
         try {
             final ListLinkHandler linkHandler = streamingService.getCommentsLHFactory().fromId(videoId);
             final CommentsExtractor commentsExtractor = streamingService.getCommentsExtractor(linkHandler);
@@ -328,6 +366,7 @@ public class NewPipeService {
      * @throws IOException
      */
     public PersistentChannel getChannelDetails(ChannelId channelId, PersistentChannel persistentChannel) throws NewPipeException {
+        requireApproved(channelId);
         Logger.i(this, "Fetching channel details for " + channelId);
         VideoPagerWithChannel pager = getChannelPager(channelId);
         // get the channel, and add all the videos from the first page
@@ -418,6 +457,10 @@ public class NewPipeService {
         LinkHandler url = streamingService.getStreamLHFactory().fromId(videoId);
         StreamExtractor extractor = streamingService.getStreamExtractor(url);
         extractor.fetchPage();
+        // WHITELIST (fail closed): verify the real uploader before any detail leaves this method.
+        if (!Whitelists.videoAllowed(extractor.getUploaderUrl(), videoId)) {
+            throw new ExtractionException("Video is not whitelisted");
+        }
 
         DateInfo uploadDate = new DateInfo(extractor.getUploadDate());
         Logger.i(this, "getDetails for %s -> %s %s", videoId, url.getUrl(), uploadDate);

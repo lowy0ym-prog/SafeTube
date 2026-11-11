@@ -36,6 +36,7 @@ import free.rm.skytube.businessobjects.YouTube.POJOs.CardData;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubeChannel;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubePlaylist;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubeVideo;
+import free.rm.skytube.businessobjects.whitelist.Whitelists;
 
 public class VideoPager extends Pager<InfoItem, CardData> {
     private final Set<String> seenVideos = new HashSet<>();
@@ -54,9 +55,15 @@ public class VideoPager extends Pager<InfoItem, CardData> {
         int unexpected = 0;
 
         for (InfoItem infoItem : page.getItems()) {
+            // WHITELIST (fail closed): unapproved / unverifiable items are dropped here, before any
+            // CardData exists, so no title, thumbnail URL or id can reach an adapter or image loader.
             if (infoItem instanceof StreamInfoItem) {
-                String id = getId(streamLinkHandler, infoItem.getUrl());
                 StreamInfoItem streamInfo = (StreamInfoItem) infoItem;
+                String id = getId(streamLinkHandler, infoItem.getUrl());
+                if (!Whitelists.videoAllowed(resolveUploader(streamInfo), id)) {
+                    unexpected++;
+                    continue;
+                }
                 if (seenVideos.contains(id)) {
                     repeatCounter++;
                 } else {
@@ -65,10 +72,19 @@ public class VideoPager extends Pager<InfoItem, CardData> {
                 }
             } else if (infoItem instanceof PlaylistInfoItem) {
                 PlaylistInfoItem playlistInfoItem = (PlaylistInfoItem) infoItem;
-                result.add(convert(playlistInfoItem, getId(playlistLinkHandler, infoItem.getUrl())));
+                String pid = getId(playlistLinkHandler, infoItem.getUrl());
+                if (Whitelists.playlistAllowed(playlistInfoItem.getUploaderUrl(), pid)) {
+                    result.add(convert(playlistInfoItem, pid));
+                } else {
+                    unexpected++;
+                }
             } else if (infoItem instanceof ChannelInfoItem) {
                 ChannelInfoItem channelInfoItem = (ChannelInfoItem) infoItem;
-                result.add(convert(channelInfoItem));
+                if (Whitelists.channelApproved(channelInfoItem.getUrl())) {
+                    result.add(convert(channelInfoItem));
+                } else {
+                    unexpected++;
+                }
             } else {
                 Logger.i(this, "Unexpected item %s, type:%s", infoItem, infoItem.getClass());
                 unexpected ++;
@@ -78,6 +94,14 @@ public class VideoPager extends Pager<InfoItem, CardData> {
             Logger.d(this, "From the requested %s, number of duplicates: %s, wrong types: %s", page.getItems().size(), repeatCounter, unexpected);
         }
         return result;
+    }
+
+    /**
+     * The channel this stream is attributed to for whitelist purposes. Subclasses that page through a
+     * single, already verified channel may supply that channel when the item carries no uploader URL.
+     */
+    protected String resolveUploader(StreamInfoItem item) {
+        return item.getUploaderUrl();
     }
 
     private String getId(LinkHandlerFactory handler, String url) throws NewPipeException {

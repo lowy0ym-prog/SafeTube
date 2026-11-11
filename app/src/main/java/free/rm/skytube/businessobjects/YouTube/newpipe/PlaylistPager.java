@@ -26,12 +26,14 @@ import org.schabi.newpipe.extractor.playlist.PlaylistExtractor;
 import java.util.List;
 
 import free.rm.skytube.businessobjects.Logger;
+import free.rm.skytube.businessobjects.whitelist.Whitelists;
 import free.rm.skytube.businessobjects.YouTube.POJOs.CardData;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubeChannel;
 import free.rm.skytube.businessobjects.YouTube.POJOs.YouTubePlaylist;
 
 public class PlaylistPager extends VideoPager {
     private YouTubePlaylist playlist;
+    private String ownerUrl;
     private final PlaylistExtractor playlistExtractor;
     public PlaylistPager(StreamingService streamingService, PlaylistExtractor playlistExtractor) {
         super(streamingService, playlistExtractor);
@@ -43,6 +45,7 @@ public class PlaylistPager extends VideoPager {
         if (playlist == null) {
             try {
                 String uploaderUrl = playlistExtractor.getUploaderUrl();
+                ownerUrl = uploaderUrl;
                 String channelId = uploaderUrl != null && !uploaderUrl.isEmpty() ? getStreamingService().getChannelLHFactory().fromUrl(uploaderUrl).getId() : null;
                 playlist = new YouTubePlaylist(
                         playlistExtractor.getId(),
@@ -56,6 +59,10 @@ public class PlaylistPager extends VideoPager {
             } catch (ParsingException e) {
                 Logger.e(this, "Unable to parse: " + e.getMessage(), e);
             }
+        }
+        // WHITELIST (fail closed): the playlist must belong to an approved channel and not be blocked.
+        if (playlist == null || !Whitelists.playlistAllowed(ownerUrl, playlist.getId())) {
+            return new java.util.ArrayList<>();
         }
         return super.extract(page);
     }

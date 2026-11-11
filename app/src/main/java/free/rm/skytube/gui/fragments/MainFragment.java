@@ -200,7 +200,14 @@ public class MainFragment extends FragmentEx {
 	}
 
 	private static String[] getTabListValues() {
-		return SkyTubeApp.getStringArray(R.array.tab_list_values);
+		// SafeTube: Featured / Most popular are YouTube-wide feeds and are never offered.
+		List<String> keep = new ArrayList<>();
+		for (String key : SkyTubeApp.getStringArray(R.array.tab_list_values)) {
+			if (!FEATURED_VIDEOS_FRAGMENT.equals(key) && !MOST_POPULAR_VIDEOS_FRAGMENT.equals(key)) {
+				keep.add(key);
+			}
+		}
+		return keep.toArray(new String[0]);
 	}
 
 	@Override
@@ -370,12 +377,6 @@ public class MainFragment extends FragmentEx {
 
 		private VideosGridFragment create(String key) {
 			// add fragments to list:  do NOT forget to ***UPDATE*** @string/tab_list and @string/tab_list_values
-			if (MOST_POPULAR_VIDEOS_FRAGMENT.equals(key)) {
-				return new MostPopularVideosFragment();
-			}
-			if (FEATURED_VIDEOS_FRAGMENT.equals(key)) {
-				return new FeaturedVideosFragment();
-			}
 			if (SUBSCRIPTIONS_FEED_FRAGMENT.equals(key)) {
 				return new SubscriptionsFeedFragment();
 			}

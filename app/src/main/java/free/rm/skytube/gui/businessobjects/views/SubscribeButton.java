@@ -50,6 +50,13 @@ public class SubscribeButton extends MaterialButton implements View.OnClickListe
 	public SubscribeButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		super.setOnClickListener(this);
+		super.setVisibility(GONE);
+	}
+
+	@Override
+	public void setVisibility(int visibility) {
+		// SafeTube: subscriptions are managed only by the administrator whitelist.
+		super.setVisibility(GONE);
 	}
 
 	@Override
@@ -60,10 +67,7 @@ public class SubscribeButton extends MaterialButton implements View.OnClickListe
 		if(externalClickListener != null) {
 			externalClickListener.onClick(SubscribeButton.this);
 		}
-		if(channelId != null) {
-			compositeDisposable.add(DatabaseTasks.subscribeToChannel(!isUserSubscribed,
-					this, getContext(), channelId, true).subscribe());
-		}
+		// no-op: user-initiated subscribe/unsubscribe is disabled
 	}
 
 	@Override
