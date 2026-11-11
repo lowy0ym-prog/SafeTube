@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="downloading">Сваляне…</string>
+    <string name="update_failure">Най-новата версия на приложението не може да бъде инсталирана.</string>
+    <string name="up_to_date">Използвате последната версия</string>
+    <string name="android_too_old">За съжаление, Вашата версия на Андроид е твърде стара. Трябва да инсталирате ръчно „SkyTube Legacy“!</string>
+    <string name="update">Обновяване</string>
+    <string name="update_available">Налична е нова версия</string>
+    <string name="up_to_date_msg">Инсталираната версия на SkyTube е най-новата.</string>
+    <string name="release_notes">Промени в %s</string>
+    <string name="update_dialog_msg">Налична е нова версия на SkyTube. Ще бъде инсталиране версия %s.</string>
+    <string name="later">По-късно</string>
+    <string name="unable_to_check_for_updates">Не може да се направи проверка за обновления: %s</string>
+    <string name="update_available_fdroid">Има нова версия на SkyTube. Версия %s е налична в F-Droid.</string>
+    <string name="update_open_fdroid">Отваряне на F-Droid</string>
+    <string name="fdroid_web_page_opened">Отваряне на уеб сайта на F-Droid в браузъра. Моля, инсталирайте обновлението от там.</string>
+    <string name="fdroid_open_failed">F-Droid не може да се отвори. Моля, инсталирайте от f-droid.org и опитайте отново.</string>
+</resources>
