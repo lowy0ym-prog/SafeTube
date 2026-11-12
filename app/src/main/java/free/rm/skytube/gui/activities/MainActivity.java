@@ -109,6 +109,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		free.rm.skytube.businessobjects.whitelist.WhitelistSync.reconcileAsync(this);
 		Logger.i(this, "AppID: %s - flavor: %s buildType: %s version: %s (%s)", BuildConfig.APPLICATION_ID, BuildConfig.FLAVOR, BuildConfig.BUILD_TYPE, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
 
 		// Warn the user that this app will no longer work on certified Android devices once
@@ -350,6 +351,9 @@ public class MainActivity extends BaseActivity {
 		switch (item.getItemId()) {
 			case R.id.menu_blocker:
 				videoBlockerPlugin.onMenuBlockerIconClicked();
+				return true;
+			case R.id.menu_admin:
+				startActivity(new Intent(this, AdminActivity.class));
 				return true;
 			case R.id.menu_preferences:
 				Intent i = new Intent(this, PreferencesActivity.class);

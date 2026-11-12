@@ -13,17 +13,23 @@
 
 	<item
 		android:id="@+id/menu_blocker"
+		android:visible="false"
 		android:title="@string/pref_video_blocker_category"
 		app:actionLayout="@layout/menu_action_item_badge"
 		app:showAsAction="ifRoom" />
 
 	<item android:id="@+id/menu_enter_video_url"
+		  android:visible="false"
 		  android:title="@string/enter_video_url"
 		  app:showAsAction="never"/>
 
 	<item android:id="@+id/menu_clean_downloads"
 		android:title="@string/cleaner"
 		app:showAsAction="never"/>
+
+	<item android:id="@+id/menu_admin"
+		  android:title="Administrator (PIN)"
+		  app:showAsAction="never"/>
 
 	<item android:id="@+id/menu_preferences"
 		  android:title="@string/preferences"

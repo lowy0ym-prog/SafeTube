@@ -90,6 +90,8 @@ public class Whitelist {
         if (slash >= 0) r = r.substring(slash + 1);
         int amp = r.indexOf('&');
         if (amp >= 0) r = r.substring(0, amp);
+        int q = r.indexOf('?');
+        if (q >= 0) r = r.substring(0, q);
         return VIDEO_ID.matcher(r).matches() ? r : null;
     }
 

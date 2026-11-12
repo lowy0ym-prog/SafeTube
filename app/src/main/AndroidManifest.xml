@@ -66,6 +66,10 @@
                 android:value=".gui.activities.MainActivity" />
         </activity>
         <activity
+            android:name=".gui.activities.AdminActivity"
+            android:label="Administrator"
+            android:exported="false" />
+        <activity
             android:name=".gui.activities.ThumbnailViewerActivity"
             android:theme="@style/NoActionBarActivityTheme" /> <!-- <service android:name=".businessobjects.FeedUpdaterService"/> -->
         <!-- <receiver -->
