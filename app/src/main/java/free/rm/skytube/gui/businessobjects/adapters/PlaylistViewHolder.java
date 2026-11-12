@@ -46,7 +46,7 @@ class PlaylistViewHolder extends RecyclerView.ViewHolder {
 		binding.thumbsUpTextView.setVisibility(View.GONE);
 		binding.videoDurationTextView.setVisibility(View.GONE);
 		binding.channelTextView.setVisibility(View.GONE);
-		binding.optionsButton.setVisibility(View.GONE);
+		binding.optionsButton.setVisibility(View.VISIBLE);
 
 		this.playlistClickListener = playlistClickListener;
 	}
@@ -61,5 +61,24 @@ class PlaylistViewHolder extends RecyclerView.ViewHolder {
 		binding.publishDateTextView.setText(playlist.getPublishDatePretty());
 		binding.viewsTextView.setText(String.format(context.getString(R.string.num_videos), playlist.getVideoCount()));
 		binding.thumbnailImageView.setOnClickListener(view -> playlistClickListener.onClickPlaylist(playlist));
+		// Block this playlist: no PIN needed to block, only the administrator PIN can unblock.
+		binding.optionsButton.setOnClickListener(view -> {
+			android.widget.PopupMenu popup = new android.widget.PopupMenu(view.getContext(), view);
+			popup.getMenu().add("Block this playlist");
+			popup.setOnMenuItemClickListener(item -> {
+				if (free.rm.skytube.businessobjects.whitelist.Whitelists.get() != null
+						&& free.rm.skytube.businessobjects.whitelist.Whitelists.get().blockPlaylist(playlist.getId())) {
+					android.widget.Toast.makeText(view.getContext(), "Playlist blocked", android.widget.Toast.LENGTH_SHORT).show();
+					androidx.recyclerview.widget.RecyclerView.Adapter<?> a = getBindingAdapter();
+					if (a instanceof RecyclerViewAdapterEx) {
+						@SuppressWarnings({"unchecked", "rawtypes"})
+						RecyclerViewAdapterEx<YouTubePlaylist, ?> ex = (RecyclerViewAdapterEx) a;
+						ex.remove(c -> c != null && playlist.getId().equals(c.getId()));
+					}
+				}
+				return true;
+			});
+			popup.show();
+		});
 	}
 }

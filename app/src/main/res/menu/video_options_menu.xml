@@ -23,7 +23,7 @@
 		android:id="@+id/delete_download"
 		android:title="@string/delete_download"
 		android:visible="false"/>
-	<item android:id="@+id/channel_related" android:title="@string/channel_related">
+	<item android:id="@+id/channel_related" android:title="@string/channel_related" android:visible="false">
 		<menu>
 			<item
 				android:id="@+id/open_channel" android:visible="false"
@@ -41,6 +41,9 @@
 				android:title="@string/add_to_permitted" />
 		</menu>
 	</item>
+    <item
+        android:id="@+id/block_video_safetube"
+        android:title="Block this video"/>
     <item
         android:id="@+id/view_thumbnail"
         android:title="@string/view_thumbnail"/>

@@ -286,6 +286,9 @@ public class GridViewHolder extends RecyclerView.ViewHolder implements Serializa
 				case R.id.unbookmark_video:
 					compositeDisposable.add(youTubeVideo.unbookmarkVideo(context, menu).subscribe());
 					return true;
+				case R.id.block_video_safetube:
+					blockThisVideo(context);
+					return true;
 				case R.id.view_thumbnail:
 					Intent i = new Intent(context, ThumbnailViewerActivity.class);
 					i.putExtra(ThumbnailViewerActivity.YOUTUBE_VIDEO, youTubeVideo);
@@ -307,6 +310,21 @@ public class GridViewHolder extends RecyclerView.ViewHolder implements Serializa
 			return false;
 		});
 		popupMenu.show();
+	}
+
+	/** Blocks the video immediately (no PIN needed); only the administrator PIN can unblock it. */
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	private void blockThisVideo(Context context) {
+		final String id = youTubeVideo.getVideoId();
+		if (free.rm.skytube.businessobjects.whitelist.Whitelists.get() != null
+				&& free.rm.skytube.businessobjects.whitelist.Whitelists.get().blockVideo(id)) {
+			android.widget.Toast.makeText(context, "Video blocked", android.widget.Toast.LENGTH_SHORT).show();
+			androidx.recyclerview.widget.RecyclerView.Adapter<?> a = getBindingAdapter();
+			if (a instanceof RecyclerViewAdapterEx) {
+				((RecyclerViewAdapterEx) a).remove((java.util.function.Predicate) (c ->
+						c instanceof YouTubeVideo && id.equals(((YouTubeVideo) c).getVideoId())));
+			}
+		}
 	}
 
 	private PopupMenu createPopup(@MenuRes int menuId, View view) {

@@ -54,7 +54,7 @@ public class AboutPreferenceFragment extends PreferenceFragmentCompat {
 
 		// check for updates option
 		Preference updatesPref = findPreference(getString(R.string.pref_key_updates));
-		if (BuildConfig.BUILD_TYPE.equalsIgnoreCase("snapshot")) {
+		if (true) {
 			// remove the updates option if the user is running the Snapshots builds...
 			getPreferenceScreen().removePreference(updatesPref);
 		} else {

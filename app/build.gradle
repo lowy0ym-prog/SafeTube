@@ -26,6 +26,14 @@ android {
         vectorDrawables.useSupportLibrary true
         multiDexEnabled true    // as we have over 65536 lines of code...
     }
+    signingConfigs {
+        safetube {
+            storeFile file('safetube.keystore')
+            storePassword 'safetube-private'
+            keyAlias 'safetube'
+            keyPassword 'safetube-private'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
@@ -33,6 +41,7 @@ android {
             buildConfigField "String", "CHROMECAST_APP_ID", "\"39E8D587\""
         }
         debug {
+            signingConfig signingConfigs.safetube
             minifyEnabled false
             buildConfigField "String", "CHROMECAST_APP_ID", "\"29A66E17\"" // dev
         }
@@ -47,7 +56,7 @@ android {
         // 100% Open-Source Edition
         oss {
             applicationIdSuffix ".oss"
-            resValue "string", "app_name", "SkyTube"
+            resValue "string", "app_name", "SafeTube"
             resValue "string", "app_flavor", "OSS"
             dimension "skytube"
             buildConfigField 'String[]', 'YOUTUBE_API_KEYS', '{}'
@@ -135,8 +144,6 @@ dependencies {
     // Custom dialogs
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
-    // F-Droid warning dialog (developer verification deprecation notice)
-    implementation 'com.github.woheller69:FreeDroidWarn:V1.+'
 
     // File / folder chooser
     implementation 'com.github.hedzr:android-file-chooser:v1.2.0-final'
@@ -190,9 +197,6 @@ dependencies {
 
 
 /** Debug **/
-    // debugImplementation because LeakCanary should only run in debug builds
-    // Memory leak detection
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
 /** Testing **/
     // Required for local unit tests (JUnit 5 framework)
