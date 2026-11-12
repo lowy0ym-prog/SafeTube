@@ -12,3 +12,8 @@
 - Run: https://github.com/lowy0ym-prog/SafeTube/actions/runs/43139505120
 - Result: SUCCESS (compile only; this workflow version did not run unit tests)
 - Changes: whitelist core, fail-closed filtering in VideoPager/PlaylistPager/NewPipeService/adapters/SubscriptionsDb, trending tabs and comments disabled, user subscribe disabled, PIN admin screen.
+
+## Attempt 3 — CI now runs unit tests (2026-11-11)
+- Run: https://github.com/lowy0ym-prog/SafeTube/actions/runs/43139763475
+- Result: SUCCESS (`testOssDebugUnitTest` + `assembleOssDebug`); APK artifact `safetube-debug-apk`, test report artifact `test-reports`.
+- Known limitations: targetSdk still 28; nothing run on a device/emulator; bookmarks/downloads tabs and search paging not verified on-device; see final summary.
