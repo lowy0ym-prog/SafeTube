@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,3 +28,11 @@ jobs:
         with:
           name: safetube-debug-apk
           path: app/build/outputs/apk/oss/debug/*.apk
+      - name: Publish APK as a release (plain .apk, no zip)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp app/build/outputs/apk/oss/debug/*.apk SafeTube-debug.apk
+          gh release create "build-${{ github.run_number }}" SafeTube-debug.apk \
+            --title "SafeTube debug build ${{ github.run_number }}" \
+            --notes "Debug build of commit ${{ github.sha }}. Not fully tested."
