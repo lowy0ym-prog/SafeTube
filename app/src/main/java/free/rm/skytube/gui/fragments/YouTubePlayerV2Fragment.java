@@ -828,7 +828,7 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
             case R.id.block_video_safetube:
                 // Block immediately (no PIN); only the administrator PIN can unblock.
                 if (free.rm.skytube.businessobjects.whitelist.Whitelists.get() != null
-                        && free.rm.skytube.businessobjects.whitelist.Whitelists.get().blockVideo(youTubeVideo.getVideoId())) {
+                        && free.rm.skytube.businessobjects.whitelist.Whitelists.get().blockVideo(youTubeVideo.getId())) {
                     player.setPlayWhenReady(false);
                     android.widget.Toast.makeText(context, "Video blocked", android.widget.Toast.LENGTH_SHORT).show();
                     requireActivity().finish();
