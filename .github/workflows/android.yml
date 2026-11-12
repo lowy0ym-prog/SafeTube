@@ -28,6 +28,13 @@ jobs:
         with:
           name: safetube-debug-apk
           path: app/build/outputs/apk/oss/debug/*.apk
+      - name: Verify APK (no LeakCanary, app name, signer)
+        run: |
+          APK=$(ls app/build/outputs/apk/oss/debug/*.apk | head -1)
+          BT=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
+          echo "leakcanary entries: $(unzip -l "$APK" | grep -ci leakcanary)"
+          $BT/aapt2 dump badging "$APK" | grep -E "^package|application-label:|launchable-activity" 
+          $BT/apksigner verify --print-certs "$APK" | grep -E "SHA-256|Signer #1 certificate DN"
       - name: Publish APK as a release (plain .apk, no zip)
         env:
           GH_TOKEN: ${{ github.token }}

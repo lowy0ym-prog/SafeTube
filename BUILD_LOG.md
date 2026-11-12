@@ -17,3 +17,9 @@
 - Run: https://github.com/lowy0ym-prog/SafeTube/actions/runs/43139763475
 - Result: SUCCESS (`testOssDebugUnitTest` + `assembleOssDebug`); APK artifact `safetube-debug-apk`, test report artifact `test-reports`.
 - Known limitations: targetSdk still 28; nothing run on a device/emulator; bookmarks/downloads tabs and search paging not verified on-device; see final summary.
+
+## Attempt 4-6 — cleanup, block actions, stable signing (2026-11-12)
+- Failed run 43174718975: compile errors (`youTubeVideo` out of scope in GridViewHolder; `VideoId` vs `String`). Fixed by passing the video in and using `getId()`.
+- Run 43174925340: SUCCESS, release build-8.
+- Changes: removed upstream "developer verification" warning dialog (FreeDroidWarn), removed LeakCanary (it adds a separate "Leaks" launcher in debug builds), disabled upstream update check, renamed app to SafeTube, removed SkyTube's own blocker/backup/security settings, added "Block this video" (video grid + player) and "Block this playlist" (no PIN to block; PIN only in the admin screen to unblock), fixed signing key (app/safetube.keystore, private repo) so updates install over earlier builds.
+- Known limitations: targetSdk still 28; no on-device testing; first install of this signing key requires uninstalling any earlier SafeTube build.
