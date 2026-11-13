@@ -120,7 +120,8 @@
             app:key="@string/pref_key_mobile_network_usage_policy"
             app:title="@string/pref_title_metered_network_usage"
             app:summary="@string/pref_summary_metered_network_usage"
-            app:iconSpaceReserved="false" />
+            app:iconSpaceReserved="false" 
+        app:isPreferenceVisible="false"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

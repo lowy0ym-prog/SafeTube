@@ -65,7 +65,6 @@ import free.rm.skytube.databinding.DialogEnterVideoUrlBinding;
 import free.rm.skytube.gui.businessobjects.BlockedVideosDialog;
 import free.rm.skytube.gui.businessobjects.CleanerDialog;
 import free.rm.skytube.gui.businessobjects.PinUtils;
-import free.rm.skytube.gui.businessobjects.PrivacyControlDialog;
 import free.rm.skytube.gui.businessobjects.adapters.SearchHistoryCursorAdapter;
 import free.rm.skytube.gui.businessobjects.fragments.FragmentEx;
 import free.rm.skytube.gui.businessobjects.updates.UpdatesCheckerTask;
@@ -172,9 +171,9 @@ public class MainActivity extends BaseActivity {
 			return;
 		}
 		settings.setPrivacyControlCheckDone();
-		if (!settings.isSponsorblockEnabled() || !settings.isUseDislikeApi()) {
-			new PrivacyControlDialog(this).show();
-		}
+		// SafeTube: no question is asked. Skip sponsor segments (SponsorBlock) on; third-party dislike API off.
+		settings.setSponsorblockEnabled(true);
+		settings.setUseDislikeApi(false);
 	}
 
 	@Override
@@ -566,6 +565,10 @@ public class MainActivity extends BaseActivity {
 		 * Setup the video blocker notification icon which will be displayed in the tool bar.
  		 */
 		void setupIconForToolBar(final Menu menu) {
+			// SafeTube: SkyTube's own blocker button is removed (blocking is done per video / playlist).
+			if (true) {
+				return;
+			}
 			final Drawable blocker = AppCompatResources.getDrawable(activity, R.drawable.ic_blocker)
 					.mutate();
 			DrawableCompat.setTint(blocker, Color.WHITE);

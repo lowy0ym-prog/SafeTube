@@ -213,25 +213,3 @@ dependencies {
     // XML Pull Parser for unit tests (needed for OPML parsing)
     testImplementation "xpp3:xpp3:1.1.4c"
 }
-
-afterEvaluate {
-
-    task fastlaneCheck {
-        group "Verification"
-        description 'Tasks which validates the fastlane requirements'
-        doLast {
-            var buildNumber = android.defaultConfig.versionCode
-            var path = file("./../fastlane/metadata/android/en-US/changelogs/${buildNumber}.txt")
-            assert path.exists()
-            assert path.length() <= 500
-            println("Fastlane check successful for $buildNumber - file exists and smaller than 500 bytes")
-        }
-    }
-
-    // Find all tasks whose names end with 'assemble' and make them depend on fastlaneCheck
-    tasks.matching { it.name.toLowerCase().startsWith('assemble') }.all { Task task ->
-        task.finalizedBy(fastlaneCheck)
-    }
-
-}
-

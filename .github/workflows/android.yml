@@ -1,7 +1,7 @@
 name: Android Build
 on:
   push:
-    branches: [main]
+    branches: [main, custom]
   workflow_dispatch:
 permissions:
   contents: write
@@ -40,6 +40,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/oss/debug/*.apk SafeTube-debug.apk
-          gh release create "build-${{ github.run_number }}" SafeTube-debug.apk \
-            --title "SafeTube debug build ${{ github.run_number }}" \
+          gh release create "${{ github.ref_name }}-${{ github.run_number }}" SafeTube-debug.apk \
+            --title "SafeTube (${{ github.ref_name }}) build ${{ github.run_number }}" \
             --notes "Debug build of commit ${{ github.sha }}. Not fully tested."

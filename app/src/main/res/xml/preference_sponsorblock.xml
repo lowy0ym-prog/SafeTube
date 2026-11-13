@@ -35,7 +35,8 @@
 			android:key="pref_key_sponsorblock_credit"
 			android:title="@string/pref_title_credit_sponsorblock"
 			android:summary="@string/pref_summary_credit_sponsorblock"
-			app:iconSpaceReserved="false"/>
+			app:iconSpaceReserved="false"
+        app:isPreferenceVisible="false"/>
 
 	</PreferenceCategory>
 

@@ -51,6 +51,10 @@ public class MobileNetworkWarningDialog extends SkyTubeMaterialDialog {
 	 * @return Policy which needs to be followed, either BLOCK or ALLOW - or ASK, when a warning dialog is displayed.
 	 */
 	public Policy showAndGetStatus(ActionType actionType) {
+		// SafeTube: never ask about mobile data; always go ahead.
+		if (true) {
+			return Policy.ALLOW;
+		}
 		final Policy displayWarning  = SkyTubeApp.getSettings().getWarningMeteredPolicy();
 
 		if (SkyTubeApp.isActiveNetworkMetered()) {
