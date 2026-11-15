@@ -111,8 +111,8 @@ public final class Screening {
                     + "tutor|lecturer)s?\\s*[:\\-]\\s*([^\\n.!?]{2,200})");
 
     private static final Pattern GUEST_LINE = Pattern.compile(
-            "(?:\\bwith|featuring|\\bfeat\\.?|\\bft\\.?|\\bguests?|joined by|interview(?:ing)? with|hosted by|"
-                    + "speaker|speakers)\\s*:?\\s+(?:dr\\.?\\s+|prof\\.?\\s+)?([A-Z][a-z]{2,})");
+            "(?i:\\bwith|featuring|\\bfeat\\.?|\\bft\\.?|\\bguests?|joined by|interview(?:ing)? with|hosted by|"
+                    + "speaker|speakers)\\s*:?\\s+(?i:dr\\.?\\s+|prof\\.?\\s+)?([A-Z][a-z]{2,})");
 
     /** Female given names that appear right after a "with / featuring / guest / hosted by" cue. */
     static boolean femaleNameInCredits(String text) {
