@@ -126,6 +126,14 @@ public class Whitelist {
         storage.putString(K_SEEDED, "1");
     }
 
+    /** Blocks the given videos once (guarded by a tag), so a later manual restore in admin sticks. */
+    public synchronized void seedBlockedVideosOnce(String tag, Set<String> videoIds) {
+        String key = "seeded_blocks_" + tag;
+        if (storage.getString(key) != null) return;
+        for (String v : videoIds) blockVideo(v);
+        storage.putString(key, "1");
+    }
+
     // ---------------------------------------------------------------- screening (men-only) state
 
     public synchronized boolean isStrict(String channelRef) {

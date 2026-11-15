@@ -27,6 +27,8 @@ public final class Whitelists {
                     java.util.Set<String> strict = new java.util.HashSet<>();
                     // No channel is strict by default; the admin screen can turn strict on per channel.
                     w.seedDefaultsIfFirstRun(defaults, strict);
+                    // Videos checked by eye (thumbnail clearly shows a woman).
+                    w.seedBlockedVideosOnce("thumbs1", new java.util.HashSet<>(java.util.Arrays.asList("JGly6PSK5iw")));
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;
                 }

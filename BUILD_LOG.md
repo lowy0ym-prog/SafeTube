@@ -38,3 +38,4 @@
 - Default rule now blocks only on clear text evidence: female word/name in the title, or a female first name credited as instructor/guest/host in the description. Interviews/podcasts are no longer hidden merely for their format.
 - Thumbnail sample (TinyFish browser agent, 40 newest freeCodeCamp uploads): 0 thumbnails judged as clearly showing a woman (about 12 men, about 24 no person, 2 unclear). This is a sample of the newest uploads only, judged by an AI agent, not verified by a person; it does not cover the full channel.
 - Untested: on a physical device. Screening is text-based and cannot see or hear videos.
+- Manual check of the agent's screenshot: video JGly6PSK5iw ("Gemini 4 Argon API Crash Course") shows a woman in the thumbnail (agent had said "unclear"). Seeded as blocked once (`seeded_blocks_thumbs1`). Agent thumbnail labels are not reliable; only videos seen by eye are seeded.
