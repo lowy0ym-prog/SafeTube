@@ -48,6 +48,14 @@ class ScreeningTest {
     }
 
     @Test
+    void namesReportedByUserAreBlocked() {
+        for (String n : new String[]{"Ania Kubow", "Jessica Chan", "Emma Bostian", "Rachel Fernandez", "Andrea Griffiths"}) {
+            assertEquals(Verdict.BLOCK, Screening.classify("Course", "Created by " + n, false), n);
+            assertEquals(Verdict.BLOCK, Screening.classify("Podcast", "Guest: " + n, false), n);
+        }
+    }
+
+    @Test
     void migrationTurnsOffOldStrictFlagsOnce() {
         Mem m = new Mem();
         m.putString("seeded_v1", "1");

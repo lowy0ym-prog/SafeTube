@@ -75,7 +75,7 @@ public final class Screening {
             "freya", "greta", "heidi", "monica", "paula", "carla", "lucia", "sofie", "camille", "claudia",
             "beth", "kate", "jenny", "jen", "jess", "becky", "amanda", "ada", "cassidy", "tabitha",
             "cassie", "jane", "gwen", "gwendolyn", "lorna", "wendy", "tracy", "tracey", "joanna",
-            "bianca", "elisa", "elisabeth", "leila", "nadia", "yasmin", "zara", "sana", "hira", "maham");
+            "ania", "bianca", "elisa", "elisabeth", "leila", "nadia", "yasmin", "zara", "sana", "hira", "maham");
 
     static final Set<String> MALE_NAMES = set(
             "james", "john", "robert", "michael", "william", "david", "richard", "joseph", "thomas", "charles",
