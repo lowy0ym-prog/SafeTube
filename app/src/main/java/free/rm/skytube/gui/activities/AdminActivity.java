@@ -155,6 +155,29 @@ public class AdminActivity extends AppCompatActivity {
                     .setNegativeButton("Cancel", null).show());
         }
 
+        heading("Men-only screening");
+        label("Videos whose title or description mention a woman are hidden automatically. Channels set to strict also need a credited male instructor, and interviews/podcasts are hidden. This reads text only; it cannot see or hear a video.");
+        for (Map.Entry<String, String> e : sorted.entrySet()) {
+            final String id = e.getValue();
+            final boolean strict = wl.isStrict(id);
+            button(e.getKey().replaceAll("\\s*\\[.*$", "") + ": strict " + (strict ? "ON" : "OFF") + " (tap to change)", v -> {
+                wl.setStrict(id, !strict);
+                render();
+            });
+        }
+        label("Checked so far: " + wl.allowedVerdictCount() + " shown, " + wl.blockedVerdictCount() + " hidden. Strict channels keep checking in the background; pull to refresh to see newly cleared videos.");
+        final EditText ov = textField("Video URL or ID to always allow");
+        button("Always allow this video", v -> {
+            if (wl.addOverride(ov.getText().toString().trim())) {
+                render();
+            } else {
+                toast("Not a valid video URL or ID");
+            }
+        });
+        for (final String id : new TreeSet<>(wl.getOverrides())) {
+            row("Allowed: " + id, "Remove", v -> { wl.removeOverride(id); render(); });
+        }
+
         heading("Blocked videos");
         final EditText bv = textField("Video URL or ID to block");
         button("Block video", v -> {

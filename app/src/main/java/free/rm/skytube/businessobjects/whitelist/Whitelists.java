@@ -18,7 +18,17 @@ public final class Whitelists {
         if (instance == null) {
             synchronized (Whitelists.class) {
                 if (instance == null) {
-                    instance = new Whitelist(new PrefsWhitelistStorage(context), System::currentTimeMillis);
+                    Whitelist w = new Whitelist(new PrefsWhitelistStorage(context), System::currentTimeMillis);
+                    java.util.Map<String, String> defaults = new java.util.LinkedHashMap<>();
+                    defaults.put("UCkefXKtInZ9PLsoGRtml2FQ", "Professor Messer");
+                    defaults.put("UC8butISFwT-Wl7EV0hUK0BQ", "freeCodeCamp.org");
+                    defaults.put("UC4SVo0Ue36XCfOyb5Lh1viQ", "Bro Code");
+                    defaults.put("UCCezIgC97PvUuR4_gbFUs5g", "Corey Schafer");
+                    java.util.Set<String> strict = new java.util.HashSet<>();
+                    strict.add("UC8butISFwT-Wl7EV0hUK0BQ"); // freeCodeCamp: needs positive evidence per video
+                    w.seedDefaultsIfFirstRun(defaults, strict);
+                    w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
+                    instance = w;
                 }
             }
         }
@@ -37,6 +47,27 @@ public final class Whitelists {
     public static boolean videoAllowed(String channelRef, String videoRef) {
         Whitelist w = instance;
         return w != null && w.isVideoAllowed(channelRef, videoRef);
+    }
+
+    /** First time a video is seen in a list: its title alone can already rule it out. */
+    public static void noteListing(String channelRef, String videoRef, String title) {
+        Whitelist w = instance;
+        if (w == null || !w.isChannelApproved(channelRef)) return;
+        if (w.getVerdict(videoRef) == Screening.Verdict.UNKNOWN) {
+            if (Screening.classify(title, null, false) == Screening.Verdict.BLOCK) {
+                w.recordVerdict(videoRef, Screening.Verdict.BLOCK);
+            } else if (!w.isStrict(channelRef)) {
+                ScreenWorker.enqueue(Whitelist.normalizeChannelId(channelRef), videoRef);
+            }
+        }
+    }
+
+    /** Full metadata (title + description) is available: classify and remember the verdict. */
+    public static void noteDetails(String channelRef, String videoRef, String title, String description) {
+        Whitelist w = instance;
+        if (w == null || !w.isChannelApproved(channelRef)) return;
+        Screening.Verdict v = Screening.classify(title, description, w.isStrict(channelRef));
+        w.recordVerdict(videoRef, v);
     }
 
     public static boolean playlistAllowed(String ownerChannelRef, String playlistRef) {

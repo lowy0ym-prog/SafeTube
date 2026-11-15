@@ -201,11 +201,32 @@ public class NewPipeService {
      * @param videoId the id of the video.
      * @return List of {@link StreamInfo}.
      */
+    private static String descriptionOf(StreamExtractor ex) {
+        try {
+            return ex.getDescription() == null ? "" : ex.getDescription().getContent();
+        } catch (RuntimeException e) {
+            return "";
+        }
+    }
+
+    /**
+     * Background screening only: fetches uploader, title and description of a video WITHOUT showing
+     * anything. Returns {uploaderUrl, title, description}.
+     */
+    public String[] fetchForScreening(String videoId) throws ExtractionException, IOException {
+        SkyTubeApp.nonUiThread();
+        LinkHandler linkHandler = streamingService.getStreamLHFactory().fromId(videoId);
+        StreamExtractor ex = streamingService.getStreamExtractor(linkHandler);
+        ex.fetchPage();
+        return new String[]{ex.getUploaderUrl(), ex.getName(), descriptionOf(ex)};
+    }
+
     public StreamInfo getStreamInfoByVideoId(String videoId) throws ExtractionException, IOException {
         SkyTubeApp.nonUiThread();
         LinkHandler linkHandler = streamingService.getStreamLHFactory().fromId(videoId);
         StreamExtractor streamExtractor = streamingService.getStreamExtractor(linkHandler);
         streamExtractor.fetchPage();
+        Whitelists.noteDetails(streamExtractor.getUploaderUrl(), videoId, streamExtractor.getName(), descriptionOf(streamExtractor));
         if (!Whitelists.videoAllowed(streamExtractor.getUploaderUrl(), videoId)) {
             throw new ExtractionException("Video is not whitelisted");
         }
@@ -458,6 +479,7 @@ public class NewPipeService {
         StreamExtractor extractor = streamingService.getStreamExtractor(url);
         extractor.fetchPage();
         // WHITELIST (fail closed): verify the real uploader before any detail leaves this method.
+        Whitelists.noteDetails(extractor.getUploaderUrl(), videoId, extractor.getName(), descriptionOf(extractor));
         if (!Whitelists.videoAllowed(extractor.getUploaderUrl(), videoId)) {
             throw new ExtractionException("Video is not whitelisted");
         }

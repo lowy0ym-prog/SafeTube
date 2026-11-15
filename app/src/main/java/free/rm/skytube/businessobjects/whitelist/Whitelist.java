@@ -29,6 +29,11 @@ public class Whitelist {
     private static final String K_CHANNELS = "approved_channels";   // entries "UCid\tname"
     private static final String K_BLOCKED_VIDEOS = "blocked_videos";
     private static final String K_BLOCKED_PLAYLISTS = "blocked_playlists";
+    private static final String K_STRICT = "strict_channels";
+    private static final String K_ALLOW_VERDICTS = "screen_allow";
+    private static final String K_BLOCK_VERDICTS = "screen_block";
+    private static final String K_OVERRIDES = "screen_override";
+    private static final String K_SEEDED = "seeded_v1";
     private static final String K_PIN_SALT = "pin_salt";
     private static final String K_PIN_HASH = "pin_hash";
     private static final String K_FAILS = "pin_fails";
@@ -49,6 +54,17 @@ public class Whitelist {
     private Map<String, String> channels = new HashMap<>();
     private Set<String> blockedVideos = new HashSet<>();
     private Set<String> blockedPlaylists = new HashSet<>();
+    private Set<String> strictChannels = new HashSet<>();
+    private Set<String> allowVerdicts = new HashSet<>();
+    private Set<String> blockVerdicts = new HashSet<>();
+    private Set<String> overrides = new HashSet<>();
+    private int dirtyVerdicts = 0;
+
+    /** Told (outside any UI) when a video of a strict channel has no verdict yet and was therefore hidden. */
+    public interface UnknownListener { void onUnknown(String channelId, String videoId); }
+    private volatile UnknownListener unknownListener;
+
+    public void setUnknownListener(UnknownListener l) { this.unknownListener = l; }
 
     public Whitelist(WhitelistStorage storage, Clock clock) {
         this.storage = storage;
@@ -70,6 +86,94 @@ public class Whitelist {
         channels = c;
         blockedVideos = new HashSet<>(storage.getSet(K_BLOCKED_VIDEOS));
         blockedPlaylists = new HashSet<>(storage.getSet(K_BLOCKED_PLAYLISTS));
+        strictChannels = new HashSet<>(storage.getSet(K_STRICT));
+        allowVerdicts = new HashSet<>(storage.getSet(K_ALLOW_VERDICTS));
+        blockVerdicts = new HashSet<>(storage.getSet(K_BLOCK_VERDICTS));
+        overrides = new HashSet<>(storage.getSet(K_OVERRIDES));
+        dirtyVerdicts = 0;
+    }
+
+    // ---------------------------------------------------------------- default channels (first run only)
+
+    /** Adds the given channels (id -> name) once, on the very first run. Removing one later sticks. */
+    public synchronized void seedDefaultsIfFirstRun(Map<String, String> defaults, Set<String> strictIds) {
+        if (storage.getString(K_SEEDED) != null) return;
+        for (Map.Entry<String, String> e : defaults.entrySet()) {
+            String id = normalizeChannelId(e.getKey());
+            if (id != null && !channels.containsKey(id)) channels.put(id, e.getValue());
+        }
+        persistChannels();
+        for (String id : strictIds) {
+            String n = normalizeChannelId(id);
+            if (n != null) strictChannels.add(n);
+        }
+        storage.putSet(K_STRICT, strictChannels);
+        storage.putString(K_SEEDED, "1");
+    }
+
+    // ---------------------------------------------------------------- screening (men-only) state
+
+    public synchronized boolean isStrict(String channelRef) {
+        String id = normalizeChannelId(channelRef);
+        return id != null && strictChannels.contains(id);
+    }
+
+    public synchronized void setStrict(String channelRef, boolean strict) {
+        String id = normalizeChannelId(channelRef);
+        if (id == null) return;
+        if (strict) strictChannels.add(id); else strictChannels.remove(id);
+        storage.putSet(K_STRICT, strictChannels);
+    }
+
+    /** Stores a verdict for a video. Persisted in batches (and by {@link #flushVerdicts()}). */
+    public synchronized void recordVerdict(String videoRef, Screening.Verdict verdict) {
+        String vid = normalizeVideoId(videoRef);
+        if (vid == null || verdict == Screening.Verdict.UNKNOWN) return;
+        if (verdict == Screening.Verdict.BLOCK) {
+            allowVerdicts.remove(vid);
+            if (blockVerdicts.add(vid)) dirtyVerdicts++;
+        } else if (!blockVerdicts.contains(vid)) {
+            if (allowVerdicts.add(vid)) dirtyVerdicts++;
+        }
+        if (dirtyVerdicts >= 25) flushVerdicts();
+    }
+
+    public synchronized void flushVerdicts() {
+        if (dirtyVerdicts == 0) return;
+        storage.putSet(K_ALLOW_VERDICTS, allowVerdicts);
+        storage.putSet(K_BLOCK_VERDICTS, blockVerdicts);
+        dirtyVerdicts = 0;
+    }
+
+    public synchronized Screening.Verdict getVerdict(String videoRef) {
+        String vid = normalizeVideoId(videoRef);
+        if (vid == null) return Screening.Verdict.UNKNOWN;
+        if (blockVerdicts.contains(vid)) return Screening.Verdict.BLOCK;
+        if (allowVerdicts.contains(vid)) return Screening.Verdict.ALLOW;
+        return Screening.Verdict.UNKNOWN;
+    }
+
+    public synchronized int allowedVerdictCount() { return allowVerdicts.size(); }
+    public synchronized int blockedVerdictCount() { return blockVerdicts.size(); }
+
+    /** Administrator override: show this video even though screening hid it. */
+    public synchronized boolean addOverride(String videoRef) {
+        String id = normalizeVideoId(videoRef);
+        if (id == null) return false;
+        overrides.add(id);
+        storage.putSet(K_OVERRIDES, overrides);
+        return true;
+    }
+
+    public synchronized boolean removeOverride(String videoRef) {
+        String id = normalizeVideoId(videoRef);
+        if (id == null || !overrides.remove(id)) return false;
+        storage.putSet(K_OVERRIDES, overrides);
+        return true;
+    }
+
+    public synchronized Set<String> getOverrides() {
+        return Collections.unmodifiableSet(new HashSet<>(overrides));
     }
 
     // ---------------------------------------------------------------- id helpers
@@ -111,11 +215,20 @@ public class Whitelist {
     public synchronized boolean isVideoAllowed(String channelRef, String videoRef) {
         if (!isChannelApproved(channelRef)) return false;
         String vid = normalizeVideoId(videoRef);
-        return vid != null && !blockedVideos.contains(vid);
+        if (vid == null || blockedVideos.contains(vid)) return false;
+        if (overrides.contains(vid)) return true;
+        if (blockVerdicts.contains(vid)) return false;
+        if (isStrict(channelRef) && !allowVerdicts.contains(vid)) {
+            UnknownListener l = unknownListener;
+            if (l != null) l.onUnknown(normalizeChannelId(channelRef), vid);
+            return false; // fail closed: no positive evidence yet
+        }
+        return true;
     }
 
     public synchronized boolean isPlaylistAllowed(String ownerChannelRef, String playlistRef) {
         if (!isChannelApproved(ownerChannelRef)) return false;
+        if (isStrict(ownerChannelRef)) return false; // playlist covers cannot be screened
         String pid = normalizePlaylistId(playlistRef);
         return pid != null && !blockedPlaylists.contains(pid);
     }
