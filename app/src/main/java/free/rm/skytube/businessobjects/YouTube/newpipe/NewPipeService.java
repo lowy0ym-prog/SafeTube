@@ -205,7 +205,7 @@ public class NewPipeService {
         try {
             String d = NewPipeUtils.filterHtml(ex.getDescription());
             return d == null ? "" : d;
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             return "";
         }
     }
