@@ -23,3 +23,12 @@
 - Run 43174925340: SUCCESS, release build-8.
 - Changes: removed upstream "developer verification" warning dialog (FreeDroidWarn), removed LeakCanary (it adds a separate "Leaks" launcher in debug builds), disabled upstream update check, renamed app to SafeTube, removed SkyTube's own blocker/backup/security settings, added "Block this video" (video grid + player) and "Block this playlist" (no PIN to block; PIN only in the admin screen to unblock), fixed signing key (app/safetube.keystore, private repo) so updates install over earlier builds.
 - Known limitations: targetSdk still 28; no on-device testing; first install of this signing key requires uninstalling any earlier SafeTube build.
+
+## Attempt 7 — cleanup on main (2026-11-13)
+- Run 43426379211 (main): SUCCESS -> release main-10. New icon, README/upstream files/links removed, SkyTube blocker toolbar button removed, mobile-data and startup "skip ads/dislike" dialogs removed, unneeded settings hidden.
+
+## Attempts 8-10 — custom branch (2026-11-15)
+- Runs 43683241139 and 43683319841 FAILED at compile: this NewPipe fork returns the description as a String (no getContent()), then getDescription() throws a checked ParsingException. Fixed both.
+- Run 43683395498 (custom): SUCCESS incl. unit tests (ScreeningTest + WhitelistTest) -> release custom-13.
+- Changes: 4 default channels (Professor Messer, freeCodeCamp, Bro Code, Corey Schafer) seeded on first run; men-only text screening; freeCodeCamp is "strict" (needs a credited male instructor, interviews/podcasts/playlists hidden); background worker screens every video and new uploads; admin screen has strict toggle and "always allow".
+- Known limitations: screening reads text only; not tested on a device; "IT course" channel not identified, so not seeded.
