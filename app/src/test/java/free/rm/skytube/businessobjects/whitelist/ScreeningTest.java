@@ -27,7 +27,7 @@ class ScreeningTest {
     @Test
     void femaleWordsAndNamesAreBlocked() {
         assertEquals(Verdict.BLOCK, Screening.classify("Women in Tech panel", "", false));
-        assertEquals(Verdict.BLOCK, Screening.classify("Python course", "She explains loops step by step", false));
+        assertEquals(Verdict.BLOCK, Screening.classify("She teaches Python", "", false));
         assertEquals(Verdict.BLOCK, Screening.classify("Machine Learning", "Course created by Kylie Ying", false));
         assertEquals(Verdict.BLOCK, Screening.classify("Python", "Guest: Estefania Cassingena Navone", false));
     }
@@ -36,6 +36,34 @@ class ScreeningTest {
     void plainTechTextIsAllowedForNormalChannels() {
         assertEquals(Verdict.ALLOW, Screening.classify("Network+ N10-009 - 1.2", "Latency is measured in ms", false));
         assertEquals(Verdict.ALLOW, Screening.classify("Python Tutorial 8: Functions", "In this video we learn functions", false));
+    }
+
+    @Test
+    void defaultModeBlocksOnlyOnClearEvidence() {
+        assertEquals(Verdict.ALLOW, Screening.classify("Interview with a developer", "A long chat about careers", false));
+        assertEquals(Verdict.ALLOW, Screening.classify("Learn Java", "Help her friends: this course is free", false));
+        assertEquals(Verdict.ALLOW, Screening.classify("Learn Java", "Created by Beau Carnes", false));
+        assertEquals(Verdict.ALLOW, Screening.classify("Podcast #5", "Guest: Quincy Larson", false));
+        assertEquals(Verdict.BLOCK, Screening.classify("Podcast #6", "Featuring Sarah Drasner", false));
+    }
+
+    @Test
+    void migrationTurnsOffOldStrictFlagsOnce() {
+        Mem m = new Mem();
+        m.putString("seeded_v1", "1");
+        Set<String> old = new HashSet<>();
+        old.add(FCC);
+        m.putSet("strict_channels", old);
+        m.putSet("screen_block", new HashSet<>(java.util.Arrays.asList("abcdefghijk")));
+        Whitelist w = new Whitelist(m, () -> 0L);
+        w.addChannel(FCC, "freeCodeCamp");
+        assertTrue(w.isStrict(FCC));
+        w.seedDefaultsIfFirstRun(new HashMap<>(), new HashSet<>());
+        assertFalse(w.isStrict(FCC));
+        assertEquals(0, w.blockedVerdictCount());
+        w.setStrict(FCC, true); // admin opts back in
+        w.seedDefaultsIfFirstRun(new HashMap<>(), new HashSet<>());
+        assertTrue(w.isStrict(FCC));
     }
 
     @Test
@@ -106,11 +134,10 @@ class ScreeningTest {
         d.put(FCC, "freeCodeCamp");
         d.put(MESSER, "Professor Messer");
         Set<String> strict = new HashSet<>();
-        strict.add(FCC);
         Whitelist w = new Whitelist(m, () -> 0L);
         w.seedDefaultsIfFirstRun(d, strict);
         assertTrue(w.isChannelApproved(FCC));
-        assertTrue(w.isStrict(FCC));
+        assertFalse(w.isStrict(FCC));
         w.removeChannel(MESSER);
         Whitelist w2 = new Whitelist(m, () -> 0L);
         w2.seedDefaultsIfFirstRun(d, strict);

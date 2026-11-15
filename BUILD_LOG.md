@@ -32,3 +32,9 @@
 - Run 43683395498 (custom): SUCCESS incl. unit tests (ScreeningTest + WhitelistTest) -> release custom-13.
 - Changes: 4 default channels (Professor Messer, freeCodeCamp, Bro Code, Corey Schafer) seeded on first run; men-only text screening; freeCodeCamp is "strict" (needs a credited male instructor, interviews/podcasts/playlists hidden); background worker screens every video and new uploads; admin screen has strict toggle and "always allow".
 - Known limitations: screening reads text only; not tested on a device; "IT course" channel not identified, so not seeded.
+
+## Custom branch: relaxed screening (attempt 11)
+- User feedback: strict mode hid almost all of freeCodeCamp. Changed: strict is now OFF for every channel by default (opt-in per channel in the admin screen). Existing installs are migrated once (`seeded_v2`): old strict flags and old verdicts are cleared.
+- Default rule now blocks only on clear text evidence: female word/name in the title, or a female first name credited as instructor/guest/host in the description. Interviews/podcasts are no longer hidden merely for their format.
+- Thumbnail sample (TinyFish browser agent, 40 newest freeCodeCamp uploads): 0 thumbnails judged as clearly showing a woman (about 12 men, about 24 no person, 2 unclear). This is a sample of the newest uploads only, judged by an AI agent, not verified by a person; it does not cover the full channel.
+- Untested: on a physical device. Screening is text-based and cannot see or hear videos.

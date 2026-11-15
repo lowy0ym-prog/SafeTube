@@ -25,7 +25,7 @@ public final class Whitelists {
                     defaults.put("UC4SVo0Ue36XCfOyb5Lh1viQ", "Bro Code");
                     defaults.put("UCCezIgC97PvUuR4_gbFUs5g", "Corey Schafer");
                     java.util.Set<String> strict = new java.util.HashSet<>();
-                    strict.add("UC8butISFwT-Wl7EV0hUK0BQ"); // freeCodeCamp: needs positive evidence per video
+                    // No channel is strict by default; the admin screen can turn strict on per channel.
                     w.seedDefaultsIfFirstRun(defaults, strict);
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;

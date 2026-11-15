@@ -34,6 +34,7 @@ public class Whitelist {
     private static final String K_BLOCK_VERDICTS = "screen_block";
     private static final String K_OVERRIDES = "screen_override";
     private static final String K_SEEDED = "seeded_v1";
+    private static final String K_SEEDED_V2 = "seeded_v2";
     private static final String K_PIN_SALT = "pin_salt";
     private static final String K_PIN_HASH = "pin_hash";
     private static final String K_FAILS = "pin_fails";
@@ -97,7 +98,21 @@ public class Whitelist {
 
     /** Adds the given channels (id -> name) once, on the very first run. Removing one later sticks. */
     public synchronized void seedDefaultsIfFirstRun(Map<String, String> defaults, Set<String> strictIds) {
-        if (storage.getString(K_SEEDED) != null) return;
+        if (storage.getString(K_SEEDED) != null) {
+            if (storage.getString(K_SEEDED_V2) == null) {
+                // v2: screening became "block only on clear evidence"; strict is now opt-in.
+                // Drop old strict flags and verdicts made under the stricter rules so videos are re-checked.
+                strictChannels.clear();
+                storage.putSet(K_STRICT, strictChannels);
+                allowVerdicts = new HashSet<>();
+                blockVerdicts = new HashSet<>();
+                storage.putSet(K_ALLOW_VERDICTS, allowVerdicts);
+                storage.putSet(K_BLOCK_VERDICTS, blockVerdicts);
+                storage.putString(K_SEEDED_V2, "1");
+            }
+            return;
+        }
+        storage.putString(K_SEEDED_V2, "1");
         for (Map.Entry<String, String> e : defaults.entrySet()) {
             String id = normalizeChannelId(e.getKey());
             if (id != null && !channels.containsKey(id)) channels.put(id, e.getValue());

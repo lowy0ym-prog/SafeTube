@@ -156,7 +156,7 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         heading("Men-only screening");
-        label("Videos whose title or description mention a woman are hidden automatically. Channels set to strict also need a credited male instructor, and interviews/podcasts are hidden. This reads text only; it cannot see or hear a video.");
+        label("Videos are hidden only on clear evidence: a woman named in the title, or a female name credited as instructor, guest or host. Strict is OFF by default; when ON for a channel, every video also needs a credited male instructor and interviews/podcasts are hidden (this can hide most of a channel). Text only: it cannot see or hear a video. Use Block this video on anything it misses.");
         for (Map.Entry<String, String> e : sorted.entrySet()) {
             final String id = e.getValue();
             final boolean strict = wl.isStrict(id);

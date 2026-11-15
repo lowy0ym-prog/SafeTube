@@ -110,6 +110,24 @@ public final class Screening {
                     + "built|authored)\\s+by\\s+([^\\n.!?]{2,200})|(?:instructor|teacher|presenter|host|author|"
                     + "tutor|lecturer)s?\\s*[:\\-]\\s*([^\\n.!?]{2,200})");
 
+    private static final Pattern GUEST_LINE = Pattern.compile(
+            "(?:\\bwith|featuring|\\bfeat\\.?|\\bft\\.?|\\bguests?|joined by|interview(?:ing)? with|hosted by|"
+                    + "speaker|speakers)\\s*:?\\s+(?:dr\\.?\\s+|prof\\.?\\s+)?([A-Z][a-z]{2,})");
+
+    /** Female given names that appear right after a "with / featuring / guest / hosted by" cue. */
+    static boolean femaleNameInCredits(String text) {
+        if (text == null) return false;
+        String head = text.length() > 3000 ? text.substring(0, 3000) : text;
+        Matcher g = GUEST_LINE.matcher(head);
+        while (g.find()) {
+            if (FEMALE_NAMES.contains(g.group(1).toLowerCase(Locale.ROOT))) return true;
+        }
+        for (String n : creditedFirstNames(head)) {
+            if (FEMALE_NAMES.contains(n)) return true;
+        }
+        return false;
+    }
+
     public static List<String> words(String text) {
         List<String> out = new ArrayList<>();
         if (text == null) return out;
@@ -170,14 +188,21 @@ public final class Screening {
     /**
      * Classify one video.
      *
-     * @param strict false: BLOCK if the text mentions a woman, otherwise ALLOW.
+     * @param strict false (default): BLOCK only on clear evidence (title mentions a woman, or a
+     *               female name is credited as instructor/guest/host), otherwise ALLOW.
      *               true : additionally ALLOW only with positive evidence (credited, clearly male
      *               first names, no guest/interview format); otherwise UNKNOWN (which hides it).
      */
     public static Verdict classify(String title, String description, boolean strict) {
         String all = (title == null ? "" : title) + "\n" + (description == null ? "" : description);
+        if (!strict) {
+            // Default: block only on clear evidence. A woman named or described in the title, or a
+            // female given name credited as instructor / guest / host in the description.
+            if (mentionsFemale(title)) return Verdict.BLOCK;
+            if (femaleNameInCredits(description)) return Verdict.BLOCK;
+            return Verdict.ALLOW;
+        }
         if (mentionsFemale(all)) return Verdict.BLOCK;
-        if (!strict) return Verdict.ALLOW;
         if (looksLikeGuestFormat(all)) return Verdict.BLOCK;
         List<String> names = creditedFirstNames(description);
         if (names.isEmpty()) return Verdict.UNKNOWN;
