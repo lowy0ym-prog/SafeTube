@@ -203,7 +203,8 @@ public class NewPipeService {
      */
     private static String descriptionOf(StreamExtractor ex) {
         try {
-            return ex.getDescription() == null ? "" : ex.getDescription().getContent();
+            String d = NewPipeUtils.filterHtml(ex.getDescription());
+            return d == null ? "" : d;
         } catch (RuntimeException e) {
             return "";
         }
