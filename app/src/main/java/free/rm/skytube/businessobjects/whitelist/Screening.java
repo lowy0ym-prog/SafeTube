@@ -114,6 +114,24 @@ public final class Screening {
             "(?i:\\bwith|featuring|\\bfeat\\.?|\\bft\\.?|\\bguests?|joined by|interview(?:ing)? with|hosted by|"
                     + "speaker|speakers)\\s*:?\\s+(?i:dr\\.?\\s+|prof\\.?\\s+)?([A-Z][a-z]{2,})");
 
+    private static final Pattern HANDLE_CREDIT = Pattern.compile(
+            "(?i)(?:created|made|presented|hosted|taught|produced|written|course|video|tutorial)\\s+by\\s*:?\\s*@([a-z0-9_.\\-]{3,40})");
+
+    /** "Video created by @aniakubow": a credit handle that starts with a female given name (4+ letters). */
+    static boolean femaleHandleInCredits(String text) {
+        if (text == null) return false;
+        String head = text.length() > 3000 ? text.substring(0, 3000) : text;
+        Matcher m = HANDLE_CREDIT.matcher(head);
+        while (m.find()) {
+            String h = m.group(1).toLowerCase(Locale.ROOT);
+            for (String n : FEMALE_NAMES) {
+                if (n.length() >= 4 && h.startsWith(n)) return true;
+            }
+            if (h.startsWith("ania")) return true;
+        }
+        return false;
+    }
+
     /** Female given names that appear right after a "with / featuring / guest / hosted by" cue. */
     static boolean femaleNameInCredits(String text) {
         if (text == null) return false;
@@ -200,6 +218,7 @@ public final class Screening {
             // female given name credited as instructor / guest / host in the description.
             if (mentionsFemale(title)) return Verdict.BLOCK;
             if (femaleNameInCredits(description)) return Verdict.BLOCK;
+            if (femaleHandleInCredits(description)) return Verdict.BLOCK;
             return Verdict.ALLOW;
         }
         if (mentionsFemale(all)) return Verdict.BLOCK;

@@ -56,6 +56,13 @@ class ScreeningTest {
     }
 
     @Test
+    void creditHandlesWithFemaleNamesAreBlocked() {
+        assertEquals(Verdict.BLOCK, Screening.classify("How an Apple Engineer Pranked Lawyers", "Video created by @aniakubow", false));
+        assertEquals(Verdict.ALLOW, Screening.classify("Course", "Course created by @beaucarnes", false));
+        assertEquals(Verdict.ALLOW, Screening.classify("Course", "Thanks to @anthonycampbell2148 and @rajibdassharma497", false));
+    }
+
+    @Test
     void migrationTurnsOffOldStrictFlagsOnce() {
         Mem m = new Mem();
         m.putString("seeded_v1", "1");

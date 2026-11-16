@@ -29,6 +29,8 @@ public final class Whitelists {
                     w.seedDefaultsIfFirstRun(defaults, strict);
                     // Videos checked by eye (thumbnail clearly shows a woman).
                     w.seedBlockedVideosOnce("thumbs1", new java.util.HashSet<>(java.util.Arrays.asList("JGly6PSK5iw")));
+                    // Seen by eye: a woman presenting (user screenshot), credited "@aniakubow".
+                    w.seedBlockedVideosOnce("seen2", new java.util.HashSet<>(java.util.Arrays.asList("PVAstrvWPkQ")));
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;
                 }
