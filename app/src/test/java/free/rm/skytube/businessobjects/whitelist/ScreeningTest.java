@@ -63,6 +63,14 @@ class ScreeningTest {
     }
 
     @Test
+    void namedPeopleAreBlockedAnywhereInText() {
+        assertEquals(Verdict.BLOCK, Screening.classify("Course", "Thanks to Ania Kubow for the slides", false));
+        assertEquals(Verdict.BLOCK, Screening.classify("Course", "see youtube.com/@jessica_chan", false));
+        assertEquals(Verdict.BLOCK, Screening.classify("x", "Emma Bostian explains", true));
+        assertEquals(Verdict.ALLOW, Screening.classify("Course", "Created by Beau Carnes", false));
+    }
+
+    @Test
     void migrationTurnsOffOldStrictFlagsOnce() {
         Mem m = new Mem();
         m.putString("seeded_v1", "1");

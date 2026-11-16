@@ -146,6 +146,20 @@ public final class Screening {
         return false;
     }
 
+    /** People the user asked to have blocked everywhere: name or handle, spaces/punctuation ignored. */
+    static final String[] BLOCKED_PEOPLE = {
+            "aniakubow", "jessicachan", "emmabostian", "rachelfernandez", "andreagriffiths"
+    };
+
+    static boolean namesBlockedPerson(String text) {
+        if (text == null || text.isEmpty()) return false;
+        String squashed = text.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
+        for (String p : BLOCKED_PEOPLE) {
+            if (squashed.contains(p)) return true;
+        }
+        return false;
+    }
+
     public static List<String> words(String text) {
         List<String> out = new ArrayList<>();
         if (text == null) return out;
@@ -213,6 +227,7 @@ public final class Screening {
      */
     public static Verdict classify(String title, String description, boolean strict) {
         String all = (title == null ? "" : title) + "\n" + (description == null ? "" : description);
+        if (namesBlockedPerson(all)) return Verdict.BLOCK;
         if (!strict) {
             // Default: block only on clear evidence. A woman named or described in the title, or a
             // female given name credited as instructor / guest / host in the description.

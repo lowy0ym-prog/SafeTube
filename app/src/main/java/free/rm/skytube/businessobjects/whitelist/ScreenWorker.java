@@ -86,7 +86,8 @@ public final class ScreenWorker {
                 Whitelist w = Whitelists.get();
                 if (w == null) return;
                 for (String id : w.getApprovedChannels().keySet()) {
-                    if (!w.isStrict(id)) continue;
+                    // Strict channels: whole channel. Others: the newest ~25 pages (checked in the background).
+                    final int maxPages = w.isStrict(id) ? 200 : 25;
                     try {
                         VideoPagerWithChannel pager = NewPipeService.get().getChannelPager(new ChannelId(id));
                         int pages = 0;
@@ -94,7 +95,7 @@ public final class ScreenWorker {
                         do {
                             pager.getNextPage();
                             sleep(1000);
-                        } while (pager.isHasNextPage() && ++pages < 200);
+                        } while (pager.isHasNextPage() && ++pages < maxPages);
                     } catch (Exception e) {
                         Logger.e(ScreenWorker.class, "full scan failed for " + id + ": " + e.getMessage(), e);
                     }
