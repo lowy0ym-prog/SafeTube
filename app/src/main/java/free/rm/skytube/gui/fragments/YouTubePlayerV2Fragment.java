@@ -262,6 +262,8 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
 
         setupPlayer();
 
+        setupFullscreenButton();
+
         // ensure that videos are played in their correct aspect ratio
         fragmentBinding.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
 
@@ -968,6 +970,41 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
     /**
      * This will handle any gesture swipe event performed by the user on the player view.
      */
+    /**
+     * Full-screen toggle in the player controls. Forces landscape (works even when the phone's
+     * rotation lock is on) and back to portrait. The activity resets the orientation on stop.
+     */
+    private void setupFullscreenButton() {
+        final android.widget.ImageButton button = fragmentBinding.getRoot().findViewById(R.id.safetube_fullscreen);
+        if (button == null) return;
+        updateFullscreenIcon(button);
+        button.setOnClickListener(v -> {
+            Activity activity = getActivity();
+            if (activity == null) return;
+            boolean landscape = getResources().getConfiguration().orientation
+                    == android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+            activity.setRequestedOrientation(landscape
+                    ? android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                    : android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        });
+    }
+
+    private void updateFullscreenIcon(android.widget.ImageButton button) {
+        boolean landscape = getResources().getConfiguration().orientation
+                == android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+        button.setImageResource(landscape ? R.drawable.ic_safetube_fullscreen_exit : R.drawable.ic_safetube_fullscreen);
+        button.setContentDescription(landscape ? "Exit full screen" : "Full screen");
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull android.content.res.Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (fragmentBinding != null) {
+            android.widget.ImageButton button = fragmentBinding.getRoot().findViewById(R.id.safetube_fullscreen);
+            if (button != null) updateFullscreenIcon(button);
+        }
+    }
+
     class PlayerViewGestureHandler extends PlayerViewGestureDetector {
         private boolean isControllerVisible = true;
         private VideoBrightness videoBrightness;
