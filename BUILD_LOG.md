@@ -23,3 +23,4 @@
 - Run 43174925340: SUCCESS, release build-8.
 - Changes: removed upstream "developer verification" warning dialog (FreeDroidWarn), removed LeakCanary (it adds a separate "Leaks" launcher in debug builds), disabled upstream update check, renamed app to SafeTube, removed SkyTube's own blocker/backup/security settings, added "Block this video" (video grid + player) and "Block this playlist" (no PIN to block; PIN only in the admin screen to unblock), fixed signing key (app/safetube.keystore, private repo) so updates install over earlier builds.
 - Known limitations: targetSdk still 28; no on-device testing; first install of this signing key requires uninstalling any earlier SafeTube build.
+- Player: added a full-screen / exit-full-screen button to the video controls (forces landscape or portrait, works with rotation lock on). Untested on a physical device.
