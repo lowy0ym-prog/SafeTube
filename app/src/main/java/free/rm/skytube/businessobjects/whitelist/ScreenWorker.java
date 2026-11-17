@@ -87,7 +87,8 @@ public final class ScreenWorker {
                 if (w == null) return;
                 for (String id : w.getApprovedChannels().keySet()) {
                     // Strict channels: whole channel. Others: the newest ~25 pages (checked in the background).
-                    final int maxPages = w.isStrict(id) ? 200 : 25;
+                    if (!w.isStrict(id)) continue; // only strict channels are scanned (extra requests can get this IP blocked)
+                    final int maxPages = 200;
                     try {
                         VideoPagerWithChannel pager = NewPipeService.get().getChannelPager(new ChannelId(id));
                         int pages = 0;

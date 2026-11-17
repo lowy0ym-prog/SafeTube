@@ -64,7 +64,6 @@ public class VideoPager extends Pager<InfoItem, CardData> {
                 toScreen.add(new String[]{resolveUploader(si), sid});
             }
         }
-        Whitelists.prescreen(toScreen);
 
         for (InfoItem infoItem : page.getItems()) {
             // WHITELIST (fail closed): unapproved / unverifiable items are dropped here, before any

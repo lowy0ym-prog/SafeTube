@@ -88,9 +88,9 @@ public final class Whitelists {
         if (w.getVerdict(videoRef) == Screening.Verdict.UNKNOWN) {
             if (Screening.classify(title, null, false) == Screening.Verdict.BLOCK) {
                 w.recordVerdict(videoRef, Screening.Verdict.BLOCK);
-            } else if (!w.isStrict(channelRef)) {
-                ScreenWorker.enqueue(Whitelist.normalizeChannelId(channelRef), videoRef);
             }
+            // Note: no background requests for non-strict channels. Extra watch-page requests make
+            // YouTube temporarily block this phone's IP ("Sign in to confirm you're not a bot").
         }
     }
 
