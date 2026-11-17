@@ -1,7 +1,7 @@
 #!/bin/bash
 # Runs inside the CI emulator. Output goes to ./shots (committed to branch "shots" by the workflow).
 mkdir -p shots
-PKG=com.lowy.safetube
+PKG=com.lowy.safetube.oss
 APK=$(ls apk/*.apk | head -1)
 adb install -r "$APK" > shots/install.txt 2>&1
 adb logcat -c
@@ -12,7 +12,7 @@ sleep 60; shot 02_home_90s
 python3 - <<'PY' > shots/tap.txt
 import re
 x=open('shots/02_home_90s.xml',encoding='utf-8').read()
-m=re.search(r'resource-id="com.lowy.safetube:id/thumbnail_image_view"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',x)
+m=re.search(r'resource-id="com.lowy.safetube.oss:id/thumbnail_image_view"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',x)
 if m:
     a,b,c,d=map(int,m.groups()); print((a+c)//2,(b+d)//2)
 else:
