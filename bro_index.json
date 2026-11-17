@@ -1,0 +1,362 @@
+[
+{
+"n": 1,
+"id": "fPopFeqw5sk",
+"title": "Learn NumPy data types in 8 minutes! \ud83d\udcb1"
+},
+{
+"n": 2,
+"id": "xf71dRBRP6o",
+"title": "Build a music player with Python! \ud83c\udfb6"
+},
+{
+"n": 3,
+"id": "4paHKF4bJtI",
+"title": "Saving and loading NumPy arrays is easy! \ud83d\udcbe"
+},
+{
+"n": 4,
+"id": "Gsfsq2epdr8",
+"title": "You'll love Python data classes! \ud83d\udccb"
+},
+{
+"n": 5,
+"id": "81i_uSX9Vic",
+"title": "Useful NumPy functions you should know! \ud83c\udf9a\ufe0f"
+},
+{
+"n": 6,
+"id": "pJdTyvufOdg",
+"title": "Create QR codes with Python in 4 minutes! \ud83d\udcf1"
+},
+{
+"n": 7,
+"id": "k0D3MQwLn7A",
+"title": "Learn Python iterators in 7 minutes! \u27a1\ufe0f"
+},
+{
+"n": 8,
+"id": "pgPwaNpC0so",
+"title": "Learn to reshape NumPy arrays in 4 minutes! \u2194\ufe0f"
+},
+{
+"n": 9,
+"id": "ZBlxaXMN_hU",
+"title": "Learn Python generator expressions in 9 minutes! \u267b\ufe0f"
+},
+{
+"n": 10,
+"id": "G1lJeEIl05o",
+"title": "Learn Python generators in 8 minutes! \ud83d\udeb0"
+},
+{
+"n": 11,
+"id": "5WK3j2erJW4",
+"title": "Learn Python zip() in 3 minutes! \ud83e\udd10"
+},
+{
+"n": 12,
+"id": "c9vhHUGdav0",
+"title": "Learn Matplotlib in 1 hour! \ud83d\udcca"
+},
+{
+"n": 13,
+"id": "JJ0vg1Kbris",
+"title": "Let's create a graph using Pandas and Matplotlib! \ud83d\udc3c\ud83d\udcca"
+},
+{
+"n": 14,
+"id": "KFMs_ZZNgmo",
+"title": "Matplotlib subplots in 6 minutes! \ud83d\udd32"
+},
+{
+"n": 15,
+"id": "2E6fDoz7LuU",
+"title": "Matplotlib histograms in 6 minutes! \ud83d\udd14"
+},
+{
+"n": 16,
+"id": "HHrG5W530fk",
+"title": "Matplotlib scatter plots in 6 minutes! \u2728"
+},
+{
+"n": 17,
+"id": "N63ODsRdRVQ",
+"title": "Matplotlib pie charts in 6 minutes! \ud83e\udd67"
+},
+{
+"n": 18,
+"id": "k7UJg2E-TyU",
+"title": "Matplotlib bar charts in 4 minutes! \ud83d\udcf6"
+},
+{
+"n": 19,
+"id": "alVRCZkTBHc",
+"title": "Matplotlib grid lines in 2 minutes! \ud83c\udf10"
+},
+{
+"n": 20,
+"id": "t-kHUq8OvQs",
+"title": "Matplotlib labels in 6 minutes! \ud83c\udff7\ufe0f"
+},
+{
+"n": 21,
+"id": "hunq_UOdmoo",
+"title": "Matplotlib customization is easy! \ud83c\udfa8"
+},
+{
+"n": 22,
+"id": "2KY5AaFvWtE",
+"title": "Start using Matplotlib in 7 minutes! \ud83d\udcca"
+},
+{
+"n": 23,
+"id": "VXtjG_GzO7Q",
+"title": "Learn Pandas in 1 hour! \ud83d\udc3c"
+},
+{
+"n": 24,
+"id": "Ck0QgwiCEIs",
+"title": "Data cleaning in Pandas is easy! \ud83e\uddf9"
+},
+{
+"n": 25,
+"id": "3SRyslGSMW4",
+"title": "Aggregation in Pandas is easy! \u2795"
+},
+{
+"n": 26,
+"id": "AdR_gx5Y4wE",
+"title": "Filtering in Pandas is easy! \ud83d\udd0d"
+},
+{
+"n": 27,
+"id": "aoNRYtVEhAM",
+"title": "Selection in Pandas is easy! \ud83c\udfaf"
+},
+{
+"n": 28,
+"id": "Ssq0MOOVFHY",
+"title": "Import files in Pandas easy! \ud83d\udce5"
+},
+{
+"n": 29,
+"id": "OUnnuKHbmbU",
+"title": "DataFrames in Pandas are easy! \ud83d\udd22"
+},
+{
+"n": 30,
+"id": "W6WFX_H-AA4",
+"title": "Series in Pandas are easy! 1\ufe0f\u20e3"
+},
+{
+"n": 31,
+"id": "uTvo5DHbWQg",
+"title": "Start using Pandas in 2 minutes! \ud83d\udc3c"
+},
+{
+"n": 32,
+"id": "VXU4LSAQDSc",
+"title": "Learn NumPy in 1 hour! \ud83d\udd22"
+},
+{
+"n": 33,
+"id": "ITbUyiyQckY",
+"title": "Filtering in NumPy is easy! \ud83e\uddf2"
+},
+{
+"n": 34,
+"id": "8pUBr05OQfs",
+"title": "NumPy aggregate functions are easy! \ud83d\udcca"
+},
+{
+"n": 35,
+"id": "Ql5zGPtxlHY",
+"title": "Random numbers in NumPy are easy! \ud83c\udfb2"
+},
+{
+"n": 36,
+"id": "P67wiuTx7l0",
+"title": "Learn NumPy broadcasting in 6 minutes! \ud83d\udce1"
+},
+{
+"n": 37,
+"id": "DHS4gsp2ta0",
+"title": "NumPy arithmetic is easy! \u2716\ufe0f"
+},
+{
+"n": 38,
+"id": "6WaBryk4fkE",
+"title": "Slicing in NumPy is easy! \u2702\ufe0f"
+},
+{
+"n": 39,
+"id": "EnhgbolbEe0",
+"title": "NumPy multidimensional arrays are easy! \ud83e\uddca"
+},
+{
+"n": 40,
+"id": "Gc-dwloxNFE",
+"title": "Start using NumPy in 5 minutes! \ud83d\udd22"
+},
+{
+"n": 41,
+"id": "Z6KoEXkp4dY",
+"title": "Convert decimal to hexadecimal EASY!"
+},
+{
+"n": 42,
+"id": "b22sgDp_DcU",
+"title": "Convert decimal to octal EASY!"
+},
+{
+"n": 43,
+"id": "C6l7F6C4bIA",
+"title": "Convert decimal to binary EASY!"
+},
+{
+"n": 44,
+"id": "aMME_rYkoOU",
+"title": "Learn hexadecimal in 0x7A seconds"
+},
+{
+"n": 45,
+"id": "hl1Wz6QM1eg",
+"title": "Learn octal in 113\u2088 seconds"
+},
+{
+"n": 46,
+"id": "J6qXny_UAK4",
+"title": "Learn binary in 01000001 seconds"
+},
+{
+"n": 47,
+"id": "xND0t1pr3KY",
+"title": "C Programming Full Course for free \u2699\ufe0f"
+},
+{
+"n": 48,
+"id": "2ciUcosJFBc",
+"title": "Start C programming in 15 minutes! \u2699\ufe0f"
+},
+{
+"n": 49,
+"id": "ZwSyuqbeN0c",
+"title": "Arrays of structs are easy! \ud83d\uddc4\ufe0f"
+},
+{
+"n": 50,
+"id": "Nrbm22wPU9k",
+"title": "Learn variable scope in 5 minutes! \ud83c\udfe0"
+},
+{
+"n": 51,
+"id": "rUXjvybSPWc",
+"title": "Realloc in C explained easy! \ud83d\udea2"
+},
+{
+"n": 52,
+"id": "l8DU9ZeT3o8",
+"title": "Calloc in C is easy! \ud83e\uddf9"
+},
+{
+"n": 53,
+"id": "s3QMbp7TlFg",
+"title": "Code a C digital clock in 10 minutes! \u231a"
+},
+{
+"n": 54,
+"id": "n_Se6bt8jM0",
+"title": "Malloc in C is easy! \ud83c\udfe2"
+},
+{
+"n": 55,
+"id": "eIlcl-mt3tg",
+"title": "Read files using C programming in 6 minutes! \ud83d\udcd6"
+},
+{
+"n": 56,
+"id": "d29sVpbM0kc",
+"title": "Write files using C programming in 5 minutes! \u270d\ufe0f"
+},
+{
+"n": 57,
+"id": "Hi-Ul47t3nQ",
+"title": "Pointers are easy! \ud83d\udc48"
+},
+{
+"n": 58,
+"id": "e9OXqEPF-5M",
+"title": "Structs in C are easy! \ud83d\udce6"
+},
+{
+"n": 59,
+"id": "sU0XQ3jSsu8",
+"title": "Learn enums in 8 minutes! \ud83d\udcc5"
+},
+{
+"n": 60,
+"id": "pNNC6WAJfdk",
+"title": "Learn typedef in 5 minutes! \ud83d\udcdb"
+},
+{
+"n": 61,
+"id": "Jx12Vf0VxmY",
+"title": "The ternary operator is easy! \u2753"
+},
+{
+"n": 62,
+"id": "HDlm1imM7mU",
+"title": "Let's code a QUIZ GAME with C programming! \ud83d\udcaf"
+},
+{
+"n": 63,
+"id": "e7SACGE9hKw",
+"title": "Arrays of strings in C explained! \ud83e\uddf5"
+},
+{
+"n": 64,
+"id": "vpu09OPR61M",
+"title": "Learn 2D arrays in 8 minutes! \u2b1c"
+},
+{
+"n": 65,
+"id": "y4siEcxgOpM",
+"title": "Initialize an array with user input in C \u27a1\ufe0f"
+},
+{
+"n": 66,
+"id": "6Hk2aE_SRzY",
+"title": "Arrays in C are easy! \ud83d\uddc3\ufe0f"
+},
+{
+"n": 67,
+"id": "cUKD_AHpjNw",
+"title": "Let's code ROCK PAPER SCISSORS with C programming! \ud83d\uddff \ud83d\udcc4 \u2702\ufe0f"
+},
+{
+"n": 68,
+"id": "Z5smVeUVNFU",
+"title": "Let's code a BANK PROGRAM with C programming! \ud83d\udcb5"
+},
+{
+"n": 69,
+"id": "F6OrJaiNGJM",
+"title": "Let's code a NUMBER GUESSING GAME in C! \u2195\ufe0f"
+},
+{
+"n": 70,
+"id": "_wWfHRbzdX4",
+"title": "Generate random numbers in C! \ud83c\udfb2"
+},
+{
+"n": 71,
+"id": "A36pfuw33oQ",
+"title": "Learn nested loops in 9 minutes! \u27bf"
+},
+{
+"n": 72,
+"id": "wVSekrbPcuk",
+"title": "Learn break & continue in 2 minutes! \ud83d\uded1"
+}
+]

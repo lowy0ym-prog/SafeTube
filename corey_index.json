@@ -1,0 +1,482 @@
+[
+{
+"n": 1,
+"id": "tHh0UaL_V4w",
+"title": "I Use AI Every Day: What I Like, What I Hate, and Where I Think We're Heading"
+},
+{
+"n": 2,
+"id": "iukOehU5aF4",
+"title": "Python FastAPI Tutorial: Full Course for Beginners - Build a Full-Stack Web App"
+},
+{
+"n": 3,
+"id": "eqjngvKfabg",
+"title": "Python FastAPI Tutorial (Part 19): Deploy with Docker - Serverless Containers and Custom Domain"
+},
+{
+"n": 4,
+"id": "wd1wt2d0eus",
+"title": "Python FastAPI Tutorial (Part 18): Deploy to a VPS - Security, Nginx, SSL, and Custom Domain"
+},
+{
+"n": 5,
+"id": "SO7m7nod0ts",
+"title": "Python FastAPI Tutorial (Part 17): Testing the API - Pytest, Fixtures, and Mocking External Services"
+},
+{
+"n": 6,
+"id": "zCTJ3AdDym4",
+"title": "Python FastAPI Tutorial (Part 16): AWS S3 and Boto3 - Moving File Uploads to the Cloud"
+},
+{
+"n": 7,
+"id": "e8NnDz8uT7o",
+"title": "Python FastAPI Tutorial (Part 15): PostgreSQL and Alembic - Database Migrations for Production"
+},
+{
+"n": 8,
+"id": "4HxjBvZMAg8",
+"title": "Python FastAPI Tutorial (Part 14): Password Reset - Email, Tokens, and Background Tasks"
+},
+{
+"n": 9,
+"id": "f1zggIOxmJg",
+"title": "Python FastAPI Tutorial (Part 13): Pagination - Loading More Data with Query Parameters"
+},
+{
+"n": 10,
+"id": "AExumWjfbyo",
+"title": "Python FastAPI Tutorial (Part 12): File Uploads - Image Processing, Validation, and Storage"
+},
+{
+"n": 11,
+"id": "MY0TFMMm9B0",
+"title": "Python FastAPI Tutorial (Part 11): Authorization - Protecting Routes and Verifying Current User"
+},
+{
+"n": 12,
+"id": "Go4wYJJhR3k",
+"title": "Python FastAPI Tutorial (Part 10): Authentication - Registration and Login with JWT"
+},
+{
+"n": 13,
+"id": "vqjZOyT4QRs",
+"title": "Python FastAPI Tutorial (Part 9): Frontend Forms - Connecting JavaScript to Your API"
+},
+{
+"n": 14,
+"id": "NkgIHa6KtHg",
+"title": "Python FastAPI Tutorial (Part 8): Routers - Organizing Routes into Modules with APIRouter"
+},
+{
+"n": 15,
+"id": "2JPDt-Jp6fM",
+"title": "Python FastAPI Tutorial (Part 7): Sync vs Async - Converting Your App to Asynchronous"
+},
+{
+"n": 16,
+"id": "VyoGAoxQhxM",
+"title": "Python FastAPI Tutorial (Part 6): Completing CRUD - Update and Delete (PUT, PATCH, DELETE)"
+},
+{
+"n": 17,
+"id": "NvOV3ig2tGY",
+"title": "Python FastAPI Tutorial (Part 5): Adding a Database - SQLAlchemy Models and Relationships"
+},
+{
+"n": 18,
+"id": "9GHxnttXxrA",
+"title": "Python FastAPI Tutorial (Part 4): Pydantic Schemas - Request and Response Validation"
+},
+{
+"n": 19,
+"id": "WRjXIA5pMtk",
+"title": "Python FastAPI Tutorial (Part 3): Path Parameters - Validation and Error Handling"
+},
+{
+"n": 20,
+"id": "G4NIB9Rx9Qs",
+"title": "Python FastAPI Tutorial (Part 2): HTML Frontend for Your API - Jinja2 Templates"
+},
+{
+"n": 21,
+"id": "7AMjmCTumuo",
+"title": "Python FastAPI Tutorial (Part 1): Getting Started - Web App + REST API"
+},
+{
+"n": 22,
+"id": "M81pfi64eeM",
+"title": "Python Pydantic Tutorial: Complete Data Validation Course (Used by FastAPI)"
+},
+{
+"n": 23,
+"id": "oAkLSJNr5zY",
+"title": "Python Tutorial: AsyncIO - Complete Guide to Asynchronous Programming with Animations"
+},
+{
+"n": 24,
+"id": "RwH2UzC2rIo",
+"title": "Python Tutorial: Type Hints - From Basic Annotations to Advanced Generics"
+},
+{
+"n": 25,
+"id": "fM4O9bModsE",
+"title": "Python Tutorial: Type Hinting vs Type Checking vs Data Validation - What\u2019s the Difference?"
+},
+{
+"n": 26,
+"id": "828S-DMQog8",
+"title": "Python Tutorial: Ruff - A Fast Linter & Formatter to Replace Multiple Tools and Improve Code Quality"
+},
+{
+"n": 27,
+"id": "AMdG7IjgSPM",
+"title": "Python Tutorial: UV - A Faster, All-in-One Package Manager to Replace Pip and Venv"
+},
+{
+"n": 28,
+"id": "4TFQD0ok5Ao",
+"title": "I Let Python Pick My March Madness Bracket - Bracket Simulation Tutorial"
+},
+{
+"n": 29,
+"id": "ECt0TAl41Zk",
+"title": "Python Tutorial: Generate a Web Portfolio and Resume from One JSON File"
+},
+{
+"n": 30,
+"id": "AD-3nVI3-_U",
+"title": "How to Deploy a Static Website to GitHub Pages - Free Hosting Tutorial"
+},
+{
+"n": 31,
+"id": "yxa-DJuuTBI",
+"title": "Python Tutorial: Pathlib - The Modern Way to Handle File Paths"
+},
+{
+"n": 32,
+"id": "X5yyKZpZ4vU",
+"title": "Python Tkinter Tutorial (Part 2): Using Classes for Functionality and Organization"
+},
+{
+"n": 33,
+"id": "epDKamC-V-8",
+"title": "Python Tkinter Tutorial (Part 1): Getting Started, Elements, Layouts, and Events"
+},
+{
+"n": 34,
+"id": "jNoTEiI2cVU",
+"title": "Automating My Bill Payments with Python and Selenium"
+},
+{
+"n": 35,
+"id": "PYuTzLswn_Y",
+"title": "Python Tutorial: Securely Manage Passwords and API Keys with DotEnv"
+},
+{
+"n": 36,
+"id": "ra5kMCXO-6I",
+"title": "Automate Your Development Environment Setup with Scripts and Dotfiles"
+},
+{
+"n": 37,
+"id": "jRAAaDll34Q",
+"title": "How to Use ChatGPT as a Powerful Tool for Programming"
+},
+{
+"n": 38,
+"id": "HZ8uXq5VG2w",
+"title": "Python Tutorial: Simulate the Powerball Lottery Using Python"
+},
+{
+"n": 39,
+"id": "vQQEaSnQ_bs",
+"title": "Python YouTube API Tutorial: Using OAuth to Access User Accounts"
+},
+{
+"n": 40,
+"id": "1KO_HZtHOWI",
+"title": "Python YouTube API Tutorial: Sort a Playlist by Most Popular Videos"
+},
+{
+"n": 41,
+"id": "coZbOM6E47I",
+"title": "Python YouTube API Tutorial: Calculating the Duration of a Playlist"
+},
+{
+"n": 42,
+"id": "th5_9woFJmk",
+"title": "Python YouTube API Tutorial: Getting Started - Creating an API Key and Querying the API"
+},
+{
+"n": 43,
+"id": "RO6JxDOVwLQ",
+"title": "Python Tutorial: Real World Example - Using Patreon API and Pillow to Automate Image Creation"
+},
+{
+"n": 44,
+"id": "N6hyN6BW6ao",
+"title": "Python Pandas Tutorial (Part 11): Reading/Writing Data to Different Sources - Excel, JSON, SQL, Etc"
+},
+{
+"n": 45,
+"id": "UFuo7EHI8zc",
+"title": "Python Pandas Tutorial (Part 10): Working with Dates and Time Series Data"
+},
+{
+"n": 46,
+"id": "KdmPHEnPJPs",
+"title": "Python Pandas Tutorial (Part 9): Cleaning Data - Casting Datatypes and Handling Missing Values"
+},
+{
+"n": 47,
+"id": "txMdrV1Ut64",
+"title": "Python Pandas Tutorial (Part 8): Grouping and Aggregating - Analyzing and Exploring Your Data"
+},
+{
+"n": 48,
+"id": "T11QYVfZoD0",
+"title": "Python Pandas Tutorial (Part 7): Sorting Data"
+},
+{
+"n": 49,
+"id": "HQ6XO9eT-fc",
+"title": "Python Pandas Tutorial (Part 6): Add/Remove Rows and Columns From DataFrames"
+},
+{
+"n": 50,
+"id": "DCDe29sIKcE",
+"title": "Python Pandas Tutorial (Part 5): Updating Rows and Columns - Modifying Data Within DataFrames"
+},
+{
+"n": 51,
+"id": "Lw2rlcxScZY",
+"title": "Python Pandas Tutorial (Part 4): Filtering - Using Conditionals to Filter Rows and Columns"
+},
+{
+"n": 52,
+"id": "W9XjRYFkkyw",
+"title": "Python Pandas Tutorial (Part 3): Indexes - How to Set, Reset, and Use Indexes"
+},
+{
+"n": 53,
+"id": "zmdjNSmRXF4",
+"title": "Python Pandas Tutorial (Part 2): DataFrame and Series Basics - Selecting Rows and Columns"
+},
+{
+"n": 54,
+"id": "ZyhVh-qRZPA",
+"title": "Python Pandas Tutorial (Part 1): Getting Started with Data Analysis - Installation and Loading Data"
+},
+{
+"n": 55,
+"id": "z0gguhEmWiY",
+"title": "Python Tutorial: Zip Files - Creating and Extracting Zip Archives"
+},
+{
+"n": 56,
+"id": "_P7X8tMplsw",
+"title": "Python Data Science Tutorial: Analyzing the 2019 Stack Overflow Developer Survey"
+},
+{
+"n": 57,
+"id": "fKl2JW_qrso",
+"title": "Python Multiprocessing Tutorial: Run Code in Parallel Using the Multiprocessing Module"
+},
+{
+"n": 58,
+"id": "IEEhzQoKtQU",
+"title": "Python Threading Tutorial: Run Code Concurrently Using the Threading Module"
+},
+{
+"n": 59,
+"id": "mO_dS3rXDIs",
+"title": "Python Quick Tip: The Difference Between \"==\" and \"is\" (Equality vs Identity)"
+},
+{
+"n": 60,
+"id": "2Fp1N6dof0Y",
+"title": "Python Tutorial: Calling External Commands Using the Subprocess Module"
+},
+{
+"n": 61,
+"id": "XFZRVnP-MTU",
+"title": "Matplotlib Tutorial (Part 10): Subplots"
+},
+{
+"n": 62,
+"id": "Ercd-Ip5PfQ",
+"title": "Matplotlib Tutorial (Part 9): Plotting Live Data in Real-Time"
+},
+{
+"n": 63,
+"id": "_LWjaAiKaf8",
+"title": "Matplotlib Tutorial (Part 8): Plotting Time Series Data"
+},
+{
+"n": 64,
+"id": "zZZ_RCwp49g",
+"title": "Matplotlib Tutorial (Part 7): Scatter Plots"
+},
+{
+"n": 65,
+"id": "XDv6T4a0RNc",
+"title": "Matplotlib Tutorial (Part 6): Histograms"
+},
+{
+"n": 66,
+"id": "x0Uguu7gqgk",
+"title": "Matplotlib Tutorial (Part 5): Filling Area on Line Plots"
+},
+{
+"n": 67,
+"id": "xN-Supd4H38",
+"title": "Matplotlib Tutorial (Part 4): Stack Plots"
+},
+{
+"n": 68,
+"id": "MPiz50TsyF0",
+"title": "Matplotlib Tutorial (Part 3): Pie Charts"
+},
+{
+"n": 69,
+"id": "nKxLfUrkLE8",
+"title": "Matplotlib Tutorial (Part 2): Bar Charts and Analyzing Data from CSVs"
+},
+{
+"n": 70,
+"id": "UO98lJQ3QGI",
+"title": "Matplotlib Tutorial (Part 1): Creating and Customizing Our First Plots"
+},
+{
+"n": 71,
+"id": "06I63_p-2A4",
+"title": "Visual Studio Code (Mac) - Setting up a Python Development Environment and Complete Overview"
+},
+{
+"n": 72,
+"id": "-nh9rCzPJ20",
+"title": "Visual Studio Code (Windows) - Setting up a Python Development Environment and Complete Overview"
+},
+{
+"n": 73,
+"id": "_JGmemuINww",
+"title": "Python Tutorial: Clarifying the Issues with Mutable Default Arguments"
+},
+{
+"n": 74,
+"id": "zdJEYhA2AZQ",
+"title": "5 Common Python Mistakes and How to Fix Them"
+},
+{
+"n": 75,
+"id": "kIdiWut8eD8",
+"title": "How I Setup a New Development Machine - Using Scripts to Automate Installs and Save Time"
+},
+{
+"n": 76,
+"id": "1lxrb_ezP-g",
+"title": "How to Write Python Scripts to Analyze JSON APIs and Sort Results"
+},
+{
+"n": 77,
+"id": "SELYgZvAZbU",
+"title": "Homebrew Tutorial: Simplify Software Installation on Mac Using This Package Manager"
+},
+{
+"n": 78,
+"id": "APOPm01BVrk",
+"title": "Python Tutorial: VENV (Windows) - How to Use Virtual Environments with the Built-In venv Module"
+},
+{
+"n": 79,
+"id": "Kg1Yvry_Ydk",
+"title": "Python Tutorial: VENV (Mac & Linux) - How to Use Virtual Environments with the Built-In venv Module"
+},
+{
+"n": 80,
+"id": "C-gEQdGVXbk",
+"title": "10 Python Tips and Tricks For Writing Better Code"
+},
+{
+"n": 81,
+"id": "JRCJ6RtE3xU",
+"title": "How to Send Emails Using Python - Plain Text, Adding Attachments, HTML Emails, and More"
+},
+{
+"n": 82,
+"id": "a6fIbtFB46g",
+"title": "Python Tutorial: Web Scraping with Requests-HTML"
+},
+{
+"n": 83,
+"id": "yqm6MBt-yfY",
+"title": "Python Tutorial: Write a Script to Monitor a Website, Send Alert Emails, and Reboot Servers"
+},
+{
+"n": 84,
+"id": "tb8gHvYlCFs",
+"title": "Python Requests Tutorial: Request Web Pages, Download Images, POST Data, Read JSON, and More"
+},
+{
+"n": 85,
+"id": "6DI_7Zja8Zc",
+"title": "Python Django Tutorial: Deploying Your Application (Option #2) - Deploy using Heroku"
+},
+{
+"n": 86,
+"id": "kt3ZtW9MXhw",
+"title": "Python Django Tutorial: Full-Featured Web App Part 13 - Using AWS S3 for File Uploads"
+},
+{
+"n": 87,
+"id": "NhidVhNHfeU",
+"title": "Python Django Tutorial: How to enable HTTPS with a free SSL/TLS Certificate using Let's Encrypt"
+},
+{
+"n": 88,
+"id": "Gdys9qPjuKs",
+"title": "Python Flask Tutorial: How to enable HTTPS with a free SSL/TLS Certificate using Let's Encrypt"
+},
+{
+"n": 89,
+"id": "D2lwk1Ukgz0",
+"title": "Python Django Tutorial: How to Use a Custom Domain Name for Our Application"
+},
+{
+"n": 90,
+"id": "LUFn-QVcmB8",
+"title": "Python Flask Tutorial: How to Use a Custom Domain Name for Our Application"
+},
+{
+"n": 91,
+"id": "goToXTC96Co",
+"title": "Python Flask Tutorial: Deploying Your Application (Option #1) - Deploy to a Linux Server"
+},
+{
+"n": 92,
+"id": "Sa_kQheCnds",
+"title": "Python Django Tutorial: Deploying Your Application (Option #1) - Deploy to a Linux Server"
+},
+{
+"n": 93,
+"id": "Qu3dThVy6KQ",
+"title": "Python Tutorial: Itertools Module - Iterator Functions for Efficient Looping"
+},
+{
+"n": 94,
+"id": "C3Z9lJXI6Qw",
+"title": "Python Coding Problem: Creating Your Own Iterators"
+},
+{
+"n": 95,
+"id": "jTYiNjvnHZY",
+"title": "Python Tutorial: Iterators and Iterables - What Are They and How Do They Work?"
+},
+{
+"n": 96,
+"id": "zDYL22QNiWk",
+"title": "Python Tutorial: Pipenv - Easily Manage Packages and Virtual Environments"
+}
+]
