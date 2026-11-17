@@ -177,6 +177,15 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
             if (bundle != null && bundle.getSerializable(YOUTUBE_VIDEO_OBJ) != null) {
                 // ... either the video details are passed through the previous activity
                 setYouTubeVideo((YouTubeVideo) bundle.getSerializable(YOUTUBE_VIDEO_OBJ));
+                if (!free.rm.skytube.businessobjects.whitelist.Whitelists.videoAllowed(
+                        youTubeVideo.getSafeChannelId(), youTubeVideo.getId())) {
+                    // blocked: show nothing at all, just leave
+                    fragmentBinding.getRoot().setVisibility(View.INVISIBLE);
+                    requireActivity().finish();
+                    return fragmentBinding.getRoot();
+                }
+                // Nothing (title, thumbnail, description) is shown until the video is verified and starts.
+                fragmentBinding.getRoot().setVisibility(View.INVISIBLE);
                 setUpHUDAndPlayVideo();
 
                 fetchVideoInformation();
@@ -625,6 +634,11 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
                                                             @Override
                                                             public void onGetDesiredStreamError(Throwable throwable) {
                                                                 Logger.e(YouTubePlayerV2Fragment.this, "Error during getting desired stream:" + throwable, throwable);
+                                                                if (isWhitelistError(throwable)) {
+                                                                    // blocked video: leave silently, show nothing
+                                                                    closeActivity();
+                                                                    return;
+                                                                }
                                                                 if (throwable != null) {
                                                                     videoPlaybackError(NewPipeUtils.getUserFriendlyErrorMessage(getContext(), throwable));
                                                                 }
@@ -638,7 +652,20 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
                         }));
     }
 
+    private void revealPlayer() {
+        if (fragmentBinding != null) fragmentBinding.getRoot().setVisibility(View.VISIBLE);
+    }
+
+    private static boolean isWhitelistError(Throwable t) {
+        for (int i = 0; t != null && i < 8; i++, t = t.getCause()) {
+            String m = t.getMessage();
+            if (m != null && (m.contains("not whitelisted") || m.contains("is not whitelisted"))) return true;
+        }
+        return false;
+    }
+
     private void videoPlaybackError(String errorMessage) {
+        revealPlayer();
         Context ctx = getContext();
         if (ctx == null) {
             Logger.e(YouTubePlayerV2Fragment.this, "Error during getting stream: %s", errorMessage);
@@ -678,6 +705,7 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
      * @param streamInfo Additional information about the stream.
      */
     private void playVideo(Uri videoUri, @Nullable Uri audioUri, @Nullable StreamInfo streamInfo) {
+        revealPlayer();
         try {
             datasourceBuilder.play(videoUri, audioUri, streamInfo);
             if (playerInitialPosition > 0) {
@@ -690,6 +718,7 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
     }
 
     private void playVideo(StreamSelectionPolicy.StreamSelection selection, @Nullable StreamInfo streamInfo) {
+        revealPlayer();
         try {
             datasourceBuilder.play(selection, streamInfo);
             if (playerInitialPosition > 0) {

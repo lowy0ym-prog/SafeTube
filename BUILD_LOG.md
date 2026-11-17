@@ -43,3 +43,11 @@
 - Player: added a full-screen / exit-full-screen button to the video controls (forces landscape or portrait, works with the phone's rotation lock on). Untested on a physical device.
 - User screenshot: "How an Apple Engineer Pranked Billion-Dollar Lawyers" shows a woman presenting, credit "@aniakubow". The id (PVAstrvWPkQ) comes from the ChatGPT list, which matched the title; seeded as blocked (`seeded_blocks_seen2`). Rules now also read "created by @handle" credits that start with a female given name (4+ letters).
 - User request: block everything by the women he named (Ania Kubow, Jessica Chan, Emma Bostian, Rachel Fernandez, Andrea Griffiths). Added a named-people rule (name or handle anywhere in title/description, spaces and punctuation ignored) and the background scan now covers the newest ~25 pages of every approved channel (whole channel for strict ones). Limit: videos whose text never names them (e.g. a guest only shown on screen) are not caught.
+
+## Final custom polish (attempt 12)
+- Blocked more: channels UCiWmRIZ-sEbPaZZfelakuXQ (Patt Vira) and UCng0h8WiHLmT57JJ8At4LfQ (Coding with Estefania), by id/name/handle anywhere in video title/description.
+- Lists: unknown videos are now screened (title + description) in parallel BEFORE a list page is shown (12 s cap; on failure the video stays unknown and the background worker retries).
+- Player: a video is invisible until it is verified and starts; a blocked video closes silently (no dialog, no thumbnail).
+- Branding: new notification icon, default channel picture and banner; removed all translated string folders (they contained the old app name); user-visible strings, export/backup file names, user agent and notification channel renamed to SafeTube; old website/issue/update URLs removed.
+- Left on purpose: Java package name `free.rm.skytube`, GPL license headers and LICENSE/attribution (required by the license, not visible in the app).
+- Untested on a physical device: real channel pictures in the left drawer (fall back to the SafeTube picture if a channel has no picture URL).

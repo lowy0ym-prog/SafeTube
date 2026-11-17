@@ -405,7 +405,7 @@ public class SubscriptionsBackupsManager {
                 })
                 .withOnCancelListener(DialogInterface::cancel);
         if(importDb) {
-            dialog.withFilter(false, false, "skytube");
+            dialog.withFilter(false, false, "safetube");
         } else {
             dialog.withFilterRegex(false, false, ".*(json|xml|subscription_manager|zip|csv)$");
         }

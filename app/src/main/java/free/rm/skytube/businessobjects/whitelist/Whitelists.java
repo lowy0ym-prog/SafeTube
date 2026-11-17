@@ -66,6 +66,41 @@ public final class Whitelists {
         }
     }
 
+    /**
+     * Screens unknown videos of approved channels BEFORE a list is shown, a few at a time, so a
+     * blocked video never appears at all. Each item is {channelRef, videoId}. Failures and timeouts
+     * leave the video unknown (the background worker retries); non-strict channels then show it.
+     */
+    public static void prescreen(java.util.List<String[]> items) {
+        final Whitelist w = instance;
+        if (w == null || items == null || items.isEmpty()) return;
+        final java.util.List<String[]> todo = new java.util.ArrayList<>();
+        for (String[] it : items) {
+            if (w.isChannelApproved(it[0]) && w.getVerdict(it[1]) == Screening.Verdict.UNKNOWN) todo.add(it);
+        }
+        if (todo.isEmpty()) return;
+        java.util.concurrent.ExecutorService ex =
+                java.util.concurrent.Executors.newFixedThreadPool(Math.min(6, todo.size()));
+        for (final String[] it : todo) {
+            ex.submit(() -> {
+                try {
+                    String[] d = free.rm.skytube.businessobjects.YouTube.newpipe.NewPipeService.get().fetchForScreening(it[1]);
+                    String channel = d[0] != null ? d[0] : it[0];
+                    if (w.isChannelApproved(channel)) noteDetails(channel, it[1], d[1], d[2]);
+                } catch (Exception ignored) {
+                    // stays unknown
+                }
+            });
+        }
+        ex.shutdown();
+        try {
+            if (!ex.awaitTermination(12, java.util.concurrent.TimeUnit.SECONDS)) ex.shutdownNow();
+        } catch (InterruptedException e) {
+            ex.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
+    }
+
     /** Full metadata (title + description) is available: classify and remember the verdict. */
     public static void noteDetails(String channelRef, String videoRef, String title, String description) {
         Whitelist w = instance;

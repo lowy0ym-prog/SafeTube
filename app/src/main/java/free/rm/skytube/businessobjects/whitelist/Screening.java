@@ -148,7 +148,10 @@ public final class Screening {
 
     /** People the user asked to have blocked everywhere: name or handle, spaces/punctuation ignored. */
     static final String[] BLOCKED_PEOPLE = {
-            "aniakubow", "jessicachan", "emmabostian", "rachelfernandez", "andreagriffiths"
+            "aniakubow", "jessicachan", "emmabostian", "rachelfernandez", "andreagriffiths",
+            "pattvira", "codingwithestefania", "estefaniacassingenanavone",
+            // channel ids of the two channels the user asked to block
+            "uciwmriz-sebpazzfelakuxq".replaceAll("[^a-z0-9]", ""), "ucng0h8wihlmt57jj8at4lfq".replaceAll("[^a-z0-9]", "")
     };
 
     static boolean namesBlockedPerson(String text) {

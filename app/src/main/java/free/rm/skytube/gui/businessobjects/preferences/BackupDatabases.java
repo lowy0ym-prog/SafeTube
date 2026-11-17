@@ -52,7 +52,7 @@ public class BackupDatabases {
 	private static final String TAG = BackupDatabases.class.getSimpleName();
 
 	private static final File   EXPORT_DIR  = Environment.getExternalStorageDirectory();
-	private static final String BACKUPS_EXT = ".skytube";
+	private static final String BACKUPS_EXT = ".safetube";
 	public static final String PREFERENCES_JSON = "preferences.json";
 	private static final int[] KEY_IDS = {
 			R.string.pref_use_default_newpipe_backend,
@@ -205,7 +205,7 @@ public class BackupDatabases {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
 		df.setTimeZone(tz);
 
-		return "skytube-" + df.format(new Date()) + BACKUPS_EXT;
+		return "safetube-" + df.format(new Date()) + BACKUPS_EXT;
 	}
 
 }

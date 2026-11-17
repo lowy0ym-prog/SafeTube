@@ -18,10 +18,10 @@ android {
         // Third party devs:  pls be ethical and change the below keys
         buildConfigField 'String', 'YOUTUBE_API_KEYS_DEBUG', '""'
         buildConfigField 'String[]', 'YOUTUBE_API_KEYS', '{}'
-        buildConfigField 'String', 'SKYTUBE_WEBSITE', '"https://github.com/SkyTubeTeam/SkyTube"'
-        buildConfigField 'String', 'SKYTUBE_WEBSITE_CREDITS', '"https://raw.githubusercontent.com/SkyTubeTeam/SkyTube/master/contributors.txt"'
-        buildConfigField 'String', 'SKYTUBE_ISSUES_URL', '"https://github.com/SkyTubeTeam/SkyTube/issues/new/choose"'
-        buildConfigField 'String', 'SKYTUBE_UPDATES_URL', '"https://api.github.com/repos/SkyTubeTeam/SkyTube/releases/latest"'
+        buildConfigField 'String', 'SKYTUBE_WEBSITE', '""'
+        buildConfigField 'String', 'SKYTUBE_WEBSITE_CREDITS', '""'
+        buildConfigField 'String', 'SKYTUBE_ISSUES_URL', '""'
+        buildConfigField 'String', 'SKYTUBE_UPDATES_URL', '""'
         buildConfigField 'long', 'BUILD_TIME', String.valueOf(System.currentTimeMillis()) + 'L'
         vectorDrawables.useSupportLibrary true
         multiDexEnabled true    // as we have over 65536 lines of code...
@@ -48,7 +48,7 @@ android {
         snapshot {
             initWith debug
             applicationIdSuffix ".snapshot"
-            resValue "string", "app_name", "SkyTube Snapshot"
+            resValue "string", "app_name", "SafeTube"
         }
     }
     flavorDimensions "skytube"

@@ -54,6 +54,18 @@ public class VideoPager extends Pager<InfoItem, CardData> {
         int repeatCounter = 0;
         int unexpected = 0;
 
+        // Screen unknown videos (title + description) before anything is shown.
+        List<String[]> toScreen = new ArrayList<>();
+        for (InfoItem infoItem : page.getItems()) {
+            if (infoItem instanceof StreamInfoItem) {
+                StreamInfoItem si = (StreamInfoItem) infoItem;
+                String sid = getId(streamLinkHandler, infoItem.getUrl());
+                Whitelists.noteListing(resolveUploader(si), sid, si.getName());
+                toScreen.add(new String[]{resolveUploader(si), sid});
+            }
+        }
+        Whitelists.prescreen(toScreen);
+
         for (InfoItem infoItem : page.getItems()) {
             // WHITELIST (fail closed): unapproved / unverifiable items are dropped here, before any
             // CardData exists, so no title, thumbnail URL or id can reach an adapter or image loader.

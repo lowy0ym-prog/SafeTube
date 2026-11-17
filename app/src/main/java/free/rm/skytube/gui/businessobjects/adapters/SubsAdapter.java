@@ -168,7 +168,7 @@ public class SubsAdapter extends RecyclerViewAdapterEx<ChannelView, SubsAdapter.
 		void updateInfo(ChannelView channel) {
 			Glide.with(itemView.getContext().getApplicationContext())
 					.load(channel.getThumbnailUrl())
-					.apply(new RequestOptions().placeholder(R.drawable.channel_thumbnail_default))
+					.apply(new RequestOptions().placeholder(R.drawable.channel_thumbnail_default).error(R.drawable.channel_thumbnail_default).circleCrop())
 					.into(binding.subChannelThumbnailImageView);
 
             final String prefix;

@@ -611,7 +611,7 @@ public class NewPipeService {
      */
     public static OkHttpDownloader getHttpDownloader() {
         OkHttpDownloader downloader = OkHttpDownloader.getInstance();
-        downloader.setApiUserAgent("SkyTube-Android-" + BuildConfig.VERSION_CODE);
+        downloader.setApiUserAgent("SafeTube-Android-" + BuildConfig.VERSION_CODE);
         if (NewPipe.getDownloader() == null) {
             NewPipe.init(downloader, Localization.DEFAULT, toContentCountry(SkyTubeApp.getSettings().getPreferredContentCountry()));
         }

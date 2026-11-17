@@ -71,6 +71,14 @@ class ScreeningTest {
     }
 
     @Test
+    void secondBatchOfBlockedChannelsAndPeople() {
+        assertEquals(Verdict.BLOCK, Screening.classify("x", "Follow https://www.youtube.com/channel/UCiWmRIZ-sEbPaZZfelakuXQ", false));
+        assertEquals(Verdict.BLOCK, Screening.classify("x", "More at youtube.com/channel/UCng0h8WiHLmT57JJ8At4LfQ", false));
+        assertEquals(Verdict.BLOCK, Screening.classify("x", "Thanks Patt Vira!", false));
+        assertEquals(Verdict.BLOCK, Screening.classify("x", "@codingwithestefania", false));
+    }
+
+    @Test
     void migrationTurnsOffOldStrictFlagsOnce() {
         Mem m = new Mem();
         m.putString("seeded_v1", "1");
