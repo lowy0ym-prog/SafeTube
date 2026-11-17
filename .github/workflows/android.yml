@@ -36,6 +36,7 @@ jobs:
           $BT/aapt2 dump badging "$APK" | grep -E "^package|application-label:|launchable-activity" 
           $BT/apksigner verify --print-certs "$APK" | grep -E "SHA-256|Signer #1 certificate DN"
       - name: Publish APK as a release (plain .apk, no zip)
+        if: contains(github.event.head_commit.message, '[release]')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -43,3 +44,30 @@ jobs:
           gh release create "${{ github.ref_name }}-${{ github.run_number }}" SafeTube-debug.apk \
             --title "SafeTube (${{ github.ref_name }}) build ${{ github.run_number }}" \
             --notes "Debug build of commit ${{ github.sha }}. Not fully tested."
+
+  emulator:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: safetube-debug-apk
+          path: apk
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          arch: x86_64
+          target: google_apis
+          disable-animations: true
+          script: bash tools/emu_test.sh
+      - name: Save screenshots and logs to branch "shots"
+        if: always()
+        run: |
+          cd shots && git init -q && git checkout -q -b shots
+          git add -A && git -c user.name=ci -c user.email=ci@example.com commit -qm "emulator run ${{ github.run_number }}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" shots
