@@ -31,6 +31,34 @@ public final class Whitelists {
                     w.seedBlockedVideosOnce("thumbs1", new java.util.HashSet<>(java.util.Arrays.asList("JGly6PSK5iw")));
                     // Seen by eye: a woman presenting (user screenshot), credited "@aniakubow".
                     w.seedBlockedVideosOnce("seen2", new java.util.HashSet<>(java.util.Arrays.asList("PVAstrvWPkQ")));
+                    // Covers checked by eye on contact sheets (a woman is clearly shown): newest 240 freeCodeCamp videos.
+                    w.seedBlockedVideosOnce("covers1", new java.util.HashSet<>(java.util.Arrays.asList(
+                            "JGly6PSK5iw",
+                            "FVN0t1vb7k8",
+                            "jIo2ccqPnLQ",
+                            "yVga-_gMfIM",
+                            "PVAstrvWPkQ",
+                            "YdhXnB5E-4s",
+                            "n1VUnHD62r0",
+                            "rQxPGqPq8wk",
+                            "j6hnjNhx_MM",
+                            "MnG0ugK2JAI",
+                            "GmtOxMl39Tc",
+                            "-leIp449qXA",
+                            "pxMUG3gcoik",
+                            "tchN4xa4pfg",
+                            "BMt-qvrEcFY",
+                            "voPcxCFMbbM",
+                            "GpxFF82I8Nk",
+                            "rgt5GPFgryI",
+                            "B0TJC4lmzEM",
+                            "MiPkcTaRbfQ",
+                            "Zv2a6ixXEQc",
+                            "H-oCV5brtU4",
+                            "9tANiA0LKn4",
+                            "N0K0m7dZBJI",
+                            "DrAZf4ZHqaM",
+                            "NCvKYoTeJR0")));
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;
                 }

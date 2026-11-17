@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:layout_marginRight="8dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:text="@string/subscribe"
 
         app:layout_anchor="@id/app_bar_layout"

@@ -179,7 +179,7 @@ public class ChannelBrowserFragment extends FragmentEx implements ChannelSubscri
 	@Override
 	public void setSubscribedState(boolean subscribed) {
 		final ExtendedFloatingActionButton channelSubscribeButton = binding.channelSubscribeButton;
-		channelSubscribeButton.setVisibility(View.VISIBLE);
+		channelSubscribeButton.setVisibility(View.GONE);
 		userSubscribed = subscribed;
 		if (subscribed) {
 			channelSubscribeButton.setIcon(new IconicsDrawable(getContext(), MaterialDesignIconic.Icon.gmi_eye_off));

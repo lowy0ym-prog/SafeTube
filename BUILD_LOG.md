@@ -51,3 +51,8 @@
 - Branding: new notification icon, default channel picture and banner; removed all translated string folders (they contained the old app name); user-visible strings, export/backup file names, user agent and notification channel renamed to SafeTube; old website/issue/update URLs removed.
 - Left on purpose: Java package name `free.rm.skytube`, GPL license headers and LICENSE/attribution (required by the license, not visible in the app).
 - Untested on a physical device: real channel pictures in the left drawer (fall back to the SafeTube picture if a channel has no picture URL).
+
+## Attempt 13: thumbnails by eye + emulator test
+- Contact sheets of the newest 240 freeCodeCamp covers were generated on a CI runner and reviewed by eye: 26 videos with a woman clearly on the cover (or credited in the title) are seeded as blocked (`seeded_blocks_covers1`). First 24 covers each of Corey Schafer, Bro Code and Professor Messer show no people. Not reviewed: older freeCodeCamp videos (beyond the newest 240), and 3 uncertain covers left unblocked.
+- Hid the channel-page subscribe/unsubscribe button; plain banner placeholder; removed the "invisible until playing" player change (suspected cause of blank video pages).
+- CI now has an emulator job (screenshots + logs to branch `shots`). The release step only runs when the commit message contains [release].

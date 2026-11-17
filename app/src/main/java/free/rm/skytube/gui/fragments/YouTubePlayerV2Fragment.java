@@ -184,8 +184,6 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
                     requireActivity().finish();
                     return fragmentBinding.getRoot();
                 }
-                // Nothing (title, thumbnail, description) is shown until the video is verified and starts.
-                fragmentBinding.getRoot().setVisibility(View.INVISIBLE);
                 setUpHUDAndPlayVideo();
 
                 fetchVideoInformation();
