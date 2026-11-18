@@ -6,14 +6,14 @@ APK=$(ls apk/*.apk | head -1)
 adb install -r "$APK" > shots/install.txt 2>&1
 adb logcat -c
 shot() { adb exec-out screencap -p > "shots/$1.png"; adb shell uiautomator dump /sdcard/$1.xml >/dev/null 2>&1; adb pull /sdcard/$1.xml shots/$1.xml >/dev/null 2>&1; }
-tapnode() { python3 - "$1" "$2" "${3:-9999}" <<'PY'
+tapnode() { python3 - "$1" "$2" "${3:-9999}" "${4:-0}" <<'PY'
 import re,sys
 x=open(sys.argv[1],encoding='utf-8').read(); key=sys.argv[2].lower()
 for m in re.finditer(r'<node[^>]*>',x):
     n=m.group(0)
     t=(re.search(r' text="([^"]*)"',n) or [0,''])[1]+(re.search(r'content-desc="([^"]*)"',n) or [0,''])[1]
     b=re.search(r'bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',n)
-    if key in t.lower() and b and int(b.group(1))<int(sys.argv[3]):
+    if key in t.lower() and b and int(b.group(1))<int(sys.argv[3]) and int(b.group(1))>=int(sys.argv[4]):
         a,bb,c,d=map(int,b.groups()); print((a+c)//2,(bb+d)//2); sys.exit(0)
 print("NONE")
 PY
@@ -49,7 +49,7 @@ visit_channel() { # $1 = tag
   adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1
   sleep 20
   adb shell input tap 28 52; sleep 3; shot $1_drawer
-  read X Y <<< "$(tapnode shots/$1_drawer.xml freecodecamp 200)"; echo "$1 fcc tap: $X $Y" >> shots/steps.txt
+  read X Y <<< "$(tapnode shots/$1_drawer.xml freecodecamp 400 50)"; echo "$1 fcc tap: $X $Y" >> shots/steps.txt
   [ "$X" = "NONE" ] && return
   adb shell input tap $X $Y; sleep 25; shot $1_channel_0
   for i in 1 2 3 4 5 6 7 8; do adb shell input swipe 160 560 160 160 400; sleep 3; shot $1_channel_$i; done
@@ -82,7 +82,7 @@ done
 adb shell am force-stop $PKG; sleep 2
 adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1; sleep 15
 adb shell input tap 28 52; sleep 3
-read X Y <<< "$(tapnode shots/base_drawer.xml "professor messer" 200)"
+read X Y <<< "$(tapnode shots/base_drawer.xml "professor messer" 400 50)"
 adb shell input tap $X $Y; sleep 20; shot 20_messer
 adb shell input tap 160 400; sleep 10; shot 21_player_10s
 adb shell input tap 160 100; sleep 2; shot 22_player_controls
@@ -113,6 +113,7 @@ if [ "$X" != "NONE" ]; then
   rows shots/40_settings.xml > shots/40_rows.txt
   n=0
   while read RX RY RL; do
+    case "$RL" in Navigate_up) continue;; esac
     n=$((n+1)); [ $n -gt 14 ] && break
     echo "tap $n: $RX $RY $RL" >> shots/walk.txt
     adb shell input tap $RX $RY; sleep 2; shot 41_settings_item_$n
