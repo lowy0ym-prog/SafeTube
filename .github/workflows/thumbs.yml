@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bash tools/probe.sh 2>&1 | tail -60
+      - run: bash tools/probe.sh
