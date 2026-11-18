@@ -21,14 +21,14 @@ PY
 }
 adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > shots/launch.txt 2>&1
 sleep 25; shot 01_home_25s
-sleep 60; shot 02_home_85s
+sleep 100; shot 02_home_125s
 # open drawer
-adb shell input tap 50 100; sleep 3; shot 03_drawer
+adb shell input tap 28 52; sleep 3; shot 03_drawer
 # open freeCodeCamp channel from the drawer
 read X Y <<< "$(tapnode shots/03_drawer.xml freecodecamp)"; echo "fcc tap: $X $Y" > shots/steps.txt
 if [ "$X" != "NONE" ]; then
   adb shell input tap $X $Y; sleep 25; shot 04_channel
-  for i in 1 2 3 4 5 6; do adb shell input swipe 540 1500 540 600 400; sleep 3; shot 05_scroll_$i; done
+  for i in 1 2 3 4 5 6; do adb shell input swipe 160 560 160 160 400; sleep 3; shot 05_scroll_$i; done
 fi
 # keyword check: titles of videos that must NOT appear
 cat shots/0[45]_*.xml 2>/dev/null > shots/all_text.xml
@@ -37,7 +37,6 @@ for k in "Gemini 4 Argon" "Dijkstra" "Apple Engineer" "Shaders" "Hong Kong Hacka
 done
 rm -f shots/all_text.xml
 # try to open the first video card
-read X Y <<< "$(tapnode shots/04_channel.xml ' ')"
 adb shell input keyevent KEYCODE_BACK 2>/dev/null
 adb logcat -d -v time > shots/logcat_full.txt 2>&1
 grep -E " E/| F/|AndroidRuntime|SafeTube|SkyTube|NewPipe|Whitelist|Screen" shots/logcat_full.txt | grep -v "mdi\|MDD" | tail -300 > shots/logcat_filtered.txt
