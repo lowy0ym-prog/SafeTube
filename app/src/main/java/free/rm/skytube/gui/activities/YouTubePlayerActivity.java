@@ -42,7 +42,6 @@ import free.rm.skytube.businessobjects.interfaces.YouTubePlayerActivityListener;
 import free.rm.skytube.businessobjects.interfaces.YouTubePlayerFragmentInterface;
 import free.rm.skytube.gui.businessobjects.YoutubePlayerMediaSession;
 import free.rm.skytube.gui.businessobjects.fragments.FragmentEx;
-import free.rm.skytube.gui.fragments.YouTubePlayerTutorialFragment;
 import free.rm.skytube.gui.fragments.YouTubePlayerV1Fragment;
 import free.rm.skytube.gui.fragments.YouTubePlayerV2Fragment;
 
@@ -79,14 +78,8 @@ public class YouTubePlayerActivity extends BaseActivity implements YouTubePlayer
 		super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-		// if the tutorial was previously displayed, the just "install" the video player fragment
-		if (SkyTubeApp.getSettings().wasTutorialDisplayedBefore()) {
-			installNewVideoPlayerFragment(useDefaultPlayer);
-		} else {
-			// display the tutorial
-			FragmentEx tutorialFragment = new YouTubePlayerTutorialFragment().setListener(() -> installNewVideoPlayerFragment(useDefaultPlayer));
-			installFragment(tutorialFragment);
-		}
+		// no first-run tutorial: go straight to the player
+		installNewVideoPlayerFragment(useDefaultPlayer);
 
 		registerPlaybackPauseReceiver(true);
 	}
