@@ -97,6 +97,12 @@ rows shots/31_overflow.xml > shots/31_rows.txt
 # Administrator screen and Watched Video Cleaner (only look, no changes)
 read AX AY <<< "$(tapnode shots/31_overflow.xml administrator)"; echo "admin tap: $AX $AY" > shots/walk_admin.txt
 adb shell input tap $AX $AY; sleep 3; shot 35_admin
+read NX NY <<< "$(tapnode shots/35_admin.xml "new pin")"; adb shell input tap $NX $NY; adb shell input text 2468; adb shell input keyevent KEYCODE_TAB
+read RX2 RY2 <<< "$(tapnode shots/35_admin.xml "repeat pin")"; adb shell input tap $RX2 $RY2; adb shell input text 2468; adb shell input keyevent KEYCODE_BACK
+sleep 1; shot 35b_admin_filled
+read SX SY <<< "$(tapnode shots/35b_admin_filled.xml "save pin")"; adb shell input tap $SX $SY; sleep 3; shot 35c_admin_home
+rows shots/35c_admin_home.xml > shots/35c_rows.txt
+adb shell input swipe 160 500 160 200 300; sleep 1; shot 35d_admin_scrolled
 adb shell input keyevent KEYCODE_BACK; sleep 2
 adb shell input tap 300 52; sleep 2
 read WX WY <<< "$(tapnode shots/31_overflow.xml cleaner)"
@@ -112,7 +118,7 @@ if [ "$X" != "NONE" ]; then
   adb shell input tap $X $Y; sleep 3; shot 40_settings
   rows shots/40_settings.xml > shots/40_rows.txt
   n=0
-  while read RX RY RL; do
+  while read -u 3 RX RY RL; do
     case "$RL" in Navigate_up) continue;; esac
     n=$((n+1)); [ $n -gt 14 ] && break
     echo "tap $n: $RX $RY $RL" >> shots/walk.txt
@@ -121,7 +127,7 @@ if [ "$X" != "NONE" ]; then
     shot 41_after_back_$n
     # if a dialog / sub screen is still open, back once more to return to the list
     if ! grep -qi "$(head -1 shots/40_settings.xml | grep -o 'text="[^"]*"' | head -1 | cut -d'"' -f2 | head -c 5)" shots/41_after_back_$n.xml 2>/dev/null; then adb shell input keyevent KEYCODE_BACK; sleep 1; fi
-  done < shots/40_rows.txt
+  done 3< shots/40_rows.txt
 fi
 
 adb logcat -d -v time > shots/logcat_full.txt 2>&1
