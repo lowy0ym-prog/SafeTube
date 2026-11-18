@@ -17,6 +17,7 @@
 
 package free.rm.skytube.gui.businessobjects.adapters;
 
+import java.util.List;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -140,7 +141,20 @@ public class SubsAdapter extends RecyclerViewAdapterEx<ChannelView, SubsAdapter.
 
 	private void executeQuery(String searchText, View progressBar) {
 		compositeDisposable.add(DatabaseTasks.getSubscribedChannelView(getContext(), progressBar, searchText)
-				.subscribe(this::appendList));
+				.subscribe(this::appendUnique));
+	}
+
+	/** Two refreshes can overlap; never show the same channel twice. */
+	private void appendUnique(List<ChannelView> channels) {
+		java.util.Set<String> seen = new java.util.HashSet<>();
+		for (int i = 0; i < getItemCount(); i++) {
+			seen.add(get(i).getId().getRawId());
+		}
+		List<ChannelView> fresh = new java.util.ArrayList<>();
+		for (ChannelView c : channels) {
+			if (seen.add(c.getId().getRawId())) fresh.add(c);
+		}
+		appendList(fresh);
 	}
 
 	public void filterSubSearch(String searchText){

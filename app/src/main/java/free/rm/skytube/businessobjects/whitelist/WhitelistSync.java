@@ -23,6 +23,9 @@ import free.rm.skytube.businessobjects.YouTube.POJOs.PersistentChannel;
 public final class WhitelistSync {
     private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
 
+    private static final java.util.Set<String> IN_FLIGHT =
+            java.util.Collections.newSetFromMap(new java.util.concurrent.ConcurrentHashMap<>());
+
     private WhitelistSync() { }
 
     public static void reconcileAsync(Context context) {
@@ -54,11 +57,13 @@ public final class WhitelistSync {
         Map<String, String> approved = wl.getApprovedChannels();
         for (String raw : approved.keySet()) {
             ChannelId id = new ChannelId(raw);
-            if (!db.isUserSubscribedToChannel(id)) {
+            if (!db.isUserSubscribedToChannel(id) && IN_FLIGHT.add(raw)) {
                 try {
                     DatabaseTasks.subscribeToChannel(true, null, app, id, false)
+                            .doFinally(() -> IN_FLIGHT.remove(raw))
                             .subscribe(r -> { }, e -> Logger.e(WhitelistSync.class, e, "subscribe %s failed", raw));
                 } catch (RuntimeException e) {
+                    IN_FLIGHT.remove(raw);
                     Logger.e(WhitelistSync.class, "subscribe failed for " + raw, e);
                 }
             }

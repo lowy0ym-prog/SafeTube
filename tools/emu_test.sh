@@ -30,9 +30,14 @@ if [ "$X" != "NONE" ]; then
   adb shell input tap $X $Y; sleep 25; shot 04_channel
   for i in 1 2 3 4 5 6; do adb shell input swipe 160 560 160 160 400; sleep 3; shot 05_scroll_$i; done
 fi
+# go back to top and open the first video
+adb shell input swipe 160 160 160 600 300; sleep 2; adb shell input swipe 160 160 160 600 300; sleep 2
+adb shell input tap 160 400; sleep 8; shot 06_player_8s
+sleep 25; shot 07_player_33s
+adb shell input tap 160 100; sleep 2; shot 08_player_controls
 # keyword check: titles of videos that must NOT appear
 cat shots/0[45]_*.xml 2>/dev/null > shots/all_text.xml
-for k in "Gemini 4 Argon" "Dijkstra" "Apple Engineer" "Shaders" "Hong Kong Hackathon" "Zapier" "Godot Game" "Fine-Tuning Large" "Transformer"; do
+for k in "MCP Security" "Hybrid Search" "Gemini 4 Argon" "Dijkstra" "Apple Engineer" "Shaders" "Hong Kong Hackathon" "Zapier" "Godot Game" "Fine-Tuning Large" "Transformer"; do
   echo "$k: $(grep -ci "$k" shots/all_text.xml)" >> shots/blocked_title_check.txt
 done
 rm -f shots/all_text.xml
