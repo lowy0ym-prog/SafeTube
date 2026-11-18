@@ -283,10 +283,8 @@ public class ChannelBrowserFragment extends FragmentEx implements ChannelSubscri
 					.apply(new RequestOptions().placeholder(R.drawable.channel_thumbnail_default))
 					.into(binding.channelThumbnailImageView);
 
-			Glide.with(requireContext())
-					.load(channel.getBannerUrl())
-					.apply(new RequestOptions().placeholder(R.drawable.banner_default))
-					.into(binding.channelBannerImageView);
+			// The real channel banner has the channel name drawn into it, which doubled the title
+			// text. SafeTube keeps the plain colour banner instead.
 
 			if (channel.getSubscriberCount() >= 0) {
 				binding.channelSubsTextView.setText(channel.getTotalSubscribers());

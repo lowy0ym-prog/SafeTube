@@ -154,10 +154,25 @@ public final class Screening {
             "uciwmriz-sebpazzfelakuxq".replaceAll("[^a-z0-9]", ""), "ucng0h8wihlmt57jj8at4lfq".replaceAll("[^a-z0-9]", "")
     };
 
+    /** Extra names loaded at start-up from files/extra_blocked_people.txt (used by the emulator test). */
+    private static volatile String[] extraPeople = new String[0];
+
+    public static void setExtraPeople(java.util.Collection<String> names) {
+        java.util.List<String> l = new java.util.ArrayList<>();
+        for (String n : names) {
+            String q = n == null ? "" : n.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
+            if (q.length() >= 4) l.add(q);
+        }
+        extraPeople = l.toArray(new String[0]);
+    }
+
     static boolean namesBlockedPerson(String text) {
         if (text == null || text.isEmpty()) return false;
         String squashed = text.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
         for (String p : BLOCKED_PEOPLE) {
+            if (squashed.contains(p)) return true;
+        }
+        for (String p : extraPeople) {
             if (squashed.contains(p)) return true;
         }
         return false;

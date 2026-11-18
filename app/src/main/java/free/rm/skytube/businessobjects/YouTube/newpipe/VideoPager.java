@@ -54,14 +54,11 @@ public class VideoPager extends Pager<InfoItem, CardData> {
         int repeatCounter = 0;
         int unexpected = 0;
 
-        // Screen unknown videos (title + description) before anything is shown.
-        List<String[]> toScreen = new ArrayList<>();
+        // Newest videos of each approved channel: read descriptions from the public RSS feed (one
+        // cached request per channel) so credited / named people are blocked before display.
         for (InfoItem infoItem : page.getItems()) {
             if (infoItem instanceof StreamInfoItem) {
-                StreamInfoItem si = (StreamInfoItem) infoItem;
-                String sid = getId(streamLinkHandler, infoItem.getUrl());
-                Whitelists.noteListing(resolveUploader(si), sid, si.getName());
-                toScreen.add(new String[]{resolveUploader(si), sid});
+                free.rm.skytube.businessobjects.whitelist.FeedScreen.ensure(resolveUploader((StreamInfoItem) infoItem));
             }
         }
 

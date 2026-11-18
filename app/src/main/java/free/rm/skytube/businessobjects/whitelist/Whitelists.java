@@ -59,6 +59,14 @@ public final class Whitelists {
                             "N0K0m7dZBJI",
                             "DrAZf4ZHqaM",
                             "NCvKYoTeJR0")));
+                    try {
+                        java.io.File f = new java.io.File(context.getFilesDir(), "extra_blocked_people.txt");
+                        if (f.isFile()) {
+                            Screening.setExtraPeople(java.nio.file.Files.readAllLines(f.toPath()));
+                        }
+                    } catch (Exception ignored) {
+                        // test hook only
+                    }
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;
                 }
