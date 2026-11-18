@@ -6,14 +6,14 @@ APK=$(ls apk/*.apk | head -1)
 adb install -r "$APK" > shots/install.txt 2>&1
 adb logcat -c
 shot() { adb exec-out screencap -p > "shots/$1.png"; adb shell uiautomator dump /sdcard/$1.xml >/dev/null 2>&1; adb pull /sdcard/$1.xml shots/$1.xml >/dev/null 2>&1; }
-tapnode() { python3 - "$1" "$2" <<'PY'
+tapnode() { python3 - "$1" "$2" "${3:-9999}" <<'PY'
 import re,sys
 x=open(sys.argv[1],encoding='utf-8').read(); key=sys.argv[2].lower()
 for m in re.finditer(r'<node[^>]*>',x):
     n=m.group(0)
     t=(re.search(r' text="([^"]*)"',n) or [0,''])[1]+(re.search(r'content-desc="([^"]*)"',n) or [0,''])[1]
     b=re.search(r'bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',n)
-    if key in t.lower() and b:
+    if key in t.lower() and b and int(b.group(1))<int(sys.argv[3]):
         a,bb,c,d=map(int,b.groups()); print((a+c)//2,(bb+d)//2); sys.exit(0)
 print("NONE")
 PY
@@ -44,17 +44,17 @@ PY
 titles() { cat shots/$1_*.xml 2>/dev/null | grep -o ' text="[^"]\{12,\}"' | sort -u; }
 
 visit_channel() { # $1 = tag
+  adb logcat -c
   adb shell am force-stop $PKG; sleep 2
   adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1
   sleep 20
   adb shell input tap 28 52; sleep 3; shot $1_drawer
-  read X Y <<< "$(tapnode shots/$1_drawer.xml freecodecamp)"; echo "$1 fcc tap: $X $Y" >> shots/steps.txt
+  read X Y <<< "$(tapnode shots/$1_drawer.xml freecodecamp 200)"; echo "$1 fcc tap: $X $Y" >> shots/steps.txt
   [ "$X" = "NONE" ] && return
   adb shell input tap $X $Y; sleep 25; shot $1_channel_0
   for i in 1 2 3 4 5 6 7 8; do adb shell input swipe 160 560 160 160 400; sleep 3; shot $1_channel_$i; done
   titles $1_channel > shots/$1_titles.txt
-  adb logcat -d -s FeedScreen:* SafeTube:* 2>/dev/null | grep SAFETUBE_FEED > shots/$1_feed.txt
-  grep -h "SAFETUBE_FEED" <(adb logcat -d -v brief 2>/dev/null) >> shots/$1_feed.txt
+  adb logcat -d -v brief 2>/dev/null | grep SAFETUBE_FEED > shots/$1_feed.txt
 }
 
 # ---- Phase 1: baseline with default rules, first launch (also first-run seeding)
@@ -82,7 +82,7 @@ done
 adb shell am force-stop $PKG; sleep 2
 adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1; sleep 15
 adb shell input tap 28 52; sleep 3
-read X Y <<< "$(tapnode shots/base_drawer.xml professor)"
+read X Y <<< "$(tapnode shots/base_drawer.xml "professor messer" 200)"
 adb shell input tap $X $Y; sleep 20; shot 20_messer
 adb shell input tap 160 400; sleep 10; shot 21_player_10s
 adb shell input tap 160 100; sleep 2; shot 22_player_controls
@@ -94,10 +94,19 @@ adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1;
 shot 30_main
 adb shell input tap 300 52; sleep 2; shot 31_overflow
 rows shots/31_overflow.xml > shots/31_rows.txt
+# Administrator screen and Watched Video Cleaner (only look, no changes)
+read AX AY <<< "$(tapnode shots/31_overflow.xml administrator)"; echo "admin tap: $AX $AY" > shots/walk_admin.txt
+adb shell input tap $AX $AY; sleep 3; shot 35_admin
+adb shell input keyevent KEYCODE_BACK; sleep 2
+adb shell input tap 300 52; sleep 2
+read WX WY <<< "$(tapnode shots/31_overflow.xml cleaner)"
+adb shell input tap $WX $WY; sleep 3; shot 36_cleaner
+adb shell input keyevent KEYCODE_BACK; sleep 2
 adb shell input tap 28 52; sleep 2; shot 32_drawer; rows shots/32_drawer.xml > shots/32_rows.txt
 adb shell input swipe 100 500 100 100 300; sleep 1; shot 33_drawer_scrolled
-read X Y <<< "$(tapnode shots/31_overflow.xml settings)"
-if [ "$X" = "NONE" ]; then read X Y <<< "$(tapnode shots/33_drawer_scrolled.xml settings)"; fi
+adb shell input keyevent KEYCODE_BACK; sleep 1
+adb shell input tap 300 52; sleep 2
+read X Y <<< "$(tapnode shots/31_overflow.xml preferences)"
 echo "settings tap: $X $Y" > shots/walk.txt
 if [ "$X" != "NONE" ]; then
   adb shell input tap $X $Y; sleep 3; shot 40_settings
