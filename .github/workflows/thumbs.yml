@@ -5,16 +5,8 @@ on:
 permissions:
   contents: write
 jobs:
-  sheets:
+  probe:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: pip install yt-dlp pillow
-      - run: python tools/thumbs.py
-        env:
-          CHANNELS: '{"fcc":["UC8butISFwT-Wl7EV0hUK0BQ",240],"corey":["UCCezIgC97PvUuR4_gbFUs5g",96],"bro":["UC4SVo0Ue36XCfOyb5Lh1viQ",72],"messer":["UCkefXKtInZ9PLsoGRtml2FQ",72]}'
-      - run: |
-          cd out && ls | head -50
-          git init -q && git checkout -q -b thumbs-out
-          git add -A && git -c user.name=ci -c user.email=ci@example.com commit -qm "thumbnail sheets"
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" thumbs-out
+      - run: bash tools/probe.sh 2>&1 | tail -60
