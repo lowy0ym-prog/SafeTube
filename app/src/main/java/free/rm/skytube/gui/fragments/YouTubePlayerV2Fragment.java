@@ -1076,13 +1076,7 @@ public class YouTubePlayerV2Fragment extends ImmersiveModeFragment implements Yo
 
         @Override
         public void onCommentsGesture() {
-            if (SkyTubeApp.isConnected(requireContext())) {
-                fragmentBinding.commentsDrawer.animateOpen();
-            } else {
-                Toast.makeText(requireContext(),
-                        getString(R.string.error_get_comments_no_network),
-                        Toast.LENGTH_LONG).show();
-            }
+            // SafeTube has no comments panel.
         }
 
         @Override

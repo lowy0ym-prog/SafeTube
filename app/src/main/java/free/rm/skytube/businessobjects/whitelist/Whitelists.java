@@ -67,8 +67,16 @@ public final class Whitelists {
                     } catch (Exception ignored) {
                         // test hook only
                     }
+                    // Only freeCodeCamp gets the deep check (hidden until its description has been read).
+                    w.setDeepChannels(new java.util.HashSet<>(java.util.Arrays.asList("UC8butISFwT-Wl7EV0hUK0BQ")));
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;
+                    // Newest 15 videos: read descriptions now (one small request), the slow background fill starts from MainActivity.
+                    Thread t = new Thread(() -> {
+                        FeedScreen.ensure("UC8butISFwT-Wl7EV0hUK0BQ");
+                    }, "safetube-start");
+                    t.setDaemon(true);
+                    t.start();
                 }
             }
         }
@@ -135,6 +143,12 @@ public final class Whitelists {
             ex.shutdownNow();
             Thread.currentThread().interrupt();
         }
+    }
+
+    /** Remembers videos of deep channels so the admin screen can show progress. */
+    public static void noteDeepSeen(String channelRef, String videoRef) {
+        Whitelist w = instance;
+        if (w != null && w.isDeep(channelRef)) w.noteDeepSeen(videoRef);
     }
 
     /** Full metadata (title + description) is available: classify and remember the verdict. */

@@ -69,6 +69,7 @@ public class VideoPager extends Pager<InfoItem, CardData> {
                 StreamInfoItem streamInfo = (StreamInfoItem) infoItem;
                 String id = getId(streamLinkHandler, infoItem.getUrl());
                 Whitelists.noteListing(resolveUploader(streamInfo), id, streamInfo.getName());
+                Whitelists.noteDeepSeen(resolveUploader(streamInfo), id);
                 if (!Whitelists.videoAllowed(resolveUploader(streamInfo), id)) {
                     unexpected++;
                     continue;

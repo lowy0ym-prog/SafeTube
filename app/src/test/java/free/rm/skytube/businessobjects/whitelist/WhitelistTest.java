@@ -144,4 +144,43 @@ class WhitelistTest {
         now += 31_000;
         assertEquals(Whitelist.PinResult.OK, w.verifyPin("4821"));
     }
+
+    @Test
+    void deepChannelHidesUnknownVideosUntilChecked() {
+        w.addChannel(CH_A, "A");
+        w.addChannel(CH_B, "B");
+        w.setDeepChannels(new HashSet<>(java.util.Arrays.asList(CH_A)));
+        java.util.List<String> asked = new java.util.ArrayList<>();
+        w.setUnknownListener((c, v) -> asked.add(v));
+        assertFalse(w.isVideoAllowed(CH_A, VID));      // unknown: hidden
+        assertEquals(java.util.Arrays.asList(VID), asked); // and queued for checking
+        assertTrue(w.isVideoAllowed(CH_B, VID));       // other channels are not deep
+        w.recordVerdict(VID, Screening.Verdict.ALLOW);
+        assertTrue(w.isVideoAllowed(CH_A, VID));
+        w.recordVerdict(VID, Screening.Verdict.BLOCK);
+        assertFalse(w.isVideoAllowed(CH_A, VID));
+    }
+
+    @Test
+    void deepProgressCountsCheckedAndSurvivesRestart() {
+        w.addChannel(CH_A, "A");
+        w.setDeepChannels(new HashSet<>(java.util.Arrays.asList(CH_A)));
+        w.noteDeepSeen("aaaaaaaaaaa");
+        w.noteDeepSeen("bbbbbbbbbbb");
+        w.noteDeepSeen("ccccccccccc");
+        w.recordVerdict("aaaaaaaaaaa", Screening.Verdict.ALLOW);
+        w.recordVerdict("bbbbbbbbbbb", Screening.Verdict.BLOCK);
+        assertArrayEquals(new int[]{2, 3}, w.deepProgress());
+        assertEquals(java.util.Arrays.asList("ccccccccccc"), w.deepUnchecked());
+        w.flushVerdicts();
+        w.flushDeepSeen();
+        Whitelist again = new Whitelist(storage, () -> now);
+        assertArrayEquals(new int[]{2, 3}, again.deepProgress());
+        assertFalse(again.isDeepScanDone());
+        again.setDeepScanDone(true);
+        assertTrue(again.isDeepScanDone());
+        assertTrue(again.isBackgroundCheckEnabled());
+        again.setBackgroundCheckEnabled(false);
+        assertFalse(again.isBackgroundCheckEnabled());
+    }
 }

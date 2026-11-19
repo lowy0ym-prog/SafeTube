@@ -91,6 +91,7 @@
 	-->
 	<com.github.skytubeteam.slidingdrawer.SlidingDrawer
 		android:id="@+id/comments_drawer"
+		android:visibility="gone"
 		android:layout_width="@dimen/comments_drawer_width"
 		android:layout_height="match_parent"
 		android:orientation="horizontal"

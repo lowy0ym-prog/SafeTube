@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		free.rm.skytube.businessobjects.whitelist.WhitelistSync.reconcileAsync(this);
-		free.rm.skytube.businessobjects.whitelist.ScreenWorker.startFullScan();
+		free.rm.skytube.businessobjects.whitelist.ScreenWorker.startBackgroundFill();
 		Logger.i(this, "AppID: %s - flavor: %s buildType: %s version: %s (%s)", BuildConfig.APPLICATION_ID, BuildConfig.FLAVOR, BuildConfig.BUILD_TYPE, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
 
 		// Warn the user that this app will no longer work on certified Android devices once

@@ -38,7 +38,7 @@ public final class FeedScreen {
     /** Blocks up to ~6 s. Safe to call from a background thread only. */
     public static void ensure(String channelRef) {
         Whitelist w = Whitelists.get();
-        if (w == null || channelRef == null || !w.isChannelApproved(channelRef)) return;
+        if (w == null || channelRef == null || !w.isChannelApproved(channelRef) || !w.isDeep(channelRef)) return;
         String id = channelRef.replaceAll(".*/channel/", "");
         if (!id.startsWith("UC")) return;
         long now = System.currentTimeMillis();
@@ -59,11 +59,13 @@ public final class FeedScreen {
                 String title = mt.find() ? unescape(mt.group(1)) : "";
                 String desc = md.find() ? unescape(md.group(1)) : "";
                 entries++;
-                if (Screening.classify(title, desc, w.isStrict(id)) == Screening.Verdict.BLOCK) {
-                    w.recordVerdict(vid, Screening.Verdict.BLOCK);
-                    blocked++;
-                }
+                w.noteDeepSeen(vid);
+                Screening.Verdict v = Screening.classify(title, desc, w.isStrict(id));
+                w.recordVerdict(vid, v); // BLOCK, or ALLOW: these 15 are fully checked
+                if (v == Screening.Verdict.BLOCK) blocked++;
             }
+            w.flushVerdicts();
+            w.flushDeepSeen();
             lastSummary = id + " entries=" + entries + " blocked=" + blocked;
             Logger.i("FeedScreen", "SAFETUBE_FEED %s", lastSummary);
         } catch (Exception ex) {

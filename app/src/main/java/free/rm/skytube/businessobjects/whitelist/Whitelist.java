@@ -33,6 +33,9 @@ public class Whitelist {
     private static final String K_ALLOW_VERDICTS = "screen_allow";
     private static final String K_BLOCK_VERDICTS = "screen_block";
     private static final String K_OVERRIDES = "screen_override";
+    private static final String K_DEEP_SEEN = "deep_seen";
+    private static final String K_DEEP_SCAN_DONE = "deep_scan_done";
+    private static final String K_BG_OFF = "deep_bg_off";
     private static final String K_SEEDED = "seeded_v1";
     private static final String K_SEEDED_V2 = "seeded_v2";
     private static final String K_PIN_SALT = "pin_salt";
@@ -59,7 +62,11 @@ public class Whitelist {
     private Set<String> allowVerdicts = new HashSet<>();
     private Set<String> blockVerdicts = new HashSet<>();
     private Set<String> overrides = new HashSet<>();
+    /** Channels whose videos stay hidden until their description has been checked (set by code, not by the user). */
+    private Set<String> deepChannels = new HashSet<>();
+    private Set<String> deepSeen = new HashSet<>();
     private int dirtyVerdicts = 0;
+    private int dirtyDeepSeen = 0;
 
     /** Told (outside any UI) when a video of a strict channel has no verdict yet and was therefore hidden. */
     public interface UnknownListener { void onUnknown(String channelId, String videoId); }
@@ -91,7 +98,9 @@ public class Whitelist {
         allowVerdicts = new HashSet<>(storage.getSet(K_ALLOW_VERDICTS));
         blockVerdicts = new HashSet<>(storage.getSet(K_BLOCK_VERDICTS));
         overrides = new HashSet<>(storage.getSet(K_OVERRIDES));
+        deepSeen = new HashSet<>(storage.getSet(K_DEEP_SEEN));
         dirtyVerdicts = 0;
+        dirtyDeepSeen = 0;
     }
 
     // ---------------------------------------------------------------- default channels (first run only)
@@ -147,6 +156,55 @@ public class Whitelist {
         if (strict) strictChannels.add(id); else strictChannels.remove(id);
         storage.putSet(K_STRICT, strictChannels);
     }
+
+    // ---------------------------------------------------------------- deep check (hide until checked)
+
+    public synchronized void setDeepChannels(Set<String> ids) { deepChannels = new HashSet<>(ids); }
+
+    public synchronized boolean isDeep(String channelRef) {
+        String id = normalizeChannelId(channelRef);
+        return id != null && deepChannels.contains(id);
+    }
+
+    /** Remembers every video id of a deep channel that was found, so progress can be shown and resumed. */
+    public synchronized void noteDeepSeen(String videoRef) {
+        String vid = normalizeVideoId(videoRef);
+        if (vid == null || !deepSeen.add(vid)) return;
+        if (++dirtyDeepSeen >= 50) flushDeepSeen();
+    }
+
+    public synchronized void flushDeepSeen() {
+        if (dirtyDeepSeen == 0) return;
+        storage.putSet(K_DEEP_SEEN, deepSeen);
+        dirtyDeepSeen = 0;
+    }
+
+    public synchronized java.util.List<String> deepUnchecked() {
+        java.util.List<String> out = new java.util.ArrayList<>();
+        for (String v : deepSeen) {
+            if (!allowVerdicts.contains(v) && !blockVerdicts.contains(v) && !blockedVideos.contains(v)) out.add(v);
+        }
+        return out;
+    }
+
+    /** {checked, total} over the videos of deep channels found so far. */
+    public synchronized int[] deepProgress() {
+        int checked = 0;
+        for (String v : deepSeen) {
+            if (allowVerdicts.contains(v) || blockVerdicts.contains(v) || blockedVideos.contains(v)) checked++;
+        }
+        return new int[]{checked, deepSeen.size()};
+    }
+
+    public synchronized boolean isDeepScanDone() { return storage.getString(K_DEEP_SCAN_DONE) != null; }
+
+    public synchronized void setDeepScanDone(boolean done) {
+        storage.putString(K_DEEP_SCAN_DONE, done ? "1" : null);
+    }
+
+    public synchronized boolean isBackgroundCheckEnabled() { return storage.getString(K_BG_OFF) == null; }
+
+    public synchronized void setBackgroundCheckEnabled(boolean on) { storage.putString(K_BG_OFF, on ? null : "1"); }
 
     /** Stores a verdict for a video. Persisted in batches (and by {@link #flushVerdicts()}). */
     public synchronized void recordVerdict(String videoRef, Screening.Verdict verdict) {
@@ -241,7 +299,7 @@ public class Whitelist {
         if (vid == null || blockedVideos.contains(vid)) return false;
         if (overrides.contains(vid)) return true;
         if (blockVerdicts.contains(vid)) return false;
-        if (isStrict(channelRef) && !allowVerdicts.contains(vid)) {
+        if ((isStrict(channelRef) || isDeep(channelRef)) && !allowVerdicts.contains(vid)) {
             UnknownListener l = unknownListener;
             if (l != null) l.onUnknown(normalizeChannelId(channelRef), vid);
             return false; // fail closed: no positive evidence yet

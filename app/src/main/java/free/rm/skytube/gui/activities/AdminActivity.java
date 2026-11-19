@@ -155,17 +155,20 @@ public class AdminActivity extends AppCompatActivity {
                     .setNegativeButton("Cancel", null).show());
         }
 
-        heading("Men-only screening");
-        label("Videos are hidden only on clear evidence: a woman named in the title, or a female name credited as instructor, guest or host. Strict is OFF by default; when ON for a channel, every video also needs a credited male instructor and interviews/podcasts are hidden (this can hide most of a channel). Text only: it cannot see or hear a video. Use Block this video on anything it misses.");
-        for (Map.Entry<String, String> e : sorted.entrySet()) {
-            final String id = e.getValue();
-            final boolean strict = wl.isStrict(id);
-            button(e.getKey().replaceAll("\\s*\\[.*$", "") + ": strict " + (strict ? "ON" : "OFF") + " (tap to change)", v -> {
-                wl.setStrict(id, !strict);
-                render();
-            });
-        }
-        label("Checked so far: " + wl.allowedVerdictCount() + " shown, " + wl.blockedVerdictCount() + " hidden. Strict channels keep checking in the background; pull to refresh to see newly cleared videos.");
+        heading("Women filtering");
+        label("A video is hidden when a woman is named in the title or credited in the description (instructor, guest, host, \"created by\"), or when it is on the blocked list. Text only: it cannot see or hear a video. Use Block this video on anything it misses.");
+        label("freeCodeCamp videos stay hidden until their description has been read. Newest videos are read at once; older ones are read slowly, one at a time, only on Wi-Fi, while the app is open. Pull to refresh to see newly cleared videos.");
+        int[] pr = wl.deepProgress();
+        label("freeCodeCamp: checked " + pr[0] + " of " + pr[1] + " found so far" + (wl.isDeepScanDone() ? " (all pages found)." : " (still finding videos)."));
+        String st = free.rm.skytube.businessobjects.whitelist.ScreenWorker.status;
+        if (st != null && !st.isEmpty()) label("Status: " + st);
+        final boolean bgOn = wl.isBackgroundCheckEnabled();
+        button("Slow Wi-Fi check of older videos: " + (bgOn ? "ON" : "OFF") + " (tap to change)", v -> {
+            wl.setBackgroundCheckEnabled(!bgOn);
+            if (!bgOn) free.rm.skytube.businessobjects.whitelist.ScreenWorker.startBackgroundFill();
+            render();
+        });
+        label("Videos judged so far: " + wl.allowedVerdictCount() + " shown, " + wl.blockedVerdictCount() + " hidden.");
         final EditText ov = textField("Video URL or ID to always allow");
         button("Always allow this video", v -> {
             if (wl.addOverride(ov.getText().toString().trim())) {

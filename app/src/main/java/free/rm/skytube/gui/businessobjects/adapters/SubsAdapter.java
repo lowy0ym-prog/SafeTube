@@ -180,10 +180,9 @@ public class SubsAdapter extends RecyclerViewAdapterEx<ChannelView, SubsAdapter.
 		}
 
 		void updateInfo(ChannelView channel) {
-			Glide.with(itemView.getContext().getApplicationContext())
-					.load(channel.getThumbnailUrl())
-					.apply(new RequestOptions().placeholder(R.drawable.channel_thumbnail_default).error(R.drawable.channel_thumbnail_default).circleCrop())
-					.into(binding.subChannelThumbnailImageView);
+			// Channel pictures come from a different server that some networks/filters block, so SafeTube
+			// draws its own round letter picture instead (always works, nothing to download).
+			binding.subChannelThumbnailImageView.setImageDrawable(new LetterAvatar(channel.getTitle()));
 
             final String prefix;
             switch (channel.status()) {
@@ -204,5 +203,36 @@ public class SubsAdapter extends RecyclerViewAdapterEx<ChannelView, SubsAdapter.
 			binding.subChannelNewVideosNotification.setVisibility(channel.isNewVideosSinceLastVisit() ? View.VISIBLE : View.INVISIBLE);
 			this.channel = channel;
 		}
+	}
+
+	/** Round coloured circle with the channel's first letter. */
+	static final class LetterAvatar extends android.graphics.drawable.Drawable {
+		private static final int[] COLORS = {0xFF1E6F8C, 0xFF7A4EAB, 0xFF2E8B57, 0xFFB5651D, 0xFFA23B5B, 0xFF4B6584};
+		private final android.graphics.Paint circle = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+		private final android.graphics.Paint text = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+		private final String letter;
+
+		LetterAvatar(String title) {
+			String t = title == null ? "" : title.trim();
+			letter = t.isEmpty() ? "?" : t.substring(0, t.offsetByCodePoints(0, 1)).toUpperCase(java.util.Locale.ROOT);
+			circle.setColor(COLORS[Math.abs(t.hashCode()) % COLORS.length]);
+			text.setColor(0xFFFFFFFF);
+			text.setTextAlign(android.graphics.Paint.Align.CENTER);
+			text.setFakeBoldText(true);
+		}
+
+		@Override
+		public void draw(android.graphics.Canvas c) {
+			android.graphics.Rect r = getBounds();
+			float rad = Math.min(r.width(), r.height()) / 2f;
+			c.drawCircle(r.exactCenterX(), r.exactCenterY(), rad, circle);
+			text.setTextSize(rad * 1.1f);
+			float y = r.exactCenterY() - (text.descent() + text.ascent()) / 2f;
+			c.drawText(letter, r.exactCenterX(), y, text);
+		}
+
+		@Override public void setAlpha(int a) { circle.setAlpha(a); }
+		@Override public void setColorFilter(android.graphics.ColorFilter f) { circle.setColorFilter(f); }
+		@Override public int getOpacity() { return android.graphics.PixelFormat.TRANSLUCENT; }
 	}
 }
