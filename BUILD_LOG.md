@@ -65,3 +65,11 @@
 - Whole-app walk in emulator: Preferences (Video Player, SponsorBlock, Privacy, Network and Downloads, Others, About), Watched Video Cleaner dialog, Administrator (PIN creation works, channel list, men-only screening text; screen is screenshot-blocked), no crashes in logcat, no SkyTube wording seen.
 - NOT verified: actual video playback (YouTube returns 403 to the CI IP); older videos beyond the newest 15 per channel are blocked only by seeded ids, title rules and names (no description access without risking bot blocks).
 - Cosmetic, left as is: Preferences screens use the light theme while the main screen is dark.
+
+## Attempt 15 (custom) - deep check for freeCodeCamp, cleanup
+- freeCodeCamp is a "deep" channel: a video stays hidden until its description is read and passes the rules. The other three channels keep only the basic rules (seeded blocked list, named people / female names in titles). Unit tests added (WhitelistTest) for hide-until-checked, queueing and progress persistence.
+- Newest 15 videos: read from the RSS feed at app start and when a channel list opens (ALLOW or BLOCK recorded).
+- Older videos: ScreenWorker checks one video at a time (8-10 s pause). Videos about to be shown go first (any network); the background fill of older videos runs only on an unmetered connection, can be switched off in Administrator, and stops for 30 minutes on a bot check / 403 / 429. Results and the list of found video ids are persisted, so progress resumes after a restart.
+- Admin screen shows "checked X of Y" and a status line. Strict setting removed from the UI. Comments panel removed. Drawer channel pictures are now drawn in-app (letter in a coloured circle), no download.
+- Emulator run (API 30): drawer shows letter avatars; admin shows "freeCodeCamp: checked 41 of 865 found so far" and "Paused: YouTube asked to slow down" (expected: the CI IP is bot-blocked, so the slow check itself cannot succeed there); name rule test still passes (Hybrid Search video removed with test name); no crashes.
+- NOT verified: the slow check succeeding against YouTube (blocked from the CI IP), playback, and the Feed tab with real results beyond the first 15. Newly cleared videos appear after pull-to-refresh / reopening the list, not live.
