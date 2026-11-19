@@ -1,0 +1,6 @@
+160 175 Channel_URL_or_ID_(e.g._https://www.youtube.com/channel/UC...)
+160 222 LOOK_UP_AND_ADD_CHANNEL
+260 270 REMOVE
+260 318 REMOVE
+260 366 REMOVE
+260 414 REMOVE

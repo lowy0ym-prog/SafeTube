@@ -1,0 +1,300 @@
+11-19 03:23:10.258 E/libc    ( 7330): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:10.304 D/AndroidRuntime( 7330): Calling main entry com.android.commands.input.Input
+11-19 03:23:10.306 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:23:10.309 D/AndroidRuntime( 7330): Shutting down VM
+11-19 03:23:12.753 D/AndroidRuntime( 7343): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:12.754 E/libc    ( 7343): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:12.754 E/libc    ( 7343): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:12.754 I/AndroidRuntime( 7343): Using default boot image
+11-19 03:23:12.754 E/libc    ( 7343): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:12.754 I/AndroidRuntime( 7343): Leaving lock profiling enabled
+11-19 03:23:12.754 E/libc    ( 7343): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:12.795 D/AndroidRuntime( 7343): Calling main entry com.android.commands.input.Input
+11-19 03:23:12.799 D/AndroidRuntime( 7343): Shutting down VM
+11-19 03:23:15.321 D/AndroidRuntime( 7361): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:15.322 E/libc    ( 7361): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:15.322 E/libc    ( 7361): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:15.322 I/AndroidRuntime( 7361): Using default boot image
+11-19 03:23:15.322 E/libc    ( 7361): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:15.322 I/AndroidRuntime( 7361): Leaving lock profiling enabled
+11-19 03:23:15.322 E/libc    ( 7361): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:15.359 D/AndroidRuntime( 7361): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:16.390 D/AndroidRuntime( 7361): Shutting down VM
+11-19 03:23:16.863 D/AndroidRuntime( 7378): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:16.864 E/libc    ( 7378): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:16.864 E/libc    ( 7378): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:16.864 I/AndroidRuntime( 7378): Using default boot image
+11-19 03:23:16.864 E/libc    ( 7378): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:16.864 I/AndroidRuntime( 7378): Leaving lock profiling enabled
+11-19 03:23:16.864 E/libc    ( 7378): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:16.902 D/AndroidRuntime( 7378): Calling main entry com.android.commands.input.Input
+11-19 03:23:17.222 D/AndroidRuntime( 7378): Shutting down VM
+11-19 03:23:18.739 D/AndroidRuntime( 7395): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:18.740 E/libc    ( 7395): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:18.740 E/libc    ( 7395): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:18.740 I/AndroidRuntime( 7395): Using default boot image
+11-19 03:23:18.740 E/libc    ( 7395): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:18.740 I/AndroidRuntime( 7395): Leaving lock profiling enabled
+11-19 03:23:18.740 E/libc    ( 7395): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:18.783 D/AndroidRuntime( 7395): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:19.809 D/AndroidRuntime( 7395): Shutting down VM
+11-19 03:23:20.262 D/AndroidRuntime( 7411): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:20.263 E/libc    ( 7411): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:20.264 E/libc    ( 7411): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:20.264 I/AndroidRuntime( 7411): Using default boot image
+11-19 03:23:20.264 E/libc    ( 7411): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:20.264 I/AndroidRuntime( 7411): Leaving lock profiling enabled
+11-19 03:23:20.264 E/libc    ( 7411): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:20.303 D/AndroidRuntime( 7411): Calling main entry com.android.commands.input.Input
+11-19 03:23:20.306 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:23:20.307 D/AndroidRuntime( 7411): Shutting down VM
+11-19 03:23:21.751 D/AndroidRuntime( 7424): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:21.752 E/libc    ( 7424): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:21.752 E/libc    ( 7424): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:21.752 I/AndroidRuntime( 7424): Using default boot image
+11-19 03:23:21.752 E/libc    ( 7424): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:21.752 I/AndroidRuntime( 7424): Leaving lock profiling enabled
+11-19 03:23:21.752 E/libc    ( 7424): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:21.790 D/AndroidRuntime( 7424): Calling main entry com.android.commands.input.Input
+11-19 03:23:21.793 D/AndroidRuntime( 7424): Shutting down VM
+11-19 03:23:24.254 D/AndroidRuntime( 7439): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:24.255 E/libc    ( 7439): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:24.255 E/libc    ( 7439): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:24.255 I/AndroidRuntime( 7439): Using default boot image
+11-19 03:23:24.255 E/libc    ( 7439): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:24.255 I/AndroidRuntime( 7439): Leaving lock profiling enabled
+11-19 03:23:24.255 E/libc    ( 7439): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:24.293 D/AndroidRuntime( 7439): Calling main entry com.android.commands.input.Input
+11-19 03:23:24.296 D/AndroidRuntime( 7439): Shutting down VM
+11-19 03:23:27.802 D/AndroidRuntime( 7462): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:27.804 E/libc    ( 7462): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:27.804 E/libc    ( 7462): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:27.804 I/AndroidRuntime( 7462): Using default boot image
+11-19 03:23:27.804 E/libc    ( 7462): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:27.804 I/AndroidRuntime( 7462): Leaving lock profiling enabled
+11-19 03:23:27.804 E/libc    ( 7462): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:27.843 D/AndroidRuntime( 7462): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:28.861 D/AndroidRuntime( 7462): Shutting down VM
+11-19 03:23:29.321 D/AndroidRuntime( 7478): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:29.322 E/libc    ( 7478): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:29.322 E/libc    ( 7478): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:29.322 I/AndroidRuntime( 7478): Using default boot image
+11-19 03:23:29.322 E/libc    ( 7478): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:29.322 I/AndroidRuntime( 7478): Leaving lock profiling enabled
+11-19 03:23:29.323 E/libc    ( 7478): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:29.363 D/AndroidRuntime( 7478): Calling main entry com.android.commands.input.Input
+11-19 03:23:29.366 D/AndroidRuntime( 7478): Shutting down VM
+11-19 03:23:29.369 E/libc    (  428): The property "ro.build.fingerprint" has a value with length 92 that is too large for __system_property_get()/__system_property_read(); use __system_property_read_callback() instead.
+11-19 03:23:31.876 D/AndroidRuntime( 7496): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:31.877 E/libc    ( 7496): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:31.877 E/libc    ( 7496): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:31.877 I/AndroidRuntime( 7496): Using default boot image
+11-19 03:23:31.877 E/libc    ( 7496): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:31.877 I/AndroidRuntime( 7496): Leaving lock profiling enabled
+11-19 03:23:31.877 E/libc    ( 7496): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:31.916 D/AndroidRuntime( 7496): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:32.938 D/AndroidRuntime( 7496): Shutting down VM
+11-19 03:23:33.385 D/AndroidRuntime( 7512): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:33.386 E/libc    ( 7512): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:33.386 E/libc    ( 7512): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:33.386 I/AndroidRuntime( 7512): Using default boot image
+11-19 03:23:33.386 E/libc    ( 7512): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:33.386 I/AndroidRuntime( 7512): Leaving lock profiling enabled
+11-19 03:23:33.386 E/libc    ( 7512): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:33.422 D/AndroidRuntime( 7512): Calling main entry com.android.commands.input.Input
+11-19 03:23:33.424 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:23:33.430 D/AndroidRuntime( 7512): Shutting down VM
+11-19 03:23:34.950 D/AndroidRuntime( 7529): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:34.951 E/libc    ( 7529): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:34.951 E/libc    ( 7529): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:34.951 I/AndroidRuntime( 7529): Using default boot image
+11-19 03:23:34.951 E/libc    ( 7529): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:34.951 I/AndroidRuntime( 7529): Leaving lock profiling enabled
+11-19 03:23:34.951 E/libc    ( 7529): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:34.992 D/AndroidRuntime( 7529): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:36.008 D/AndroidRuntime( 7529): Shutting down VM
+11-19 03:23:36.487 D/AndroidRuntime( 7545): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:36.488 E/libc    ( 7545): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:36.488 E/libc    ( 7545): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:36.488 I/AndroidRuntime( 7545): Using default boot image
+11-19 03:23:36.488 E/libc    ( 7545): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:36.488 I/AndroidRuntime( 7545): Leaving lock profiling enabled
+11-19 03:23:36.488 E/libc    ( 7545): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:36.526 D/AndroidRuntime( 7545): Calling main entry com.android.commands.input.Input
+11-19 03:23:36.530 D/AndroidRuntime( 7545): Shutting down VM
+11-19 03:23:39.034 D/AndroidRuntime( 7563): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:39.035 E/libc    ( 7563): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:39.035 E/libc    ( 7563): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:39.036 I/AndroidRuntime( 7563): Using default boot image
+11-19 03:23:39.036 E/libc    ( 7563): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:39.036 I/AndroidRuntime( 7563): Leaving lock profiling enabled
+11-19 03:23:39.036 E/libc    ( 7563): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:39.080 D/AndroidRuntime( 7563): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:40.097 D/AndroidRuntime( 7563): Shutting down VM
+11-19 03:23:40.560 D/AndroidRuntime( 7581): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:40.561 E/libc    ( 7581): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:40.561 E/libc    ( 7581): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:40.561 I/AndroidRuntime( 7581): Using default boot image
+11-19 03:23:40.561 E/libc    ( 7581): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:40.561 I/AndroidRuntime( 7581): Leaving lock profiling enabled
+11-19 03:23:40.561 E/libc    ( 7581): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:40.599 D/AndroidRuntime( 7581): Calling main entry com.android.commands.input.Input
+11-19 03:23:40.601 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:23:40.606 D/AndroidRuntime( 7581): Shutting down VM
+11-19 03:23:42.109 D/AndroidRuntime( 7598): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:42.110 E/libc    ( 7598): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:42.110 E/libc    ( 7598): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:42.110 I/AndroidRuntime( 7598): Using default boot image
+11-19 03:23:42.110 E/libc    ( 7598): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:42.110 I/AndroidRuntime( 7598): Leaving lock profiling enabled
+11-19 03:23:42.110 E/libc    ( 7598): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:42.153 D/AndroidRuntime( 7598): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:43.173 D/AndroidRuntime( 7598): Shutting down VM
+11-19 03:23:43.655 D/AndroidRuntime( 7614): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:43.656 E/libc    ( 7614): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:43.656 E/libc    ( 7614): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:43.656 I/AndroidRuntime( 7614): Using default boot image
+11-19 03:23:43.656 E/libc    ( 7614): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:43.656 I/AndroidRuntime( 7614): Leaving lock profiling enabled
+11-19 03:23:43.656 E/libc    ( 7614): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:43.695 D/AndroidRuntime( 7614): Calling main entry com.android.commands.input.Input
+11-19 03:23:43.699 D/AndroidRuntime( 7614): Shutting down VM
+11-19 03:23:46.204 D/AndroidRuntime( 7632): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:46.205 E/libc    ( 7632): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:46.205 E/libc    ( 7632): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:46.205 I/AndroidRuntime( 7632): Using default boot image
+11-19 03:23:46.205 E/libc    ( 7632): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:46.205 I/AndroidRuntime( 7632): Leaving lock profiling enabled
+11-19 03:23:46.205 E/libc    ( 7632): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:46.243 D/AndroidRuntime( 7632): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:47.260 D/AndroidRuntime( 7632): Shutting down VM
+11-19 03:23:47.706 D/AndroidRuntime( 7680): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:47.708 E/libc    ( 7680): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:47.708 E/libc    ( 7680): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:47.708 I/AndroidRuntime( 7680): Using default boot image
+11-19 03:23:47.708 E/libc    ( 7680): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:47.708 I/AndroidRuntime( 7680): Leaving lock profiling enabled
+11-19 03:23:47.708 E/libc    ( 7680): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:47.744 D/AndroidRuntime( 7680): Calling main entry com.android.commands.input.Input
+11-19 03:23:47.746 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:23:47.751 D/AndroidRuntime( 7680): Shutting down VM
+11-19 03:23:49.263 D/AndroidRuntime( 7697): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:49.264 E/libc    ( 7697): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:49.264 E/libc    ( 7697): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:49.264 I/AndroidRuntime( 7697): Using default boot image
+11-19 03:23:49.264 E/libc    ( 7697): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:49.264 I/AndroidRuntime( 7697): Leaving lock profiling enabled
+11-19 03:23:49.264 E/libc    ( 7697): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:49.305 D/AndroidRuntime( 7697): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:50.325 D/AndroidRuntime( 7697): Shutting down VM
+11-19 03:23:50.778 D/AndroidRuntime( 7713): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:50.780 E/libc    ( 7713): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:50.780 E/libc    ( 7713): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:50.780 I/AndroidRuntime( 7713): Using default boot image
+11-19 03:23:50.780 E/libc    ( 7713): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:50.780 I/AndroidRuntime( 7713): Leaving lock profiling enabled
+11-19 03:23:50.780 E/libc    ( 7713): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:50.832 D/AndroidRuntime( 7713): Calling main entry com.android.commands.input.Input
+11-19 03:23:50.836 D/AndroidRuntime( 7713): Shutting down VM
+11-19 03:23:53.355 D/AndroidRuntime( 7731): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:53.363 E/libc    ( 7731): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:53.363 E/libc    ( 7731): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:53.363 I/AndroidRuntime( 7731): Using default boot image
+11-19 03:23:53.363 E/libc    ( 7731): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:53.363 I/AndroidRuntime( 7731): Leaving lock profiling enabled
+11-19 03:23:53.363 E/libc    ( 7731): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:53.403 D/AndroidRuntime( 7731): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:54.420 D/AndroidRuntime( 7731): Shutting down VM
+11-19 03:23:54.883 D/AndroidRuntime( 7747): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:54.884 E/libc    ( 7747): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:54.884 E/libc    ( 7747): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:54.884 I/AndroidRuntime( 7747): Using default boot image
+11-19 03:23:54.884 E/libc    ( 7747): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:54.884 I/AndroidRuntime( 7747): Leaving lock profiling enabled
+11-19 03:23:54.884 E/libc    ( 7747): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:54.922 D/AndroidRuntime( 7747): Calling main entry com.android.commands.input.Input
+11-19 03:23:54.924 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:23:54.929 D/AndroidRuntime( 7747): Shutting down VM
+11-19 03:23:56.434 D/AndroidRuntime( 7764): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:56.435 E/libc    ( 7764): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:56.435 E/libc    ( 7764): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:56.435 I/AndroidRuntime( 7764): Using default boot image
+11-19 03:23:56.435 E/libc    ( 7764): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:56.435 I/AndroidRuntime( 7764): Leaving lock profiling enabled
+11-19 03:23:56.435 E/libc    ( 7764): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:56.473 D/AndroidRuntime( 7764): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:23:57.490 D/AndroidRuntime( 7764): Shutting down VM
+11-19 03:23:57.956 D/AndroidRuntime( 7780): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:23:57.957 E/libc    ( 7780): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:23:57.957 E/libc    ( 7780): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:23:57.957 I/AndroidRuntime( 7780): Using default boot image
+11-19 03:23:57.957 E/libc    ( 7780): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:23:57.957 I/AndroidRuntime( 7780): Leaving lock profiling enabled
+11-19 03:23:57.957 E/libc    ( 7780): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:23:57.994 D/AndroidRuntime( 7780): Calling main entry com.android.commands.input.Input
+11-19 03:23:57.998 D/AndroidRuntime( 7780): Shutting down VM
+11-19 03:24:00.505 D/AndroidRuntime( 7798): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:24:00.507 E/libc    ( 7798): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:24:00.507 E/libc    ( 7798): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:24:00.507 I/AndroidRuntime( 7798): Using default boot image
+11-19 03:24:00.507 E/libc    ( 7798): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:24:00.507 I/AndroidRuntime( 7798): Leaving lock profiling enabled
+11-19 03:24:00.507 E/libc    ( 7798): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:24:00.551 D/AndroidRuntime( 7798): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:24:01.567 D/AndroidRuntime( 7798): Shutting down VM
+11-19 03:24:02.061 D/AndroidRuntime( 7814): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:24:02.062 E/libc    ( 7814): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:24:02.062 E/libc    ( 7814): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:24:02.062 I/AndroidRuntime( 7814): Using default boot image
+11-19 03:24:02.062 E/libc    ( 7814): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:24:02.062 I/AndroidRuntime( 7814): Leaving lock profiling enabled
+11-19 03:24:02.062 E/libc    ( 7814): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:24:02.101 D/AndroidRuntime( 7814): Calling main entry com.android.commands.input.Input
+11-19 03:24:02.103 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:24:02.107 D/AndroidRuntime( 7814): Shutting down VM
+11-19 03:24:03.611 D/AndroidRuntime( 7831): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:24:03.612 E/libc    ( 7831): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:24:03.612 E/libc    ( 7831): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:24:03.612 I/AndroidRuntime( 7831): Using default boot image
+11-19 03:24:03.612 E/libc    ( 7831): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:24:03.612 I/AndroidRuntime( 7831): Leaving lock profiling enabled
+11-19 03:24:03.612 E/libc    ( 7831): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:24:03.650 D/AndroidRuntime( 7831): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:24:04.667 D/AndroidRuntime( 7831): Shutting down VM
+11-19 03:24:05.136 D/AndroidRuntime( 7847): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:24:05.137 E/libc    ( 7847): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:24:05.137 E/libc    ( 7847): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:24:05.137 I/AndroidRuntime( 7847): Using default boot image
+11-19 03:24:05.137 E/libc    ( 7847): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:24:05.137 I/AndroidRuntime( 7847): Leaving lock profiling enabled
+11-19 03:24:05.137 E/libc    ( 7847): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:24:05.176 D/AndroidRuntime( 7847): Calling main entry com.android.commands.input.Input
+11-19 03:24:05.180 D/AndroidRuntime( 7847): Shutting down VM
+11-19 03:24:07.686 D/AndroidRuntime( 7865): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:24:07.687 E/libc    ( 7865): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:24:07.687 E/libc    ( 7865): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:24:07.687 I/AndroidRuntime( 7865): Using default boot image
+11-19 03:24:07.687 E/libc    ( 7865): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:24:07.687 I/AndroidRuntime( 7865): Leaving lock profiling enabled
+11-19 03:24:07.688 E/libc    ( 7865): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:24:07.730 D/AndroidRuntime( 7865): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:24:08.743 D/AndroidRuntime( 7865): Shutting down VM
+11-19 03:24:09.241 D/AndroidRuntime( 7881): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:24:09.242 E/libc    ( 7881): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:24:09.242 E/libc    ( 7881): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:24:09.242 I/AndroidRuntime( 7881): Using default boot image
+11-19 03:24:09.242 E/libc    ( 7881): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:24:09.242 I/AndroidRuntime( 7881): Leaving lock profiling enabled
+11-19 03:24:09.242 E/libc    ( 7881): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:24:09.279 D/AndroidRuntime( 7881): Calling main entry com.android.commands.input.Input
+11-19 03:24:09.281 E/RemoteAugmentedAutofillService(  499): Bad service name for flags 1048704: com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiAugmentedAutofillService
+11-19 03:24:09.286 D/AndroidRuntime( 7881): Shutting down VM
+11-19 03:24:10.845 D/AndroidRuntime( 7900): >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-19 03:24:10.846 E/libc    ( 7900): Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+11-19 03:24:10.846 E/libc    ( 7900): Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+11-19 03:24:10.846 I/AndroidRuntime( 7900): Using default boot image
+11-19 03:24:10.846 E/libc    ( 7900): Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+11-19 03:24:10.846 I/AndroidRuntime( 7900): Leaving lock profiling enabled
+11-19 03:24:10.846 E/libc    ( 7900): Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+11-19 03:24:10.886 D/AndroidRuntime( 7900): Calling main entry com.android.commands.uiautomator.Launcher
+11-19 03:24:11.933 D/AndroidRuntime( 7900): Shutting down VM

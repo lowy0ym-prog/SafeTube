@@ -1,0 +1,2 @@
+base fcc tap: 135 288
+beau fcc tap: 135 288

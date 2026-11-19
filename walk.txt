@@ -1,0 +1,7 @@
+settings tap: 218 157
+tap 1: 160 107 Video_Player
+tap 2: 160 161 SponsorBlock
+tap 3: 160 215 Privacy
+tap 4: 160 269 Network_and_Downloads
+tap 5: 160 323 Others
+tap 6: 160 377 About
