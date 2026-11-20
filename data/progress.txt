@@ -22,3 +22,5 @@
 13:31:18 progress: 275/1740
 13:33:57 progress: 300/1740
 13:36:33 progress: 325/1740
+13:38:31 MIKZK8r7y-M: HTTP 500
+13:40:22 progress: 350/1740
