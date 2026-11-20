@@ -50,3 +50,5 @@
 14:36:03 progress: 800/1740
 14:38:54 progress: 825/1740
 14:41:36 progress: 850/1740
+14:43:30 ToXna81iij0: HTTP 500
+14:45:54 progress: 875/1740
