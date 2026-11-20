@@ -60,3 +60,5 @@
 14:56:40 progress: 925/1740
 14:59:35 progress: 950/1740
 15:02:23 progress: 975/1740
+15:04:37 4G_BzLxa9Nw: HTTP 500
+15:06:56 progress: 1000/1740
