@@ -1,0 +1,17 @@
+name: deepscan
+on:
+  push:
+    branches: [deepscan]
+    paths: ['tools/deepscan.py', '.github/workflows/deepscan.yml']
+permissions:
+  contents: write
+concurrency: deepscan
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: deepscan }
+      - run: pip install -q yt-dlp
+      - run: python3 tools/deepscan.py
