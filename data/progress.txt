@@ -5,3 +5,6 @@
 12:59:41 progress: 50/1740
 13:01:02 progress: 75/1740
 13:03:12 progress: 100/1740
+13:03:53 kQqrMNviM9U: HTTP 500
+13:05:54 D5F8kp_azzw: HTTP 500
+13:07:57 progress: 125/1740
