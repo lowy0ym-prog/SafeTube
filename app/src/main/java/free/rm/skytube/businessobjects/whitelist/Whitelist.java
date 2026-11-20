@@ -143,6 +143,16 @@ public class Whitelist {
         storage.putString(key, "1");
     }
 
+    /** Applies verdicts that were worked out ahead of time (build-time scan), once per tag. */
+    public synchronized void seedVerdictsOnce(String tag, Set<String> allow, Set<String> block) {
+        String key = "seeded_verdicts_" + tag;
+        if (storage.getString(key) != null) return;
+        for (String v : block) recordVerdict(v, Screening.Verdict.BLOCK);
+        for (String v : allow) recordVerdict(v, Screening.Verdict.ALLOW);
+        flushVerdicts();
+        storage.putString(key, "1");
+    }
+
     // ---------------------------------------------------------------- screening (men-only) state
 
     public synchronized boolean isStrict(String channelRef) {

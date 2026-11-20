@@ -102,10 +102,10 @@ def main():
             n += 1
             if n % 25 == 0:
                 log(f"progress: {len(done) + n}/{len(ids)}")
-            if n % 100 == 0: commit(f"progress {len(done) + n}")
+            if n % 25 == 0: commit(f"progress {len(done) + n}")
         if fails >= 12:
             log("too many consecutive failures, stopping"); break
-        time.sleep(2.5 + random.random() * 2.5)
+        time.sleep(2.0 + random.random() * 1.5)
     log(f"finished loop: {len(done) + n}/{len(ids)}")
     commit(f"final {len(done) + n}")
 
