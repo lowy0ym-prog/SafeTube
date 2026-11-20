@@ -1,1 +1,4 @@
 12:45:51 yt-dlp videos: 1740 ids; rc=0 err=''
+12:57:02 total ids: 1740
+12:57:02 already done: 0; to do: 1740
+12:58:21 progress: 25/1740
