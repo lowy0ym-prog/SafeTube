@@ -99,3 +99,5 @@
 16:30:23 progress: 1650/1740
 16:33:17 progress: 1675/1740
 16:36:08 progress: 1700/1740
+16:36:49 _uWzpyr_5qk: HTTP 500
+16:38:16 finished loop: 1709/1740
