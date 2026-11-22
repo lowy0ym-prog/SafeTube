@@ -224,3 +224,5 @@
 19:05:20 wbZ6yrVxScM: HTTP 500
 19:08:11 RjqTo_dfw4w: HTTP 500
 19:09:39 progress: 1350/1740 (empty descriptions so far: 0)
+19:10:29 a-JKj7m2LIo: HTTP 500
+19:13:42 progress: 1375/1740 (empty descriptions so far: 0)
