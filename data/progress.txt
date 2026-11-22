@@ -239,3 +239,5 @@
 19:34:31 YXZX_6RfHjk: HTTP 500
 19:36:00 F3odgpghXzY: HTTP 500
 19:38:20 progress: 1500/1740 (empty descriptions so far: 0)
+19:39:32 5cU1ILGy6dM: HTTP 500
+19:42:32 progress: 1525/1740 (empty descriptions so far: 0)
