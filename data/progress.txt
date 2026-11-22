@@ -177,3 +177,5 @@
 17:29:39 progress: 800/1740 (empty descriptions so far: 0)
 17:31:41 fAAZixBzIAI: HTTP 500
 17:33:55 progress: 825/1740 (empty descriptions so far: 0)
+17:36:11 916GWv2Qs08: HTTP 500
+17:37:57 progress: 850/1740 (empty descriptions so far: 0)
