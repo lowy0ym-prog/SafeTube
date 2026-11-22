@@ -230,3 +230,5 @@
 19:16:36 ed8SzALpx1Q: HTTP 500
 19:18:41 C4t6qfHZ6Tw: HTTP 500
 19:20:24 progress: 1400/1740 (empty descriptions so far: 0)
+19:22:44 AtIB_3_DZUk: HTTP 500
+19:24:26 progress: 1425/1740 (empty descriptions so far: 0)
