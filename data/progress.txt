@@ -130,3 +130,4 @@
 15:49:35 progress: 175/1740 (empty descriptions so far: 0)
 15:50:15 H-oCV5brtU4: HTTP 500
 15:53:51 progress: 200/1740 (empty descriptions so far: 0)
+15:56:32 progress: 225/1740 (empty descriptions so far: 0)
