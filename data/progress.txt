@@ -201,3 +201,5 @@
 18:16:39 ipwxYa-F1uY: HTTP 500
 18:19:50 MpGLUVbqoYQ: HTTP 500
 18:21:12 progress: 1075/1740 (empty descriptions so far: 0)
+18:21:41 ua-CiDNNj30: HTTP 500
+18:25:36 progress: 1100/1740 (empty descriptions so far: 0)
