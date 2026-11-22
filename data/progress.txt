@@ -110,3 +110,6 @@
 15:10:52 already done: 0; to do: 1740
 15:11:26 cqfl38Ip1ho: HTTP 500
 15:15:19 progress: 25/1740 (empty descriptions so far: 0)
+15:16:59 yVga-_gMfIM: HTTP 500
+15:19:04 6C14E9sQ_-w: HTTP 500
+15:20:33 progress: 50/1740 (empty descriptions so far: 0)
