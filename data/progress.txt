@@ -164,3 +164,4 @@
 17:02:43 98bGwOYoEGg: HTTP 500
 17:04:38 progress: 650/1740 (empty descriptions so far: 0)
 17:07:28 progress: 675/1740 (empty descriptions so far: 0)
+17:10:26 progress: 700/1740 (empty descriptions so far: 0)
