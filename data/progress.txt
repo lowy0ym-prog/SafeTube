@@ -146,3 +146,6 @@
 16:23:43 6WatcfENsOU: HTTP 500
 16:25:36 progress: 400/1740 (empty descriptions so far: 0)
 16:28:29 progress: 425/1740 (empty descriptions so far: 0)
+16:28:46 N1pYdEAU9mk: HTTP 500
+16:30:10 mXW7JHJM34k: HTTP 500
+16:33:56 progress: 450/1740 (empty descriptions so far: 0)
