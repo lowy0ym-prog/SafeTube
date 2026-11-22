@@ -170,3 +170,5 @@
 17:15:08 jpno8FSqpc8: HTTP 500
 17:16:29 gfmRrPjnEw4: HTTP 500
 17:19:52 progress: 750/1740 (empty descriptions so far: 0)
+17:21:44 cQx6ig3mp1U: HTTP 500
+17:24:09 progress: 775/1740 (empty descriptions so far: 0)
