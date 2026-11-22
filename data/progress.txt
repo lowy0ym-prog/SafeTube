@@ -145,3 +145,4 @@
 16:21:21 81uAxzeyL2I: HTTP 500
 16:23:43 6WatcfENsOU: HTTP 500
 16:25:36 progress: 400/1740 (empty descriptions so far: 0)
+16:28:29 progress: 425/1740 (empty descriptions so far: 0)
