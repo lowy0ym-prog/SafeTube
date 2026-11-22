@@ -149,3 +149,5 @@
 16:28:46 N1pYdEAU9mk: HTTP 500
 16:30:10 mXW7JHJM34k: HTTP 500
 16:33:56 progress: 450/1740 (empty descriptions so far: 0)
+16:34:54 Ixsr2RyZcv4: HTTP 500
+16:37:53 progress: 475/1740 (empty descriptions so far: 0)
