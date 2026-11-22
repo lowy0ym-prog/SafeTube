@@ -122,3 +122,9 @@
 15:35:01 tdsQwuyS6DQ: HTTP 500
 15:37:12 kb_scuDUHls: HTTP 500
 15:38:18 progress: 150/1740 (empty descriptions so far: 0)
+15:38:24 cfOI7PBhkWk: HTTP 500
+15:39:26 9HOpanT0GRs: HTTP 500
+15:41:42 Fr9GqFwl6NM: HTTP 500
+15:45:03 xwI5OBEnsZU: HTTP 500
+15:47:20 5JTBS09e7ew: HTTP 500
+15:49:35 progress: 175/1740 (empty descriptions so far: 0)
