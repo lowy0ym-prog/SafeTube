@@ -2,11 +2,11 @@
 """Collects title + full description of every video of one channel, slowly, and resumes where it stopped.
 Lists ids with yt-dlp (list pages only), reads descriptions from a public Invidious API (one video at a time,
 a pause between requests). Output: data/fcc_meta.jsonl (one JSON object per line), data/progress.txt."""
-import json, os, random, subprocess, sys, time, urllib.request, urllib.error
+import html, re, json, os, random, subprocess, sys, time, urllib.request, urllib.error
 
 CH = "UC8butISFwT-Wl7EV0hUK0BQ"
 BASE = os.environ.get("INV_BASE", "https://yt.chocolatemoo53.com")
-OUT = "data/fcc_meta.jsonl"
+OUT = "data/fcc_meta2.jsonl"
 IDS = "data/fcc_ids.txt"
 LOG = "data/progress.txt"
 MAX_SECONDS = int(os.environ.get("MAX_SECONDS", str(5 * 3600 + 15 * 60)))
@@ -23,6 +23,11 @@ def commit(msg):
     subprocess.run(["git", "-c", "user.name=scan", "-c", "user.email=scan@example.invalid", "commit", "-qm", msg + " [skip ci]"], check=False)
     subprocess.run(["git", "pull", "-q", "--rebase", "origin", "deepscan"], check=False)
     subprocess.run(["git", "push", "-q", "origin", "HEAD:deepscan"], check=False)
+
+def to_text(h):
+    h = re.sub(r"(?i)<br\s*/?>", "\n", h or "")
+    h = re.sub(r"<[^>]+>", "", h)
+    return html.unescape(h).strip()
 
 def get(url, timeout=40):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; safetube-scan)"})
@@ -79,12 +84,12 @@ def main():
             log("time budget reached, stopping (rerun to continue)"); break
         rec = None
         try:
-            st, body = get(f"{BASE}/api/v1/videos/{vid}?fields=videoId,title,description,authorId,error")
+            st, body = get(f"{BASE}/api/v1/videos/{vid}?fields=videoId,title,description,descriptionHtml,authorId,error")
             d = json.loads(body)
             if d.get("error"):
                 rec = {"id": vid, "error": str(d["error"])[:200]}
             else:
-                rec = {"id": vid, "title": d.get("title", ""), "description": d.get("description", ""), "authorId": d.get("authorId", "")}
+                rec = {"id": vid, "title": d.get("title", ""), "description": to_text(d.get("description") or d.get("descriptionHtml", "")), "authorId": d.get("authorId", "")}
             fails = 0
         except urllib.error.HTTPError as e:
             fails += 1
@@ -101,7 +106,8 @@ def main():
             with open(OUT, "a") as f: f.write(json.dumps(rec, ensure_ascii=False) + "\n")
             n += 1
             if n % 25 == 0:
-                log(f"progress: {len(done) + n}/{len(ids)}")
+                empty = sum(1 for l in open(OUT) if '"description": ""' in l)
+                log(f"progress: {len(done) + n}/{len(ids)} (empty descriptions so far: {empty})")
             if n % 25 == 0: commit(f"progress {len(done) + n}")
         if fails >= 12:
             log("too many consecutive failures, stopping"); break
