@@ -233,3 +233,6 @@
 19:22:44 AtIB_3_DZUk: HTTP 500
 19:24:26 progress: 1425/1740 (empty descriptions so far: 0)
 19:27:14 progress: 1450/1740 (empty descriptions so far: 0)
+19:29:44 KhtEmR2A1Fw: HTTP 500
+19:31:15 u9WOdMWjgso: HTTP 500
+19:32:36 progress: 1475/1740 (empty descriptions so far: 0)
