@@ -110,3 +110,4 @@ def main():
     commit(f"final {len(done) + n}")
 
 main()
+# rerun to fill the few videos that failed
