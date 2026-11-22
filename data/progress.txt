@@ -153,3 +153,5 @@
 16:37:53 progress: 475/1740 (empty descriptions so far: 0)
 16:38:48 qHPonmSX4Ms: HTTP 500
 16:41:50 progress: 500/1740 (empty descriptions so far: 0)
+16:43:05 HSZ_uaif57o: HTTP 500
+16:46:02 progress: 525/1740 (empty descriptions so far: 0)
