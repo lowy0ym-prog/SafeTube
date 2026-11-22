@@ -141,3 +141,7 @@
 16:11:53 cG2rf7hTvsw: HTTP 500
 16:15:34 progress: 350/1740 (empty descriptions so far: 0)
 16:18:35 progress: 375/1740 (empty descriptions so far: 0)
+16:19:57 9UKCv9T_rIo: HTTP 500
+16:21:21 81uAxzeyL2I: HTTP 500
+16:23:43 6WatcfENsOU: HTTP 500
+16:25:36 progress: 400/1740 (empty descriptions so far: 0)
