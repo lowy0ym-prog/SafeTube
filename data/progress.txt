@@ -161,3 +161,5 @@
 16:56:16 progress: 600/1740 (empty descriptions so far: 0)
 16:56:47 krfUjg0S2uI: HTTP 500
 17:00:26 progress: 625/1740 (empty descriptions so far: 0)
+17:02:43 98bGwOYoEGg: HTTP 500
+17:04:38 progress: 650/1740 (empty descriptions so far: 0)
