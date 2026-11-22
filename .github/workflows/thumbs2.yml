@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -q opencv-python-headless numpy
+      - run: pip install -q opencv-python-headless==4.10.0.84 "numpy<2"
       - run: python3 tools/thumbs2.py 2>&1 | tee out.log
       - run: |
           mkdir /tmp/pub && cp -r out /tmp/pub/ && cp out.log /tmp/pub/

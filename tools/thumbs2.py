@@ -56,7 +56,7 @@ def sheet(lst, cols, rows, tw, th, prefix):
     return keys
 
 keys = {}
-keys.update(sheet(face, 5, 4, 320, 180, "face"))
+keys.update(sheet(face, 6, 4, 260, 146, "face"))
 keys.update(sheet(noface, 8, 6, 200, 112, "plain"))
 json.dump(keys, open("out/keys.json", "w"))
 print("sheets", len(keys))
