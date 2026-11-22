@@ -101,3 +101,7 @@
 16:36:08 progress: 1700/1740
 16:36:49 _uWzpyr_5qk: HTTP 500
 16:38:16 finished loop: 1709/1740
+04:41:55 total ids: 1740
+04:41:55 already done: 1709; to do: 31
+04:44:12 4G_BzLxa9Nw: HTTP 500
+04:45:47 progress: 1734/1740
