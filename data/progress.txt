@@ -186,3 +186,6 @@
 17:47:20 progress: 900/1740 (empty descriptions so far: 0)
 17:48:43 7rU_KyudGBY: HTTP 500
 17:51:38 progress: 925/1740 (empty descriptions so far: 0)
+17:54:06 Z63TxAJotgQ: HTTP 500
+17:55:38 XVv6mJpFOb0: HTTP 500
+17:57:21 progress: 950/1740 (empty descriptions so far: 0)
