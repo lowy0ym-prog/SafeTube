@@ -106,3 +106,7 @@
 04:44:12 4G_BzLxa9Nw: HTTP 500
 04:45:47 progress: 1734/1740
 04:46:26 finished loop: 1739/1740
+15:10:52 total ids: 1740
+15:10:52 already done: 0; to do: 1740
+15:11:26 cqfl38Ip1ho: HTTP 500
+15:15:19 progress: 25/1740 (empty descriptions so far: 0)
