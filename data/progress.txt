@@ -134,3 +134,6 @@
 15:59:12 progress: 250/1740 (empty descriptions so far: 0)
 16:01:59 progress: 275/1740 (empty descriptions so far: 0)
 16:04:41 progress: 300/1740 (empty descriptions so far: 0)
+16:05:12 a0bzf4h4jjg: HTTP 500
+16:07:11 5MoZ1hJuvqM: HTTP 500
+16:09:51 progress: 325/1740 (empty descriptions so far: 0)
