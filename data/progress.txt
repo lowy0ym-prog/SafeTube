@@ -167,3 +167,6 @@
 17:10:26 progress: 700/1740 (empty descriptions so far: 0)
 17:11:55 ccfpj4eD6YM: HTTP 500
 17:14:47 progress: 725/1740 (empty descriptions so far: 0)
+17:15:08 jpno8FSqpc8: HTTP 500
+17:16:29 gfmRrPjnEw4: HTTP 500
+17:19:52 progress: 750/1740 (empty descriptions so far: 0)
