@@ -119,3 +119,6 @@
 15:27:57 kQqrMNviM9U: HTTP 500
 15:31:55 r36xQmTJe1c: HTTP 500
 15:33:01 progress: 125/1740 (empty descriptions so far: 0)
+15:35:01 tdsQwuyS6DQ: HTTP 500
+15:37:12 kb_scuDUHls: HTTP 500
+15:38:18 progress: 150/1740 (empty descriptions so far: 0)
