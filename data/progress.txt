@@ -114,3 +114,5 @@
 15:19:04 6C14E9sQ_-w: HTTP 500
 15:20:33 progress: 50/1740 (empty descriptions so far: 0)
 15:23:45 progress: 75/1740 (empty descriptions so far: 0)
+15:26:08 hP931079TMw: HTTP 500
+15:27:44 progress: 100/1740 (empty descriptions so far: 0)
