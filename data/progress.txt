@@ -226,3 +226,7 @@
 19:09:39 progress: 1350/1740 (empty descriptions so far: 0)
 19:10:29 a-JKj7m2LIo: HTTP 500
 19:13:42 progress: 1375/1740 (empty descriptions so far: 0)
+19:14:00 xPEMup5SPTM: HTTP 500
+19:16:36 ed8SzALpx1Q: HTTP 500
+19:18:41 C4t6qfHZ6Tw: HTTP 500
+19:20:24 progress: 1400/1740 (empty descriptions so far: 0)
