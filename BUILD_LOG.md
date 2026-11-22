@@ -73,3 +73,9 @@
 - Admin screen shows "checked X of Y" and a status line. Strict setting removed from the UI. Comments panel removed. Drawer channel pictures are now drawn in-app (letter in a coloured circle), no download.
 - Emulator run (API 30): drawer shows letter avatars; admin shows "freeCodeCamp: checked 41 of 865 found so far" and "Paused: YouTube asked to slow down" (expected: the CI IP is bot-blocked, so the slow check itself cannot succeed there); name rule test still passes (Hybrid Search video removed with test name); no crashes.
 - NOT verified: the slow check succeeding against YouTube (blocked from the CI IP), playback, and the Feed tab with real results beyond the first 15. Newly cleared videos appear after pull-to-refresh / reopening the list, not live.
+
+## Attempt 16 (custom) - full freeCodeCamp history checked before the build
+- GitHub (branch `deepscan`, workflow deepscan.yml) listed all 1,740 freeCodeCamp videos (yt-dlp, list pages only) and read title + full description of 1,739 of them from a public Invidious API, one at a time with 2-3.5 s pauses (about 3.5 hours, no phone, no Claude session needed). One video kept failing and stays "unchecked" (hidden until the phone checks it).
+- Screening.classify (default rules, same code as in the app) was run on all 1,739: 1,720 allowed, 19 blocked (named women, "She/Mom" titles, credits). Result is bundled as assets/fcc_verdicts.txt and applied once on first start (tag fccscan1). Manual blocked list (28 videos from thumbnails) still applies on top.
+- Limits: text only. A video with a woman whose name / credit is not in the title or description is not caught for older videos, except the 26 found on cover review of the newest 240.
+- The phone now only has to check videos newer than this scan (RSS newest-15 on open, slow Wi-Fi check for the rest).
