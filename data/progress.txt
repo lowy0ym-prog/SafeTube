@@ -205,3 +205,5 @@
 18:25:36 progress: 1100/1740 (empty descriptions so far: 0)
 18:26:51 p65AHm9MX80: HTTP 500
 18:29:52 progress: 1125/1740 (empty descriptions so far: 0)
+18:31:03 F0WoVEr0-44: HTTP 500
+18:34:01 progress: 1150/1740 (empty descriptions so far: 0)
