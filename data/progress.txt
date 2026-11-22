@@ -179,3 +179,7 @@
 17:33:55 progress: 825/1740 (empty descriptions so far: 0)
 17:36:11 916GWv2Qs08: HTTP 500
 17:37:57 progress: 850/1740 (empty descriptions so far: 0)
+17:38:22 ER8oKX5myE0: HTTP 500
+17:39:54 _C8kWso4ne4: HTTP 500
+17:43:27 Gaosub7FRf4: HTTP 500
+17:44:33 progress: 875/1740 (empty descriptions so far: 0)
