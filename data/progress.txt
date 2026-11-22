@@ -232,3 +232,4 @@
 19:20:24 progress: 1400/1740 (empty descriptions so far: 0)
 19:22:44 AtIB_3_DZUk: HTTP 500
 19:24:26 progress: 1425/1740 (empty descriptions so far: 0)
+19:27:14 progress: 1450/1740 (empty descriptions so far: 0)
