@@ -1,0 +1,20 @@
+name: thumbs2
+on:
+  push:
+    branches: [thumbs2]
+    paths: ['tools/thumbs2.py', '.github/workflows/thumbs2.yml']
+permissions:
+  contents: write
+jobs:
+  sheets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q opencv-python-headless numpy
+      - run: python3 tools/thumbs2.py 2>&1 | tee out.log
+      - run: |
+          mkdir /tmp/pub && cp -r out /tmp/pub/ && cp out.log /tmp/pub/
+          cd /tmp/pub && git init -q -b thumbs-out2 && git add -A
+          git -c user.name=ci -c user.email=ci@example.invalid commit -qm sheets
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" thumbs-out2
