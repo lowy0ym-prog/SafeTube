@@ -105,3 +105,4 @@
 04:41:55 already done: 1709; to do: 31
 04:44:12 4G_BzLxa9Nw: HTTP 500
 04:45:47 progress: 1734/1740
+04:46:26 finished loop: 1739/1740
