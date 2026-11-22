@@ -221,3 +221,6 @@
 19:00:12 BK9iHnkr9nM: HTTP 500
 19:01:34 s16xd9XyDnY: HTTP 500
 19:04:23 progress: 1325/1740 (empty descriptions so far: 0)
+19:05:20 wbZ6yrVxScM: HTTP 500
+19:08:11 RjqTo_dfw4w: HTTP 500
+19:09:39 progress: 1350/1740 (empty descriptions so far: 0)
