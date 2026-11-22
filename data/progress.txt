@@ -198,3 +198,6 @@
 18:11:01 progress: 1025/1740 (empty descriptions so far: 0)
 18:11:27 0hd0FPd47II: HTTP 500
 18:15:19 progress: 1050/1740 (empty descriptions so far: 0)
+18:16:39 ipwxYa-F1uY: HTTP 500
+18:19:50 MpGLUVbqoYQ: HTTP 500
+18:21:12 progress: 1075/1740 (empty descriptions so far: 0)
