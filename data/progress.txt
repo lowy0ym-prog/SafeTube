@@ -214,3 +214,7 @@
 18:45:42 progress: 1225/1740 (empty descriptions so far: 0)
 18:48:56 progress: 1250/1740 (empty descriptions so far: 0)
 18:52:03 progress: 1275/1740 (empty descriptions so far: 0)
+18:52:21 0M7SaSsGCMQ: HTTP 500
+18:54:53 jFNHerJqvFw: HTTP 500
+18:56:37 GEizappc_WI: HTTP 500
+18:59:05 progress: 1300/1740 (empty descriptions so far: 0)
