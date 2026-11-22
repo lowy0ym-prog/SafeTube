@@ -251,3 +251,4 @@
 20:00:12 NFaZKFTycmc: HTTP 500
 20:01:23 IDsEEMkG9uY: HTTP 500
 20:02:57 progress: 1650/1740 (empty descriptions so far: 0)
+20:04:34 finished loop: 1663/1740
