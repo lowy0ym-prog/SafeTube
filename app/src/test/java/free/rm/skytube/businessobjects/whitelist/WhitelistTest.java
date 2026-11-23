@@ -183,4 +183,24 @@ class WhitelistTest {
         again.setBackgroundCheckEnabled(false);
         assertFalse(again.isBackgroundCheckEnabled());
     }
+
+    @Test
+    void seededVerdictsBlockWinsAndApplyOnce() {
+        w.addChannel(CH_A, "A");
+        w.setDeepChannels(new HashSet<>(java.util.Arrays.asList(CH_A)));
+        w.recordVerdict("aaaaaaaaaaa", Screening.Verdict.ALLOW);
+        w.seedVerdictsOnce("t1", new HashSet<>(java.util.Arrays.asList("bbbbbbbbbbb", "aaaaaaaaaaa")),
+                new HashSet<>(java.util.Arrays.asList("aaaaaaaaaaa")));
+        assertEquals(Screening.Verdict.BLOCK, w.getVerdict("aaaaaaaaaaa"));
+        assertFalse(w.isVideoAllowed(CH_A, "aaaaaaaaaaa"));
+        assertTrue(w.isVideoAllowed(CH_A, "bbbbbbbbbbb"));
+        // a second call with the same tag does nothing
+        w.seedVerdictsOnce("t1", new HashSet<>(java.util.Arrays.asList("ccccccccccc")), new HashSet<>());
+        assertFalse(w.isVideoAllowed(CH_A, "ccccccccccc"));
+        // and it survives a restart
+        w.flushVerdicts();
+        Whitelist again = new Whitelist(storage, () -> now);
+        assertFalse(again.isVideoAllowed(CH_A, "aaaaaaaaaaa"));
+        assertTrue(again.isVideoAllowed(CH_A, "bbbbbbbbbbb"));
+    }
 }

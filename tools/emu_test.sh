@@ -63,6 +63,37 @@ sleep 25; shot 01_home_25s
 visit_channel base
 shot 09_base_last
 
+# ---- Phase 1b: scroll deep through the freeCodeCamp channel (old videos) and compare every title seen
+# against the reviewed list: none of the 261 blocked titles may appear; allowed titles are positive controls.
+mkdir -p shots/deep
+adb shell am force-stop $PKG; sleep 2
+adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1; sleep 20
+adb shell input tap 28 52; sleep 3; shot deep_drawer
+read X Y <<< "$(tapnode shots/deep_drawer.xml freecodecamp 400 50)"
+adb shell input tap $X $Y; sleep 25
+for i in $(seq 1 90); do
+  adb shell uiautomator dump /sdcard/d.xml >/dev/null 2>&1; adb pull /sdcard/d.xml shots/deep/d_$i.xml >/dev/null 2>&1
+  adb shell input swipe 160 560 160 130 350; sleep 3
+done
+python3 - <<'PY' > shots/deep_check.txt
+import glob,re,html
+seen=set()
+for f in glob.glob('shots/deep/d_*.xml'):
+    for m in re.finditer(r' text="([^"]{12,})"',open(f,encoding='utf-8').read()):
+        seen.add(html.unescape(m.group(1)).strip().lower())
+def load(p): return [l.strip().lower() for l in open(p,encoding='utf-8') if l.strip()]
+def hit(t,seen):
+    k=t[:28]
+    return any(s.startswith(k) or k in s for s in seen)
+bl=load('tools/fcc_blocked_titles.txt'); al=load('tools/fcc_allowed_titles.txt')
+bh=[t for t in bl if hit(t,seen)]; ah=[t for t in al if hit(t,seen)]
+print("distinct text lines seen:",len(seen))
+print("allowed (positive control) titles seen:",len(ah))
+print("BLOCKED titles seen (must be 0):",len(bh))
+for t in bh: print("  LEAK:",t)
+PY
+rm -rf shots/deep
+
 # ---- Phase 2: verification of the "named person" rule on the newest videos (RSS descriptions).
 # Test name "beau" appears in credits ("created by @beau") of several recent freeCodeCamp videos.
 adb shell "run-as $PKG sh -c 'echo beau > files/extra_blocked_people.txt'" > shots/hook.txt 2>&1

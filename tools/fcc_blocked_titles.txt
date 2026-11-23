@@ -1,0 +1,261 @@
+Gemini 4 Argon API Crash Course
+Inside a Hong Kong Hackathon [Full Documentary]
+The Paper That Created Modern AI
+AI-Assisted Development Tutorial – Multi-Agent Coding & Deployment with TRAE IDE
+How an Apple Engineer Pranked Billion-Dollar Lawyers (and Won)
+Intro to Shaders – JavaScript & p5.js Course for Beginners
+The 20 Minute Masterpiece: Dijkstra's Algorithm
+Why Computers Can’t Count Money
+Web Scraping for Beginners –  Extract Data with an API
+Build Your Own AI Agent – Full Course with OpenAI, Langchain, Render Deployment
+Stanford's youngest instructor on InfoSec, AI, catching cheaters - Rachel Fernandez [Podcast #217]
+Inside Stanford's Elite Student Hackathon (Full Documentary on TreeHacks 2026)
+Automate Your Life in 4 hours – Agent and Automation Zapier Course
+How to friction-max your learning with software engineer Jessica Rose [Podcast #216]
+Lessons from 15,031 hours of coding live on Twitch with Chris Griffing [Podcast #214]
+AI Foundations for Absolute Beginners
+Inside The World's Biggest Hackathon – Full Documentary on UC Berkeley's Cal Hacks
+Building Agentic AI Workloads – Crash Course
+Build Serverless AI Agents with Langbase
+How to teach yourself programming with GitHub's Andrea Griffiths [Podcast #199]
+When NOT to use AI in your hackathon project with MLH winners Cindy Cui and Alison Co [Podcast #198]
+Perfectionism holds new developers back with Abbey Perini [Podcast #196]
+How to Build Advanced AI Agents – Course for Beginners (LiveKit, Exa, LangChain)
+Godot Game Development for Beginners
+How to focus on building your skills when everything's so distracting with Ania Kubów [Podcast #187]
+Intro to Fine-Tuning Large Language Models
+Building an AI-Powered E-commerce Chat Assistant with MongoDB – Tutorial
+Abandoning med school to become a software engineer with Edidiong Asikpo [Podcast #182]
+Combine Vibe Coding & n8n to Build Real AI Apps
+Google Cloud Cybersecurity Certificate Course
+From Therapist to six figure freelance dev [Podcast #176]
+Making Developer Friends Anywhere, with Iraqi Engineer Code;Life [Podcast #172]
+Complete Spanish Language Beginners Course – Learn A1 Level Spanish
+Generative AI Bootcamp – Complete 65-Hour Course
+From fast food worker to cybersecurity engineer with Tae'lur Alexis [Podcast #169]
+From Accountant to Data Engineer with Alyson La [Podcast #168]
+Intro to Machine Learning featuring Generative AI
+How to become a developer in your 30s with Anjana Vakil [Podcast #162]
+Linear Algebra for Machine Learning
+She taught herself to code in her 30s for zero dollars [Podcast #160]
+From freeCodeCamp to CTO with Robotics Engineer Peggy Wang [Podcast #159]
+AI Engineer Roadmap – How to Learn AI in 2025
+LLM Course – Build a Semantic Book Recommender (Python, OpenAI, LangChain, Gradio)
+Build and Deploy a RAG Chatbot with JavaScript, LangChain.js, Next.js, Vercel, OpenAI
+AI Foundations Course – Python, Machine Learning, Deep Learning, Data Science
+Learn Tailwind CSS: Build a Responsive Product Card
+Databases In-Depth – Complete Course
+From PhD drop-out to Google Data Scientist with Meg Risdal [Podcast #142]
+Spotify Developer Emma Bostian Talks Coding, Hiring Devs, and European Work Culture [Podcast #139]
+Special Ed Teacher turned Sysadmin and AWS Hero Hiroko Nishimura [Podcast #138]
+Gemini AI MultiModal Model Course
+Developer and inventor with 27 software patents [Angie Jones Interview #136]
+24 CSS Projects: Loading Animations, Progress Bars, Flashcards & More!
+From doing data entry to becoming a developer with Jessica Chan AKA Coder Coder [Podcast #132]
+From Fashion to Software Engineer with Alison Yoon [Podcast #130]
+Learn High-Level System Design by Coding YouTube – Full Course
+Python for Data Science Course – Hands-on Projects with EDA, AB Testing & Business Intelligence
+From Software Engineer to White Hat Hacker with Suz Hinton [Podcast #126]
+Linear Algebra Course – Mathematics for Machine Learning and Generative AI
+Next.js vs React – What's the difference?
+CSS Artist Kass Moreno – freeCodeCamp Podcast #119
+One-Click AI Web Development Tutorial - Learn how to Turn Figma Designs into Working Code using AI
+Easily Automate Business Tasks – No-Code Automation Course
+She wrote code you use every day – Jessica Lord JLord interview [freeCodeCamp podcast #116]
+From Stay-at-Home Mom to Developer at Age 36 [freeCodeCamp Podcast #115]
+Localize Your Websites with Crowdin – Full Course
+From Microsoft to Amazon to CTO with Cassidoo [freeCodeCamp Podcast #114 Cassidy Williams]
+Machine Learning in 2024 – Beginner's Course
+Google Gemini AI Course for Beginners
+Meet the Software Engineer Who Abandoned her Successful Music Career – freeCodeCamp Podcast #111
+Learn p5.js for Creative Coding – 5 Beginner Projects
+Deep Learning Interview Prep Course
+How to Get a Developer Job – Even in This Economy [Full Course]
+PaLM 2 API Course – Build Generative AI Apps
+Become a Great Engineering Manager – Course
+Java Web App with Quarkus and JPAStreamer – Tutorial
+Prompt Engineering for Web Devs - ChatGPT and Bard Tutorial
+The Ethics of AI & Machine Learning [Full Course]
+Vector Embeddings Tutorial – Code Your Own AI Assistant with GPT-4 API + LangChain + NLP
+Prompt Engineering Tutorial – Master ChatGPT and LLM Responses
+Stable Diffusion Crash Course for Beginners
+Hot Dog or Not Hot Dog – Convolutional Neural Network Course for Beginners
+Use ChatGPT to Code a Full Stack App – Full Course
+Build a Simple Website with HTML, CSS, JavaScript – Course for Beginners
+ChatGPT Course – Use The OpenAI API to Code 5 Projects
+Personal Website Tutorial with Next.js 13, Sanity.io, TailwindCSS, and TypeScript
+Use ChatGPT to Build a RegEx Generator – OpenAI API Low Code Course
+Software Engineering Job Interview – Full Mock Interview
+Data Science Job Interview – Full Mock Interview
+LaTeX – Full Tutorial for Beginners
+HTML & Coding Introduction – Course for Beginners
+3 Ways to Code a BuzzFeed Clone (JavaScript + TypeScript + JSONServer + Database + API + Node.js)
+Computer & Technology Basics Course for Absolute Beginners
+Build Your Own SaaS - PagerDuty Clone. You'll Learn PostgreSQL + Stripe API + Twilio + SMTP
+Next.js React Framework Course – Build and Deploy a Full Stack App From scratch
+Web Monetization API Tutorial – How to Add Microtransactions to a Website
+3 ways to build a Flight Widget! (JavaScript + Node.js + REST API + Database)
+Ecommerce Website Tutorial – Create a B2B App with Stripe + Postgres + REST API Backend
+Machine Learning for Everybody – Full Course
+Algorithms in Python – Full Course for Beginners
+Jenkins Tutorial – How to Deploy a Test Server with Docker + Linux (Full Course)
+NoSQL vs SQL – Which Type of Database Should You Use?
+HTML / CSS Tutorial – Create an Order Summary Component
+How to Build an MVP for Your App – Full Course on Minimum Viable Product Development
+JavaScript Tutorial – Code Your Own Jeopardy Game
+Build API Powered Dashboards - MongoDB, Discord and Mail API
+Python TensorFlow for Machine Learning – Neural Network Text Classification Tutorial
+Low-Code for Freelance Developers & Startups – Tutorial
+Learn JavaScript by Building 7 Games - Full Course
+How to Learn from Free University Courses (Audit Classes Online)
+Blockchain Development: Querying with Open APIs Course
+Developer Career Questions ANSWERED (featuring a bunch of experienced developers)
+Great Design With User Research - Design a Mobile App Using Figma
+20 Award-Winning JavaScript Games – js13kGames 2021 Winners
+Learn to Code RPG - A freeCodeCamp.org Game [playthrough + gamedev interview]
+Build a CRM with Google Sheets + PostgreSQL + Stripe API Tutorial (Ecommerce Course)
+NoSQL Database Tutorial – Full Course for Beginners
+AWS VPC Beginner to Pro - Virtual Private Cloud Tutorial
+Vue.js Course for Beginners
+Low-Code Tutorial – Build 3 Financial Apps (Full Course)
+OpenTelemetry Course - Understand Software Performance
+Next.js for Beginners - Full Course
+🎮 Easy JavaScript Game Development with Kaboom.js (Mario, Zelda, and Space Invaders) - Full Course
+Object Oriented Programming (OOP) in C++ Course
+How to Make a Landing Page using HTML, SCSS, and JavaScript - Full Course
+20 Award-Winning JavaScript Games – Js13kGames 2020 Winners
+12 Beginner Python Projects - Coding Course
+Docker and Kubernetes - Full Course for Beginners
+JavaScript Tutorial: Build Flappy Bird and Doodle Jump
+Keras with TensorFlow Course - Python Deep Learning and Neural Networks for Beginners Tutorial
+Git and GitHub for Beginners - Crash Course
+Code Tetris: JavaScript Tutorial for Beginners
+Python Algorithms for Interviews
+Everyone is a Developer - Talk by Jessica Lord
+What do computer programmers actually do?
+7 Habits of Successful Software Engineers
+Hackathon Live Demos from the 2018 freeCodeCamp JAMstack Hackathon top 7 teams
+Getting Your First Developer Job
+Create a Kanban Board
+Blurry Effect: CSS Tutorial (Day 29 of CSS3 in 30 Days)
+How To Write User Stories, Epics, & Personas - Dev Life
+Useful Tooltips: CSS Tutorial (Day 18 of CSS3 in 30 Days)
+What is a Daily Standup? - Dev Life
+Amazon CloudWatch: Serverless Logging and Monitoring Basics
+How I hacked my friend without her noticing - Operation Luigi
+How do computers and the internet work? - Computer Science Basics
+Alexa Coding Quiz for JavaScript, CSS, and Computer Science
+Full Redux tutorial in 5 minutes
+Day in the life of a PayPal software engineer
+Getting Started with Freelancing (web development and design)
+GitHub Basics Tutorial - How to Use GitHub
+2018 Top Contributor Party in New York City - Highlights and Interviews
+Logic for Programmers: Set Theory
+S3 Operations with AWS Lambda
+Answering tricky JavaScript interview questions
+JavaScript Modules Past & Present
+What I Gained After 100 Days of Code
+DynamoDB Tutorial: Basic Operations
+Emotional Intelligence for Engineers
+Logic for Programmers: Propositional Logic
+Setting up Severless Framework from Scratch
+Create a secure free AWS account
+Intro to Cloud Computing and AWS
+Learn to Code: 5 Secret Weapons
+Ruby Programming Language - Full Course
+GDPR: What it means and compliance
+Day in the life of a freelance developer and mom
+Intro to Serverless: why and how (with basic tutorial)
+How to Raise a Tech Family, talk by 15-year-old programmer and her father
+HTML Tutorial - How to Make a Super Simple Website
+Coding for a Swedish Startup - a day in the life of Amber Wilkie
+SVG can do that?! - talk by Sarah Drasner
+AngularJS tutorial: Game of Life
+AngularJS tutorial: recipe box
+How I Built A Personal Brand Chatbot
+Bash Tutorial: How to Use the Command Line in Linux, Windows, and Mac Terminal
+How I built and launched a chatbot over the weekend
+How to ace the whiteboard coding interview
+Which programming language should you learn first?
+Alexa Development 101 - Full Amazon Echo tutorial course in one video!
+I've done programming tutorials. Now what? - Ask Preethi
+Should I go back to school to get CS degree? - Ask Preethi
+Getting first React job without experience - Ask Preethi
+JS Books and Finishing Recipe Box - Code Vlog {23}
+Struggle (building Recipe Box) - Code Vlog {22}
+Recipe Box Routing and Storage - Code Vlog {21}
+Recipe Box Components - Code Vlog {20}
+Remote Work - Code Vlog {19}
+Recipe Box Layout - Code Vlog {18}
+React: Camper Leaderboard - Code Vlog {17}
+Working on Designs - Code Vlog {16}
+React: Markdown Previewer - Code Vlog {15}
+React: Github Battle - Code Vlog {14}
+React: Note App  - Code Vlog {13}
+Iteration (building portfolio, part 5) - Code Vlog {12}
+Priorities (building portfolio, part 4) - Code Vlog {11}
+React JS (building portfolio, part 3) - Code Vlog {10}
+Portfolio (part 2) - Code Vlog {09}
+Learn to Code Online - Code Vlog {08}
+Portfolio (part 1) - Code Vlog {07}
+Learn Design - Code Vlog {06}
+Meetings - Code Vlog {05}
+Flexbox - Code Vlog {04}
+Planning - Code Vlog {03}
+Feedback - Code Vlog {02}
+Simon Game - Code Vlog {01}
+Git & GitHub: Introduction to Git & GitHub
+Git & GitHub: GitHub Workflow for Open Source
+Git & GitHub: Branching and the GitHub Workflow
+Git & GitHub: Most Used Git Commands
+Git & GitHub: 2-Step Commit
+Git & GitHub: How Commits Work
+Git & GitHub: Cloning & Working Locally
+Git & GitHub: Merging
+Git & GitHub: Merge Conflicts
+Git & GitHub: Undoing Commits
+Git & GitHub: Rebasing
+Computer Security Tips for Beginners
+FCC Computer Basics 11: IP Addresses
+Computer Basics 14: Content Delivery Networks
+The DOM: What's the Document Object Model?
+Big O Notation: A Few Examples
+The DOM: Style in the Header, Script in the Footer
+Big O Notation: What It Is and Why You Should Care
+Chrome Dev Tools: Summary Tab
+Chrome Dev Tools: Console Tab
+Chrome Dev Tools: Audits Tab
+Chrome Dev Tools: Resources Tab
+Chrome Dev Tools: Memory Tab
+Chrome Dev Tools: Timeline Tab
+Chrome Dev Tools: Sources Tab
+Chrome Dev Tools: Network Tab
+Chrome Dev Tools: Elements Tab
+JavaScript Lingo: Regular Expressions
+JavaScript Lingo: Loops
+JavaScript Lingo: Math
+JavaScript Lingo: Manipulating Data
+JavaScript Lingo: Finding and Indexing Data in Arrays
+JavaScript Lingo: Arrays & Objects
+JavaScript Lingo: Variables & camelCase
+JavaScript Lingo: Value Types
+JavaScript Lingo: MDN and Documentation
+Computer Basics 17: How Routers and Packets work
+Computer Basics: Chips and how Moore's Law works
+Computer Basics 15: Analog vs Digital and how File Compression works
+Computer Basics 18: How Source Code works
+Computer Basics 19: How Variables work in Code
+Computer Basics 21: Chrome JavaScript Console and how Logging works
+Computer Basics 20: What Do Programmers Do?
+Computer Basics 13: Software
+Computer Basics 12: How the Internet Works
+Computer Basics 10: Data Networks
+Computer Basics 9: More on the Motherboard
+Computer Basics 8: Types of Computers
+Computer Basics 7: Binary Bytes
+Computer Basics 6: Measuring Data Speed
+Computer Basics 5: How To Measure Data Size
+Computer Basics 4: Decoding a Binary Number
+Computer Basics 3: Intro to Binary Code
+Computer Basics 2: More Computer Hardware
+Computer Basics 1: The 4 Basic Parts of a Computer

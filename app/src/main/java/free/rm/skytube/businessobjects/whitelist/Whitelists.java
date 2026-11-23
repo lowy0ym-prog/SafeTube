@@ -32,6 +32,7 @@ public final class Whitelists {
                     // Seen by eye: a woman presenting (user screenshot), credited "@aniakubow".
                     w.seedBlockedVideosOnce("seen2", new java.util.HashSet<>(java.util.Arrays.asList("PVAstrvWPkQ")));
                     // Covers checked by eye on contact sheets (a woman is clearly shown): newest 240 freeCodeCamp videos.
+                    seedScanResults(context, w);
                     w.seedBlockedVideosOnce("covers1", new java.util.HashSet<>(java.util.Arrays.asList(
                             "JGly6PSK5iw",
                             "FVN0t1vb7k8",
@@ -162,5 +163,23 @@ public final class Whitelists {
     public static boolean playlistAllowed(String ownerChannelRef, String playlistRef) {
         Whitelist w = instance;
         return w != null && w.isPlaylistAllowed(ownerChannelRef, playlistRef);
+    }
+
+    /** Verdicts for every freeCodeCamp video, decided before the app was built (assets/fcc_verdicts.txt: "A id" / "B id"). */
+    private static void seedScanResults(Context context, Whitelist w) {
+        java.util.Set<String> allow = new java.util.HashSet<>();
+        java.util.Set<String> block = new java.util.HashSet<>();
+        try (java.io.BufferedReader r = new java.io.BufferedReader(
+                new java.io.InputStreamReader(context.getAssets().open("fcc_verdicts.txt"), "UTF-8"))) {
+            String line;
+            while ((line = r.readLine()) != null) {
+                if (line.length() < 13) continue;
+                String id = line.substring(2).trim();
+                if (line.charAt(0) == 'A') allow.add(id); else if (line.charAt(0) == 'B') block.add(id);
+            }
+        } catch (Exception e) {
+            return; // no asset: nothing to seed
+        }
+        w.seedVerdictsOnce("fccscan2", allow, block);
     }
 }
