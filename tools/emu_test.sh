@@ -139,13 +139,13 @@ for k in 1 2 3 4 5 6; do
   grep -q "Lock new freeCodeCamp videos: " shots/lk_$k.xml && break
   adb shell input swipe 160 500 160 200 300; sleep 1
 done
-grep -o 'Lock new freeCodeCamp videos: [A-Z]*' shots/lk_$k.xml | head -1 > shots/lock_ui.txt
+grep -o 'Lock new freeCodeCamp videos: [A-Z][A-Z]* (tap' shots/lk_$k.xml | head -1 > shots/lock_ui.txt
 read LX LY <<< "$(tapnode shots/lk_$k.xml "videos: off" 9999)"
 echo "lock tap: $LX $LY" >> shots/lock_ui.txt
 if [ "$LX" != "NONE" ]; then
   adb shell input tap $LX $LY; sleep 2
   adb shell uiautomator dump /sdcard/lk2.xml >/dev/null 2>&1; adb pull /sdcard/lk2.xml shots/lk_after.xml >/dev/null 2>&1
-  grep -o 'Lock new freeCodeCamp videos: [A-Z]*' shots/lk_after.xml | head -1 >> shots/lock_ui.txt
+  grep -o 'Lock new freeCodeCamp videos: [A-Z][A-Z]* (tap' shots/lk_after.xml | head -1 >> shots/lock_ui.txt
 fi
 adb shell input keyevent KEYCODE_BACK; sleep 2
 adb shell input tap 300 52; sleep 2
@@ -177,7 +177,7 @@ fi
 # ---- Phase 5: "lock new freeCodeCamp videos" (toggle was switched ON through the admin screen above).
 # Simulate 3 recent videos as "new, not reviewed" with a test hook, then compare with the baseline list.
 adb shell "run-as $PKG sh -c 'cp /dev/null files/lock_forget.txt'" > /dev/null 2>&1
-while read -r ID; do adb shell "run-as $PKG sh -c 'echo $ID >> files/lock_forget.txt'"; done < tools/lock_forget_ids.txt
+while read -u 3 -r ID; do adb shell "run-as $PKG sh -c 'echo $ID >> files/lock_forget.txt'"; done 3< tools/lock_forget_ids.txt
 visit_channel lockon
 adb shell "run-as $PKG rm -f files/lock_forget.txt"
 {
