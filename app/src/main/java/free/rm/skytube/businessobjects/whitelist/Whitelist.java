@@ -31,6 +31,8 @@ public class Whitelist {
     private static final String K_BLOCKED_PLAYLISTS = "blocked_playlists";
     private static final String K_STRICT = "strict_channels";
     private static final String K_ALLOW_VERDICTS = "screen_allow";
+    private static final String K_LOCK_NEW = "lock_new_deep";
+    private static final String K_LOCKED_ALLOW = "locked_allow";
     private static final String K_BLOCK_VERDICTS = "screen_block";
     private static final String K_OVERRIDES = "screen_override";
     private static final String K_DEEP_SEEN = "deep_seen";
@@ -60,6 +62,7 @@ public class Whitelist {
     private Set<String> blockedPlaylists = new HashSet<>();
     private Set<String> strictChannels = new HashSet<>();
     private Set<String> allowVerdicts = new HashSet<>();
+    private Set<String> lockedAllow = new HashSet<>();
     private Set<String> blockVerdicts = new HashSet<>();
     private Set<String> overrides = new HashSet<>();
     /** Channels whose videos stay hidden until their description has been checked (set by code, not by the user). */
@@ -96,6 +99,7 @@ public class Whitelist {
         blockedPlaylists = new HashSet<>(storage.getSet(K_BLOCKED_PLAYLISTS));
         strictChannels = new HashSet<>(storage.getSet(K_STRICT));
         allowVerdicts = new HashSet<>(storage.getSet(K_ALLOW_VERDICTS));
+        lockedAllow = new HashSet<>(storage.getSet(K_LOCKED_ALLOW));
         blockVerdicts = new HashSet<>(storage.getSet(K_BLOCK_VERDICTS));
         overrides = new HashSet<>(storage.getSet(K_OVERRIDES));
         deepSeen = new HashSet<>(storage.getSet(K_DEEP_SEEN));
@@ -150,6 +154,10 @@ public class Whitelist {
         for (String v : block) recordVerdict(v, Screening.Verdict.BLOCK);
         for (String v : allow) recordVerdict(v, Screening.Verdict.ALLOW);
         flushVerdicts();
+        // The reviewed set: the only videos shown when "lock new videos" is on.
+        for (String v : allow) { if (!block.contains(v)) lockedAllow.add(v); }
+        lockedAllow.removeAll(block);
+        storage.putSet(K_LOCKED_ALLOW, lockedAllow);
         storage.putString(key, "1");
     }
 
@@ -210,6 +218,18 @@ public class Whitelist {
 
     public synchronized void setDeepScanDone(boolean done) {
         storage.putString(K_DEEP_SCAN_DONE, done ? "1" : null);
+    }
+
+    /** Lock for the deep channel: when ON only videos reviewed before the lock existed are shown (default OFF). */
+    public synchronized boolean isLockNew() { return storage.getString(K_LOCK_NEW) != null; }
+
+    public synchronized void setLockNew(boolean on) { storage.putString(K_LOCK_NEW, on ? "1" : null); }
+
+    public synchronized int lockedAllowCount() { return lockedAllow.size(); }
+
+    /** Test hook only: pretend these videos are new (not in the reviewed set). */
+    public synchronized void forgetLockedAllowForTest(java.util.Collection<String> ids) {
+        for (String i : ids) { String v = normalizeVideoId(i.trim()); if (v != null) lockedAllow.remove(v); }
     }
 
     public synchronized boolean isBackgroundCheckEnabled() { return storage.getString(K_BG_OFF) == null; }
@@ -309,6 +329,7 @@ public class Whitelist {
         if (vid == null || blockedVideos.contains(vid)) return false;
         if (overrides.contains(vid)) return true;
         if (blockVerdicts.contains(vid)) return false;
+        if (isDeep(channelRef) && isLockNew() && !lockedAllow.contains(vid)) return false; // locked: only the reviewed set
         if ((isStrict(channelRef) || isDeep(channelRef)) && !allowVerdicts.contains(vid)) {
             UnknownListener l = unknownListener;
             if (l != null) l.onUnknown(normalizeChannelId(channelRef), vid);

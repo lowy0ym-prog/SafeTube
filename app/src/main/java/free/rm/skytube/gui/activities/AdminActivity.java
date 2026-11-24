@@ -168,6 +168,12 @@ public class AdminActivity extends AppCompatActivity {
             if (!bgOn) free.rm.skytube.businessobjects.whitelist.ScreenWorker.startBackgroundFill();
             render();
         });
+        final boolean lockOn = wl.isLockNew();
+        label("Lock new freeCodeCamp videos: when ON, only the " + wl.lockedAllowCount() + " videos reviewed so far are shown. Every newer video stays hidden. Default OFF.");
+        button("Lock new freeCodeCamp videos: " + (lockOn ? "ON" : "OFF") + " (tap to change)", v -> {
+            wl.setLockNew(!lockOn);
+            render();
+        });
         label("Videos judged so far: " + wl.allowedVerdictCount() + " shown, " + wl.blockedVerdictCount() + " hidden.");
         final EditText ov = textField("Video URL or ID to always allow");
         button("Always allow this video", v -> {

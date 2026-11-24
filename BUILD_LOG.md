@@ -88,3 +88,7 @@
 
 ## Attempt 18 (custom) - recurring women added to the automatic name block
 - From the 250 cover-blocked videos, names credited in titles/descriptions in 2 or more videos were collected and checked against all 1,663 descriptions. Added to Screening.BLOCKED_PEOPLE: Anissa Deanna, Preethi Kasireddy, Kylie Ying, Rola Dali, Eleftheriabatsou, Tatev Karen Aslanyan, the "Code Vlog" series (ewathedoer / theonewhodo.es), Kass Moreno (existing: Ania Kubow, Jessica Chan, Emma Bostian, Rachel Fernandez, Andrea Griffiths, Patt Vira, Estefania). Each name matches only videos that were already blocked, except 2 more (a Kylie Ying mention, a Tatev A/B testing video), now blocked: 263 total. Seed tag fccscan3. A name rule needs a name in the text; a woman who only appears on a cover and is never named is not caught.
+
+## Attempt 19 (custom) - optional lock for new freeCodeCamp videos
+- Administrator screen: new button "Lock new freeCodeCamp videos: OFF/ON", default OFF. When ON, freeCodeCamp shows only the videos reviewed before this build (the allowed set bundled with the app, minus blocked ones); every newer video stays hidden, even if the phone's own check judged it clean. Other channels are not affected. Seed tag fccscan4 stores the reviewed set. Unit test added.
+- Emulator test: toggle tapped through the real admin screen (OFF -> ON), then 3 recent videos are made "new" with a test hook (files/lock_forget.txt) and must disappear from the channel list; reviewed titles must stay (positive controls).

@@ -70,6 +70,12 @@ public final class Whitelists {
                     }
                     // Only freeCodeCamp gets the deep check (hidden until its description has been read).
                     w.setDeepChannels(new java.util.HashSet<>(java.util.Arrays.asList("UC8butISFwT-Wl7EV0hUK0BQ")));
+                    try { // test hooks (emulator only): lock on / pretend some videos are new
+                        java.io.File lf = new java.io.File(context.getFilesDir(), "lock_on.txt");
+                        if (lf.isFile()) w.setLockNew(true);
+                        java.io.File ff = new java.io.File(context.getFilesDir(), "lock_forget.txt");
+                        if (ff.isFile()) w.forgetLockedAllowForTest(java.nio.file.Files.readAllLines(ff.toPath()));
+                    } catch (Exception ignored) { }
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;
                     // Newest 15 videos: read descriptions now (one small request), the slow background fill starts from MainActivity.
@@ -180,6 +186,6 @@ public final class Whitelists {
         } catch (Exception e) {
             return; // no asset: nothing to seed
         }
-        w.seedVerdictsOnce("fccscan3", allow, block);
+        w.seedVerdictsOnce("fccscan4", allow, block);
     }
 }

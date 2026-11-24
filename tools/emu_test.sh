@@ -134,6 +134,19 @@ sleep 1; shot 35b_admin_filled
 read SX SY <<< "$(tapnode shots/35b_admin_filled.xml "save pin")"; adb shell input tap $SX $SY; sleep 3; shot 35c_admin_home
 rows shots/35c_admin_home.xml > shots/35c_rows.txt
 adb shell input swipe 160 500 160 200 300; sleep 1; shot 35d_admin_scrolled
+for k in 1 2 3 4 5 6; do
+  adb shell uiautomator dump /sdcard/lk.xml >/dev/null 2>&1; adb pull /sdcard/lk.xml shots/lk_$k.xml >/dev/null 2>&1
+  grep -q "Lock new freeCodeCamp videos: " shots/lk_$k.xml && break
+  adb shell input swipe 160 500 160 200 300; sleep 1
+done
+grep -o 'Lock new freeCodeCamp videos: [A-Z]*' shots/lk_$k.xml | head -1 > shots/lock_ui.txt
+read LX LY <<< "$(tapnode shots/lk_$k.xml "videos: off" 9999)"
+echo "lock tap: $LX $LY" >> shots/lock_ui.txt
+if [ "$LX" != "NONE" ]; then
+  adb shell input tap $LX $LY; sleep 2
+  adb shell uiautomator dump /sdcard/lk2.xml >/dev/null 2>&1; adb pull /sdcard/lk2.xml shots/lk_after.xml >/dev/null 2>&1
+  grep -o 'Lock new freeCodeCamp videos: [A-Z]*' shots/lk_after.xml | head -1 >> shots/lock_ui.txt
+fi
 adb shell input keyevent KEYCODE_BACK; sleep 2
 adb shell input tap 300 52; sleep 2
 read WX WY <<< "$(tapnode shots/31_overflow.xml cleaner)"
@@ -160,6 +173,21 @@ if [ "$X" != "NONE" ]; then
     if ! grep -qi "$(head -1 shots/40_settings.xml | grep -o 'text="[^"]*"' | head -1 | cut -d'"' -f2 | head -c 5)" shots/41_after_back_$n.xml 2>/dev/null; then adb shell input keyevent KEYCODE_BACK; sleep 1; fi
   done 3< shots/40_rows.txt
 fi
+
+# ---- Phase 5: "lock new freeCodeCamp videos" (toggle was switched ON through the admin screen above).
+# Simulate 3 recent videos as "new, not reviewed" with a test hook, then compare with the baseline list.
+adb shell "run-as $PKG sh -c 'cp /dev/null files/lock_forget.txt'" > /dev/null 2>&1
+while read -r ID; do adb shell "run-as $PKG sh -c 'echo $ID >> files/lock_forget.txt'"; done < tools/lock_forget_ids.txt
+visit_channel lockon
+adb shell "run-as $PKG rm -f files/lock_forget.txt"
+{
+echo "titles base: $(wc -l < shots/base_titles.txt)  lock ON: $(wc -l < shots/lockon_titles.txt)"
+echo "simulated-new titles (must be missing with lock ON; present in base):"
+while read -r t; do k=$(echo "${t:0:28}" | sed 's/&/\&amp;/g'); echo "  base:$(grep -ci -F "$k" shots/base_titles.txt) lockON:$(grep -ci -F "$k" shots/lockon_titles.txt)  $t"; done < tools/lock_forget_titles.txt
+echo "reviewed (allowed) titles still shown with lock ON (positive controls):"
+n=0; while read -r t; do k=$(echo "${t:0:28}" | sed 's/&/\&amp;/g'); if grep -qi -F "$k" shots/lockon_titles.txt; then n=$((n+1)); fi; done < tools/fcc_allowed_titles.txt
+echo "  allowed titles found: $n"
+} > shots/lock_check.txt
 
 adb logcat -d -v time > shots/logcat_full.txt 2>&1
 grep -E " E/| F/|AndroidRuntime|FATAL|SAFETUBE|Whitelist" shots/logcat_full.txt | grep -v "mdi\|MDD" | tail -300 > shots/logcat_filtered.txt

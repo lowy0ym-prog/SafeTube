@@ -203,4 +203,27 @@ class WhitelistTest {
         assertFalse(again.isVideoAllowed(CH_A, "aaaaaaaaaaa"));
         assertTrue(again.isVideoAllowed(CH_A, "bbbbbbbbbbb"));
     }
+
+    @Test
+    void lockNewShowsOnlyReviewedVideosAndIsOffByDefault() {
+        w.addChannel(CH_A, "A");
+        w.setDeepChannels(new HashSet<>(java.util.Arrays.asList(CH_A)));
+        w.seedVerdictsOnce("t", new HashSet<>(java.util.Arrays.asList("aaaaaaaaaaa", "bbbbbbbbbbb")),
+                new HashSet<>(java.util.Arrays.asList("bbbbbbbbbbb")));
+        assertFalse(w.isLockNew());
+        w.recordVerdict("ccccccccccc", Screening.Verdict.ALLOW); // checked later by the phone
+        assertTrue(w.isVideoAllowed(CH_A, "ccccccccccc"));
+        w.setLockNew(true);
+        assertTrue(w.isVideoAllowed(CH_A, "aaaaaaaaaaa"));   // reviewed, clean
+        assertFalse(w.isVideoAllowed(CH_A, "bbbbbbbbbbb"));  // reviewed, blocked
+        assertFalse(w.isVideoAllowed(CH_A, "ccccccccccc"));  // new, even though the phone judged it clean
+        assertFalse(w.isVideoAllowed(CH_A, "ddddddddddd"));  // new, unknown
+        w.flushVerdicts();
+        Whitelist again = new Whitelist(storage, () -> now);
+        assertTrue(again.isLockNew());
+        assertFalse(again.isVideoAllowed(CH_A, "ccccccccccc"));
+        assertTrue(again.isVideoAllowed(CH_A, "aaaaaaaaaaa"));
+        again.setLockNew(false);
+        assertTrue(again.isVideoAllowed(CH_A, "ccccccccccc"));
+    }
 }
