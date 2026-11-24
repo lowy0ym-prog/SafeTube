@@ -150,6 +150,9 @@ public final class Screening {
     static final String[] BLOCKED_PEOPLE = {
             "aniakubow", "jessicachan", "emmabostian", "rachelfernandez", "andreagriffiths",
             "pattvira", "codingwithestefania", "estefaniacassingenanavone",
+            // women found on the covers of several older freeCodeCamp videos (names / credits / series)
+            "anissadeanna", "preethikasireddy", "kylieying", "roladali", "eleftheriabatsou",
+            "tatevkarenaslanyan", "tatevaslanyan", "ewathedoer", "theonewhodoes", "codevlog", "kassmoreno",
             // channel ids of the two channels the user asked to block
             "uciwmriz-sebpazzfelakuxq".replaceAll("[^a-z0-9]", ""), "ucng0h8wihlmt57jj8at4lfq".replaceAll("[^a-z0-9]", "")
     };

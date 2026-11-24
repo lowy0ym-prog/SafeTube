@@ -187,4 +187,13 @@ class ScreeningTest {
         assertEquals(Verdict.ALLOW, w2.getVerdict("abcdefghijk"));
         assertEquals(Verdict.BLOCK, w2.getVerdict("bcdefghijkl"));
     }
+
+    @Test
+    void recurringWomenFoundInOldVideosAreBlockedByName() {
+        String[][] c = {{"Create a Kanban Board", "Course by Anissa Deanna"}, {"Blockchain", "Taught by Preethi Kasireddy"},
+                {"Intro", "with Rola Dali"}, {"Note App - Code Vlog {13}", ""}, {"Next", "github.com/ewathedoer/note-app"},
+                {"Course", "Eleftheria Batsou teaches"}, {"A/B Testing", "Tatev Karen Aslanyan"}};
+        for (String[] x : c) assertEquals(Verdict.BLOCK, Screening.classify(x[0], x[1], false), x[0]);
+        assertEquals(Verdict.ALLOW, Screening.classify("Learn Rust", "Course by Beau Carnes", false));
+    }
 }

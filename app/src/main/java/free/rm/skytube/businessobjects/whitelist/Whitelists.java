@@ -180,6 +180,6 @@ public final class Whitelists {
         } catch (Exception e) {
             return; // no asset: nothing to seed
         }
-        w.seedVerdictsOnce("fccscan2", allow, block);
+        w.seedVerdictsOnce("fccscan3", allow, block);
     }
 }
