@@ -220,6 +220,7 @@ class WhitelistTest {
         assertFalse(w.isVideoAllowed(CH_A, "ddddddddddd"));  // new, unknown
         w.flushVerdicts();
         Whitelist again = new Whitelist(storage, () -> now);
+        again.setDeepChannels(new HashSet<>(java.util.Arrays.asList(CH_A)));
         assertTrue(again.isLockNew());
         assertFalse(again.isVideoAllowed(CH_A, "ccccccccccc"));
         assertTrue(again.isVideoAllowed(CH_A, "aaaaaaaaaaa"));
