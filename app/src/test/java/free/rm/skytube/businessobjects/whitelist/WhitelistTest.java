@@ -211,9 +211,8 @@ class WhitelistTest {
         w.seedVerdictsOnce("t", new HashSet<>(java.util.Arrays.asList("aaaaaaaaaaa", "bbbbbbbbbbb")),
                 new HashSet<>(java.util.Arrays.asList("bbbbbbbbbbb")));
         assertFalse(w.isLockNew());
-        w.recordVerdict("ccccccccccc", Screening.Verdict.ALLOW); // checked later by the phone
-        assertTrue(w.isVideoAllowed(CH_A, "ccccccccccc"));
         w.setLockNew(true);
+        w.recordVerdict("ccccccccccc", Screening.Verdict.ALLOW); // checked by the phone after the lock was turned on
         assertTrue(w.isVideoAllowed(CH_A, "aaaaaaaaaaa"));   // reviewed, clean
         assertFalse(w.isVideoAllowed(CH_A, "bbbbbbbbbbb"));  // reviewed, blocked
         assertFalse(w.isVideoAllowed(CH_A, "ccccccccccc"));  // new, even though the phone judged it clean
@@ -225,6 +224,8 @@ class WhitelistTest {
         assertFalse(again.isVideoAllowed(CH_A, "ccccccccccc"));
         assertTrue(again.isVideoAllowed(CH_A, "aaaaaaaaaaa"));
         again.setLockNew(false);
+        assertTrue(again.isVideoAllowed(CH_A, "ccccccccccc"));
+        again.setLockNew(true); // cleared at this moment, so it stays
         assertTrue(again.isVideoAllowed(CH_A, "ccccccccccc"));
     }
 
