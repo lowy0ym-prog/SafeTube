@@ -169,7 +169,7 @@ public class AdminActivity extends AppCompatActivity {
             render();
         });
         final boolean lockOn = wl.isLockNew();
-        label("Lock new freeCodeCamp videos: when ON, only the " + wl.lockedAllowCount() + " videos reviewed so far are shown. Every newer video stays hidden. Default OFF.");
+        label("Lock new freeCodeCamp videos: when ON, only videos that are already cleared at the moment you turn it ON are shown (" + wl.lockedAllowCount() + " now). Videos released after that, or not yet checked, stay hidden. To let newer good videos in: turn it OFF, let them be checked, then turn it ON again. Default OFF.");
         button("Lock new freeCodeCamp videos: " + (lockOn ? "ON" : "OFF") + " (tap to change)", v -> {
             wl.setLockNew(!lockOn);
             render();

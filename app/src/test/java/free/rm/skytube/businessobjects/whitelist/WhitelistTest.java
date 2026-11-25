@@ -227,4 +227,36 @@ class WhitelistTest {
         again.setLockNew(false);
         assertTrue(again.isVideoAllowed(CH_A, "ccccccccccc"));
     }
+
+    @Test
+    void lockOnFreezesWhatIsClearedAtThatMomentAndOffOnAdmitsNewlyCheckedVideos() {
+        w.addChannel(CH_A, "A");
+        w.setDeepChannels(new HashSet<>(java.util.Arrays.asList(CH_A)));
+        w.seedVerdictsOnce("t", new HashSet<>(java.util.Arrays.asList("aaaaaaaaaaa")), new HashSet<>());
+        w.setLockNew(true);
+        // released while locked: never shown, even when the phone judges it clean
+        w.recordVerdict("nnnnnnnnnnn", Screening.Verdict.ALLOW);
+        assertFalse(w.isVideoAllowed(CH_A, "nnnnnnnnnnn"));
+        // turn OFF: newly checked videos appear; one is judged to have a woman
+        w.setLockNew(false);
+        w.recordVerdict("ggggggggggg", Screening.Verdict.ALLOW);
+        w.recordVerdict("wwwwwwwwwww", Screening.Verdict.BLOCK);
+        assertTrue(w.isVideoAllowed(CH_A, "nnnnnnnnnnn"));
+        assertTrue(w.isVideoAllowed(CH_A, "ggggggggggg"));
+        // ON again: everything cleared in the meantime stays, the blocked one stays hidden
+        w.setLockNew(true);
+        assertTrue(w.isVideoAllowed(CH_A, "nnnnnnnnnnn"));
+        assertTrue(w.isVideoAllowed(CH_A, "ggggggggggg"));
+        assertFalse(w.isVideoAllowed(CH_A, "wwwwwwwwwww"));
+        // released after the lock came back, or never checked: hidden
+        w.recordVerdict("lllllllllll", Screening.Verdict.ALLOW);
+        assertFalse(w.isVideoAllowed(CH_A, "lllllllllll"));
+        assertFalse(w.isVideoAllowed(CH_A, "uuuuuuuuuuu"));
+        // survives a restart
+        w.flushVerdicts();
+        Whitelist again = new Whitelist(storage, () -> now);
+        again.setDeepChannels(new HashSet<>(java.util.Arrays.asList(CH_A)));
+        assertTrue(again.isVideoAllowed(CH_A, "ggggggggggg"));
+        assertFalse(again.isVideoAllowed(CH_A, "lllllllllll"));
+    }
 }

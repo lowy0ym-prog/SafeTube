@@ -92,3 +92,6 @@
 ## Attempt 19 (custom) - optional lock for new freeCodeCamp videos
 - Administrator screen: new button "Lock new freeCodeCamp videos: OFF/ON", default OFF. When ON, freeCodeCamp shows only the videos reviewed before this build (the allowed set bundled with the app, minus blocked ones); every newer video stays hidden, even if the phone's own check judged it clean. Other channels are not affected. Seed tag fccscan4 stores the reviewed set. Unit test added.
 - Emulator test: toggle tapped through the real admin screen (OFF -> ON), then 3 recent videos are made "new" with a test hook (files/lock_forget.txt) and must disappear from the channel list; reviewed titles must stay (positive controls).
+
+## Attempt 20 (custom) - lock semantics: freeze at the moment of turning ON
+- Turning the lock ON now freezes the cleared set at that moment (reviewed earlier + checked clean by the phone while it was OFF, minus blocked). Videos released or not checked after that stay hidden. To admit newer good videos: lock OFF, let them be checked, lock ON. Unit test + emulator phases (ON -> OFF -> ON). The phone's check is text-only, so a video judged clean while the lock is OFF may still have a woman on the cover; it is up to the person to look before locking again.

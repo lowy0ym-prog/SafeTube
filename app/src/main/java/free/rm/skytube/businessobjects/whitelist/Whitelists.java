@@ -70,11 +70,15 @@ public final class Whitelists {
                     }
                     // Only freeCodeCamp gets the deep check (hidden until its description has been read).
                     w.setDeepChannels(new java.util.HashSet<>(java.util.Arrays.asList("UC8butISFwT-Wl7EV0hUK0BQ")));
-                    try { // test hooks (emulator only): lock on / pretend some videos are new
-                        java.io.File lf = new java.io.File(context.getFilesDir(), "lock_on.txt");
-                        if (lf.isFile()) w.setLockNew(true);
+                    try { // test hooks (emulator only), each used once: pretend videos are new / flip the lock
                         java.io.File ff = new java.io.File(context.getFilesDir(), "lock_forget.txt");
-                        if (ff.isFile()) w.forgetLockedAllowForTest(java.nio.file.Files.readAllLines(ff.toPath()));
+                        if (ff.isFile()) { w.forgetLockedAllowForTest(java.nio.file.Files.readAllLines(ff.toPath())); ff.delete(); }
+                        java.io.File cf = new java.io.File(context.getFilesDir(), "lock_cmd.txt");
+                        if (cf.isFile()) {
+                            String c = new String(java.nio.file.Files.readAllBytes(cf.toPath())).trim();
+                            cf.delete();
+                            if ("on".equals(c)) w.setLockNew(true); else if ("off".equals(c)) w.setLockNew(false);
+                        }
                     } catch (Exception ignored) { }
                     w.setUnknownListener((channelId, videoId) -> ScreenWorker.enqueue(channelId, videoId));
                     instance = w;

@@ -223,13 +223,28 @@ public class Whitelist {
     /** Lock for the deep channel: when ON only videos reviewed before the lock existed are shown (default OFF). */
     public synchronized boolean isLockNew() { return storage.getString(K_LOCK_NEW) != null; }
 
-    public synchronized void setLockNew(boolean on) { storage.putString(K_LOCK_NEW, on ? "1" : null); }
+    /**
+     * Turning the lock ON freezes the set of shown videos: every video that is cleared right now (reviewed
+     * earlier, or checked clean by the phone while the lock was OFF) stays visible. Videos not cleared at
+     * that moment, and everything released afterwards, stay hidden until the lock is turned OFF and they are
+     * checked, then ON again.
+     */
+    public synchronized void setLockNew(boolean on) {
+        if (on) {
+            for (String v : allowVerdicts) {
+                if (!blockVerdicts.contains(v) && !blockedVideos.contains(v)) lockedAllow.add(v);
+            }
+            storage.putSet(K_LOCKED_ALLOW, lockedAllow);
+        }
+        storage.putString(K_LOCK_NEW, on ? "1" : null);
+    }
 
     public synchronized int lockedAllowCount() { return lockedAllow.size(); }
 
     /** Test hook only: pretend these videos are new (not in the reviewed set). */
     public synchronized void forgetLockedAllowForTest(java.util.Collection<String> ids) {
         for (String i : ids) { String v = normalizeVideoId(i.trim()); if (v != null) lockedAllow.remove(v); }
+        storage.putSet(K_LOCKED_ALLOW, lockedAllow);
     }
 
     public synchronized boolean isBackgroundCheckEnabled() { return storage.getString(K_BG_OFF) == null; }

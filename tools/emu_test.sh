@@ -174,20 +174,23 @@ if [ "$X" != "NONE" ]; then
   done 3< shots/40_rows.txt
 fi
 
-# ---- Phase 5: "lock new freeCodeCamp videos" (toggle was switched ON through the admin screen above).
-# Simulate 3 recent videos as "new, not reviewed" with a test hook, then compare with the baseline list.
+# ---- Phase 5: lock ON (switched through the admin screen above). Simulate 4 recent videos as "new" (test hook, used once).
 adb shell "run-as $PKG sh -c 'cp /dev/null files/lock_forget.txt'" > /dev/null 2>&1
 while read -u 3 -r ID; do adb shell "run-as $PKG sh -c 'echo $ID >> files/lock_forget.txt'"; done 3< tools/lock_forget_ids.txt
 visit_channel lockon
-adb shell "run-as $PKG rm -f files/lock_forget.txt"
+t4() { while read -r t; do k=$(echo "${t:0:28}" | sed 's/&/\&amp;/g'); echo "  base:$(grep -ci -F "$k" shots/base_titles.txt) now:$(grep -ci -F "$k" shots/$1_titles.txt)  $t"; done < tools/lock_forget_titles.txt; }
 {
-echo "titles base: $(wc -l < shots/base_titles.txt)  lock ON: $(wc -l < shots/lockon_titles.txt)"
-echo "simulated-new titles (must be missing with lock ON; present in base):"
-while read -r t; do k=$(echo "${t:0:28}" | sed 's/&/\&amp;/g'); echo "  base:$(grep -ci -F "$k" shots/base_titles.txt) lockON:$(grep -ci -F "$k" shots/lockon_titles.txt)  $t"; done < tools/lock_forget_titles.txt
-echo "reviewed (allowed) titles still shown with lock ON (positive controls):"
-n=0; while read -r t; do k=$(echo "${t:0:28}" | sed 's/&/\&amp;/g'); if grep -qi -F "$k" shots/lockon_titles.txt; then n=$((n+1)); fi; done < tools/fcc_allowed_titles.txt
-echo "  allowed titles found: $n"
+echo "== A. lock ON, 4 videos pretend-new: now must be 0 (hidden)"; t4 lockon
 } > shots/lock_check.txt
+# ---- Phase 6: lock OFF (same method the button calls), videos were checked meanwhile -> visible again
+adb shell "run-as $PKG sh -c 'echo off > files/lock_cmd.txt'"
+visit_channel lockoff
+{ echo "== B. lock OFF: the 4 must be visible again (now:1)"; t4 lockoff; } >> shots/lock_check.txt
+# ---- Phase 7: lock ON again -> what is cleared at that moment stays visible
+adb shell "run-as $PKG sh -c 'echo on > files/lock_cmd.txt'"
+visit_channel lockback
+{ echo "== C. lock turned ON again: the 4 cleared videos stay visible (now:1)"; t4 lockback;
+  echo "titles: base $(wc -l < shots/base_titles.txt) lockon $(wc -l < shots/lockon_titles.txt) lockoff $(wc -l < shots/lockoff_titles.txt) lockback $(wc -l < shots/lockback_titles.txt)"; } >> shots/lock_check.txt
 
 adb logcat -d -v time > shots/logcat_full.txt 2>&1
 grep -E " E/| F/|AndroidRuntime|FATAL|SAFETUBE|Whitelist" shots/logcat_full.txt | grep -v "mdi\|MDD" | tail -300 > shots/logcat_filtered.txt
