@@ -1,0 +1,5 @@
+base fcc tap: 135 150
+beau fcc tap: 135 150
+lockon fcc tap: 135 150
+lockoff fcc tap: 135 150
+lockback fcc tap: 135 150

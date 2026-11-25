@@ -1,0 +1,4 @@
+distinct text lines seen: 394
+allowed (positive control) titles seen: 236
+BLOCKED titles seen (must be 0): 1
+  LEAK: vue.js course for beginners

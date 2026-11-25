@@ -1,0 +1,8 @@
+18a19
+>  text="547,000 views"
+22d22
+<  text="98,000 views"
+38c38
+<  text="PostgreSQL Hybrid Search Course – Keyword (BM25) + Vector Retrieval"
+---
+>  text="OpenAI Codex Crash Course – Build &amp; Deploy Apps with Autonomous AI"

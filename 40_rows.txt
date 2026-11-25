@@ -1,0 +1,7 @@
+28 52 Navigate_up
+160 107 Video_Player
+160 161 SponsorBlock
+160 215 Privacy
+160 269 Network_and_Downloads
+160 323 Others
+160 377 About

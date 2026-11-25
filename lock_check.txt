@@ -1,0 +1,16 @@
+== A. lock ON, 4 videos pretend-new: now must be 0 (hidden)
+  base:1 now:0  Learn Data Structures and Algorithms in Python with Visualizations
+  base:1 now:0  Codex & AI Coding Agents - Learn Agentic Coding
+  base:1 now:0  Godot 4 Roguelike Course – Build a Complete Top-Down Action Game
+  base:1 now:0  Vector Databases Full Course for Beginners – Embeddings, Similarity Search & ChromaDB
+== B. lock OFF: the 4 must be visible again (now:1)
+  base:1 now:1  Learn Data Structures and Algorithms in Python with Visualizations
+  base:1 now:1  Codex & AI Coding Agents - Learn Agentic Coding
+  base:1 now:1  Godot 4 Roguelike Course – Build a Complete Top-Down Action Game
+  base:1 now:1  Vector Databases Full Course for Beginners – Embeddings, Similarity Search & ChromaDB
+== C. lock turned ON again: the 4 cleared videos stay visible (now:1)
+  base:1 now:1  Learn Data Structures and Algorithms in Python with Visualizations
+  base:1 now:1  Codex & AI Coding Agents - Learn Agentic Coding
+  base:1 now:1  Godot 4 Roguelike Course – Build a Complete Top-Down Action Game
+  base:1 now:1  Vector Databases Full Course for Beginners – Embeddings, Similarity Search & ChromaDB
+titles: base 44 lockon 45 lockoff 44 lockback 44

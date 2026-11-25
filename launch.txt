@@ -1,0 +1,15 @@
+  bash arg: -p
+  bash arg: com.lowy.safetube.oss
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+args: [-p, com.lowy.safetube.oss, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "com.lowy.safetube.oss"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="com.lowy.safetube.oss"
+data="android.intent.category.LAUNCHER"
+Events injected: 1
+## Network stats: elapsed time=85ms (0ms mobile, 0ms wifi, 85ms not connected)
